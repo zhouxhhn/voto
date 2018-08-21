@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人占成</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<div class="tableW PhoneBetting divbox pad20  TongjiTab">
+			<div class="phoneTop">
+
+			</div>
+			<div class="divW w100">
+				<table class="layerTab">
+					<thead>
+						<tr>
+							<th></th>
+							<th>庄闲字码总分</th>
+							<th>三宝洗码总分</th>
+							<th>庄闲盈亏总分</th>
+							<th>三宝盈亏总分</th>
+							<th>有效流水总分</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>总计</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--分页-->
+			<div class="pageWrap mT15">
+				<div>
+					<a><i class="iconfont icon-icon1"></i></a>
+					<a class="on">1</a>
+					<a>2</a>
+					<a></a>
+					<a>4</a>
+					<a>10</a>
+					<a><i class="iconfont icon-arrow-sl"></i> </a>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="js/jquery2-1-4.min.js"></script>
+	<script src="js/home.js"></script>
+	<script type="text/javascript">
+		$(".layerTab tbody tr,.pageWrap a").click(function() {
+			$(this).addClass("on").siblings().removeClass("on");
+		})
+	</script>
+
+</html>

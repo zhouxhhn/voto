@@ -1,0 +1,5 @@
+.fa-check-circle:before {
+    content: "\f058";
+    top: 3px;
+    position: relative;
+}

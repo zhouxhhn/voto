@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.recharge.RechargeCtl" table="t_recharge_ctl" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <property name="aliPay" column="aliPay" type="java.lang.Integer"/>
+        <property name="weChat" column="weChat" type="java.lang.Integer"/>
+        <property name="qqPay" column="qqPay" type="java.lang.Integer"/>
+        <property name="bank" column="bank" type="java.lang.Integer"/>
+        <property name="aliCode" column="ali_code" type="java.lang.Integer"/>
+        <property name="qqCode" column="qq_code" type="java.lang.Integer"/>
+        <property name="weCode" column="we_code" type="java.lang.Integer"/>
+        <property name="aliPayPass" column="aliPay_pass" type="java.lang.Integer"/>
+        <property name="weChatPass" column="weChat_pass" type="java.lang.Integer"/>
+        <property name="QQPayPass" column="qq_pass" type="java.lang.Integer"/>
+        <property name="bankPass" column="bank_pass" type="java.lang.Integer"/>
+
+    </class>
+</hibernate-mapping>

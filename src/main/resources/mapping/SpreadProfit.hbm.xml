@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.spreadprofit.SpreadProfit" table="t_spread_profit">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version name="version" type="java.lang.Integer" column="version"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="account" column="account_id" class="bjl.domain.model.account.Account"/>
+        <property name="yesterdayProfit" column="yesterday_profit" type="java.math.BigDecimal"/>
+        <property name="weekProfit" column="week_profit" type="java.math.BigDecimal"/>
+        <property name="lastWeekProfit" column="last_week_profit" type="java.math.BigDecimal"/>
+        <property name="monthProfit" column="month_profit" type="java.math.BigDecimal"/>
+        <property name="totalProfit" column="total_profit" type="java.math.BigDecimal"/>
+        <property name="unsettledProfit" column="unsettled_profit" type="java.math.BigDecimal"/>
+        <property name="receiveProfit" column="receive_profit" type="java.math.BigDecimal"/>
+        <property name="todayProfit" column="today_profit" type="java.math.BigDecimal"/>
+    </class>
+
+</hibernate-mapping>

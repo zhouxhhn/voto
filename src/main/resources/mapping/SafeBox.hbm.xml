@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.safebox.SafeBox" table="t_safe_box" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="account" column="account_id" class="bjl.domain.model.account.Account"/>
+
+        <property name="access" column="access" type="java.math.BigDecimal"/>
+
+        <property name="bankMoney" column="bank_money" type="java.math.BigDecimal"/>
+
+        <property name="money" column="money" type="java.math.BigDecimal"/>
+
+        <property name="totalMoney" column="total_money" type="java.math.BigDecimal"/>
+
+    </class>
+</hibernate-mapping>

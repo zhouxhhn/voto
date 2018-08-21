@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>上下分明细</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<div class="tableW PhoneBetting divbox pad20 ">
+			<div class="phoneTop">
+
+			</div>
+			<div class="divW w100">
+				<table class="layerTab">
+					<thead>
+						<tr>
+							<th>玩家昵称</th>
+							<th>银行卡</th>
+							<th>卡号</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>aaa</td>
+							<td>工商银行</td>
+							<td>123213132</td>
+							<td class="caozuo">解除绑定</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--分页-->
+			<div class="pageWrap mT15">
+				<div>
+					<a><i class="iconfont icon-icon1"></i></a>
+					<a class="on">1</a>
+					<a>2</a>
+					<a></a>
+					<a>4</a>
+					<a>10</a>
+					<a><i class="iconfont icon-arrow-sl"></i> </a>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="js/jquery2-1-4.min.js"></script>
+	<script src="js/home.js"></script>
+	<script type="text/javascript">
+		$(".layerTab tbody tr,.pageWrap a").click(function() {
+			$(this).addClass("on").siblings().removeClass("on");
+		})
+	</script>
+
+</html>

@@ -1,0 +1,699 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	font-size: 16px;
+	font-family: "微软雅黑";
+}
+a,li{
+	list-style: none;
+	text-decoration: none;
+}
+
+.ov{
+	overflow: hidden;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.talignR{
+	text-align: right;
+}
+.talignl{
+	text-align: left;
+}
+.talignC{
+	text-align: center;
+}
+.mT10{
+	margin-top: 10px;
+}
+.mB10{
+	margin-bottom: 10px;
+}
+.mT15{
+	margin-top: 15px;
+}
+.mT20{
+	margin-top: 20px;
+}
+.pad20{
+	padding: 20px;
+}
+.w100{
+	width: 100% !important;
+}
+.leftTab{
+	width:180px;
+	background: #1c1c1c;
+	height:100%;
+}
+.rightWork{
+	/*width: calc( 100% - 180px);
+	width: -moz-calc( 100% - 180px);
+	width: -webkit-calc( 100% - 180px);*/
+	/*height: 800px;*/
+}
+/*左边Tab*/
+.logo{
+	text-align: center;
+	height:136px;
+}
+.logo>img{
+	margin-top: 18px;
+}
+.tabList{
+	width: 100%;
+}
+.tabList>li a,.tabList>li>p{
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding-left: 25px;
+	height: 44px;
+	line-height: 44px;
+	color: white;
+	font-size: 14px;
+}
+.tabList>li i{
+	font-size: 21px;
+	margin-right: 10px;
+	float: left;
+}
+.tabList>li a.on{
+	background: rgba(255,255,255,.2);
+}
+.tabList>li a:hover,.tabList>li p:hover{
+	cursor: pointer;
+	background: rgba(255,255,255,.2);
+}
+.tabList>li div{
+	display: none;
+}
+.tabList>li>div>a{
+	padding-left: 40px !important;
+}
+
+
+
+/*右边操作部分*/
+.iframeDiv{
+	width: calc( 100% - 180px);
+	width: -webkit-calc( 100% - 180px);
+	width: -moz-calc( 100% - 180px);
+	height: calc( 100% - 60px);
+	height: -webkit-calc( 100% - 60px);
+	height: -moz-calc( 100% - 60px);
+	position: absolute;
+	left: 180px;
+}
+.iframeDiv>iframe{
+	width: 100%;
+	height: 100%;
+	background: #dcdcdc;
+	border: none;
+	outline: none;
+}
+
+
+.admin{
+	height:56px;
+	line-height: 56px;
+	width: 100%;
+	background: #1c1c1c;
+	color: white;
+	text-align: right;
+	box-sizing: border-box;
+	padding-right: 60px;
+}
+.tableSurround{
+	width: 100%;
+	box-sizing: border-box;
+	background: #eff1f3;
+	height: 100%;
+}
+/*游戏下注*/
+.bettingL{
+	width:calc( 100% - 188px);
+	width:-webkit-calc( 100% - 188px);
+	width:-moz-calc( 100% - 188px);
+}
+.bettingR{
+	width: 188px;
+	background: #1c1c1c;
+	box-sizing: border-box;
+	padding-right:10px ;
+	border-top: 1px solid rgba(255,255,255,.3);
+	padding-bottom: 50px;
+}
+.GameBetting{
+	height: 100%;
+}
+.GameBetting>div{
+	display: inline-block;
+	height: 100%;
+	position: relative;
+}
+.tableDiv{
+	width: 100%;
+	height:727px;
+	box-sizing: border-box;
+	padding: 20px;
+}
+.layerTab{
+	border: 1px solid #dcdcdc;
+	width:100%;
+	border-collapse: collapse;
+}
+.layerTab th{
+	background:#dcf1e0 ;
+	height: 42px;
+	font-size: 14px;
+}
+.layerTab td{
+	background: white;
+	transition: all .3s;
+	height: 37px;
+	font-size: 12px;
+}
+.layerTab tbody>tr:hover td{
+	background: #dcf1e0;
+}
+.layerTab tbody>tr.on td{
+	background: #dcf1e0;
+}
+.layerTab td,.layerTab th{
+	border: 1px solid #dcdcdc;
+	text-align: center;
+	color: #333333;
+	padding: 0px 5px;
+}
+.layerTab td.xiugai{
+	color:#108af1;
+}
+.TongjiTab  .layerTab>tbody>tr:last-child td{
+	color: #dc043e;
+}
+/*分页*/
+.pageWrap{
+	text-align: right;
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+	bottom: 30px;
+	right: 10px;
+}
+.pageWrap>div{
+	/*width: 258px;*/
+	overflow: hidden;
+	float: right;
+	
+}
+.pageWrap>div>a{
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	border: 1px solid #dcdcdc;
+	text-align: center;
+	line-height: 26px;
+	color: #666666;
+	font-size:14px;
+	transition: all .3s;
+	float: left;
+	margin-left: 5px;
+}
+.pageWrap>div>a:hover{
+	background: #e69c29;
+	color: white;
+}
+.pageWrap a.on{
+	background: #e69c29;
+	color: white;
+}
+.pageWrap>a:hover{
+	cursor: pointer;
+	background: #e69c29;
+	color: white;
+}
+
+.bettingR>.operatingBtn{
+	background: #e69c29;
+}
+.bettingR>.startBet{
+	background: #1be648;
+}
+
+.bettingR>.btnP{
+	width: 152px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	margin:12px auto;
+	border-radius: 5px;
+}
+.bettingR>p:hover{
+	cursor: pointer;
+}
+.paiInfo{
+	width: 100%;
+	background: white;
+	padding: 16px 0px;
+}
+.paiInfo>p{
+	overflow: hidden;
+	line-height: 26px;
+}
+.paiInfo>p>span{
+	display: inline-block;
+	float: left;
+	font-size: 14px;
+	text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+}
+.paiInfo>p>span:first-child{
+	width: 40%;
+	text-align: right;
+}
+.paiInfo>p>span:last-child{
+	width: 50%;
+	
+}
+.fa3033{
+	color: #fa3033 !important;
+}
+.f016dff{
+	color:#016dff !important;
+}
+.f00e288{
+	color: #00e288 !important;
+}
+.TableShotsBtn{
+	background: #5469dc;
+}
+.ModifyBoots{
+	background: #2f98ff;
+}
+.toNextBtn{
+	background: #29c36d;
+}
+
+.endBet{
+	background: #c32814;
+}
+
+.BettingShotsBtn,.xiuBettingShotsBtn{
+	background: #776c61;
+}
+.LotterySettlementBtn{
+	background: #16c8be;
+}
+.ScoreBtn{
+	background: #08acc9;
+}
+.IntoNextBtn{
+	background: #e69c29;
+}
+.changexj>label{
+	color: white;
+	width: 45%;
+	display: inline-block;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+.changexj>label>input{
+	margin-right: 5px;
+	margin-left: 10px;
+}
+.changexj>label>input[type=text]{
+	display: inline-block;   
+    width: 16px;  
+    height: 16px;   
+    -webkit-appearance: none;  
+    border: 1px solid rgba(255,255,255,.6);  
+    outline: 0 !important; 
+    background-color: #4f3810; 
+    color: white; 
+    text-align: center;
+    border-radius: 3px;
+}
+.none{
+	display: none;
+}
+.changeCheck{
+	width: 152px;
+	box-sizing: border-box;
+	padding: 5px;
+	background: #424242;
+	margin: auto;
+	border-radius: 5px;
+}
+.changeCheck>label{
+	display: inline-block;
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+}
+
+/*电话投注*/
+.divbox{
+	background: #eff1f3;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	box-sizing: border-box;
+	/*padding: 20px;*/
+}
+
+.phoneTop{
+	
+}
+.caozuo>span{
+	display: inline-block;
+	padding: 5px 8px;
+	background: #dcdcdc;
+	border-radius: 5px;
+	margin: 0px 5px;
+	color: white;
+}
+
+.posi_re{
+	position: relative;
+}
+.divTit{
+	position: absolute;
+	height: 56px;
+	line-height: 56px;
+	color: white;
+	font-size: 14px;
+	padding-left: 20px;
+
+}
+.divTit>i{
+	display: none;
+}
+.phoneTop{
+	margin-bottom: 10px;
+	height: auto;
+	overflow: hidden;
+}
+.phoneTop>div{
+	display: inline-block;
+	float: left;
+	font-size: 14px;
+	text-align: center;
+	margin-right: 10px;
+}
+div[inDiv] input,div[inDiv] select{
+	width: 126px;
+	height: 38px;
+	border: none;
+	outline: none;
+	text-align: center;
+	color: #333333;
+	font-size: 14px;
+	padding: 0px 5px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+	background: white;
+}
+
+.mLR5{
+	margin: 0px 5px;
+}
+.chaxun{
+	height: 38px;
+	line-height: 38px;
+	padding: 0px 10px;
+	background: #e69c29;
+	color: white;
+	border-radius: 5px;
+}
+div[inDiv_n]{
+	line-height: 38px;
+	font-size: 14px;
+	margin-right: 10px;
+}
+div[inDiv_n]>i{
+	font-style: normal;
+}
+.xiugai>span{
+	display: inline-block;
+	padding: 5px 15px;
+	border-radius: 5px;
+	color:white ;
+}
+.xiugai>span.kai{
+	background: #4f3810;
+}
+.xiugai>span.ting{
+	background: #2f98ff;
+}
+.xiugai:hover{
+	cursor: pointer;
+}
+.tip{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.6);
+	top:0;
+	z-index: 99;
+}
+.tipBox{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	box-sizing: border-box;
+	padding: 10px;
+	background: #f1f1f3;
+	border-radius: 5px;
+}
+.kaiBox,.kaijiangBox{
+	width: 426px;
+	height: 329px;
+	margin-left: -213px;
+	margin-top: -115px;
+}
+.tcenter{
+	text-align: center;
+}
+.f18{
+	font-size: 18px;
+}
+.color33{
+	color: #333333 !important;
+}
+.pTit{
+	text-align:center ;
+	
+}
+.mT20{
+	margin-top: 20px;
+}
+.tipCon{
+	box-sizing: border-box;
+	padding: 10px 30px;
+}
+.tipCon>p{
+	line-height: 24px;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.tipCon>p>span:first-child{
+	margin-right: 5px;
+}
+.tipCon>p input{
+	height: 36px;
+	width: 210px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+	background: white;
+	
+}
+.op{
+	height: 36px;
+	width: 210px;
+	background: white;
+}
+
+.mR10{
+	margin-right: 10px;
+}
+.BtnDiv{
+	text-align: center;
+}
+.BtnDiv>span{
+	display: inline-block;
+	width: 124px;
+	height: 38px;
+	line-height: 38px;
+	color: white;
+	font-size: 15px;
+	border-radius: 5px;
+}
+.imgDiv {
+	text-align: center;
+	width: 400px;
+	height: 120px;
+	line-height: 38px;
+	font-size: 15px;
+	border-radius: 5px;
+	/*resize: none;*/
+	/*outline: none;*/
+	overflow-y: auto;
+	border: 1px solid rgba(169, 169, 169, 1);
+}
+.mLR15{
+	margin: 0px 15px;
+}
+.mLR15_{
+	margin: 10px 50px;
+}
+.quxiao{
+	background: #4f3810;
+}
+.tijiao{
+	background: #e69c29;
+}
+
+.tingBox{
+	width: 426px;
+	height: 419px;
+	background: #f1f1f3;
+	border-radius: 5px;
+	margin-left: -213px;
+	margin-top: -210px;
+}
+[hid]{
+	visibility: hidden;
+}
+.mB15{
+	margin-bottom: 15px !important;
+}
+.Btn1{
+	padding: 5px 8px;
+	color: white;
+	border-radius: 5px;
+}
+.Btn2{
+	padding: 5px 10px;
+	color: #333;
+	border-radius: 5px;
+}
+.yanHuang{
+	background:#e69c29 ;
+}
+.yanQing{
+	background: #29c36d;
+}
+.addBox{
+	width: 402px;
+	height: 277px;
+	margin-left: -201px;
+	margin-top: -138px;
+}
+.f16{
+	font-size: 16px;
+}
+.xiuigaiBox{
+	width: 749px;
+	height: 425px;
+	margin-left: -375px;
+	margin-top: -213px;
+}
+.updateBox{
+	width: 749px;
+	height: 400px;
+	margin-left: -375px;
+	margin-top: -250px;
+}
+.piliang>div{
+	line-height: 37px;
+	height: 37px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	color: #333;
+}
+.piliang>div input{
+	width: 142px;
+	height: 35px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+}
+.updatePiliang>div{
+	line-height: 37px;
+	height: 37px;
+	margin-bottom: 15px;
+	font-size: 14px;
+	color: #333;
+}
+.updatePiliang>div input{
+	width: 200px;
+	height: 35px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+}
+.piliang.fl{
+	margin-left: 25px;
+}
+.piliang.fr{
+	margin-right: 25px;
+}
+.b_bor{
+	border-bottom: 1px  solid #d2d2d2;
+}
+.xiu_box{
+	height: 500px !important;
+	margin-top: -306px !important;
+}
+
+.w_210{
+	width: 210px !important;
+}
+.shanchu{
+	background: #4f3810;
+}
+.zhiding{
+	background: #5469dc;
+}
+.yanBai{
+	background: white;
+}
+.kaijiangBox>.tipCon{
+	border: 1px solid #D2D2D2;
+	margin:25px 20px 20px;
+	background: white;
+	height: 80px;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.kaijiangBox>.tipCon>p>span{
+	display: inline-block;
+	width: 33.333%;
+	float: left;
+	font-size: 32px;
+	text-align: center;
+	line-height: 60px;
+	margin: 0px !important;
+}
+.kaijiangBox>.tipCon>p>span:first-child{
+
+}
+.zhuangRed{
+	color: #ff3134;
+}
+.xianLan{
+	color: #0196fe;
+}
+.he{
+	color: #29fe45;
+}
+#startDate,#endDate{
+	width: 225px;
+}

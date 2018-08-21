@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<!--玩家管理-->
+		<div class="tableW PhoneBetting divbox pad20 TongjiTab">
+			<div class="phoneTop">
+				<div class="addPlayer Btn1 yanHuang"la="1" inDiv>新增玩家</div>
+				<div class="batchEdit Btn1 yanQing" la="2" inDiv>批量修改玩家信息</div>
+			</div>
+			<div class="divW w100">
+				<table class="layerTab">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>选手名称</th>
+							<th>隐藏显示</th>
+							<th>是否置顶</th>
+							<th>是否虚拟</th>
+							<th>剩余分</th>
+							<th>初始分</th>
+							<th>日积分</th>
+							<th>总积分</th>
+							<th>庄闲占成</th>
+							<th>庄闲占成额度</th>
+							<th>三宝占成</th>
+							<th>三宝占成额度</th>
+							<th>庄闲最小</th>
+							<th>庄闲最大</th>
+							<th>三宝最小</th>
+							<th>三宝最大</th>
+							<th>操作</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						<tr>
+							<td>12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>2017-12-12</td>
+							<td>2017-12-12</td>
+							<td>2017-12-12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td class="xiugai" la="3">修改</td>
+						</tr>
+						<tr>
+							<td>总计</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>1000</td>
+							<td>1000</td>
+							<td>0</td>
+							<td>0</td>
+							<td>23%</td>
+							<td>23000</td>
+							<td>23%</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td class="xiugai" la="3">修改</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--分页-->
+			<div class="pageWrap mT15">
+				<div>
+					<a><i class="iconfont icon-icon1"></i></a>
+					<a class="on">1</a>
+					<a>2</a>
+					<a></a>
+					<a>4</a>
+					<a>10</a>
+					<a><i class="iconfont icon-arrow-sl"></i> </a>
+				</div>
+			</div>
+		</div>
+		<!--批量修改玩家信息-->
+		<div class="tip" lay="2" style="display:none;">
+			<div class="tipBox xiuigaiBox">
+				<p class="pTit tcenter f18 color33 mT10 mB15">批量修改玩家信息</p>
+				<div class="tipCon ov">
+					<div class="fl piliang">
+						<p class="tcenter f16 color33 mB15">玩家限红</p>
+						<div><span>个人庄闲最小：</span><input type="text" /></div>
+						<div><span>个人庄闲最大：</span><input type="text" /></div>
+						<div><span>个人三宝最小：</span><input type="text" /></div>
+						<div><span>个人三宝最小：</span><input type="text" /></div>
+					</div>
+					<div class="fr piliang">
+						<p class="tcenter f16 color33 mB15">玩家占成</p>
+						<div><span><i hid>站位了</i>个人庄闲占成比：</span><input type="text" /></div>
+						<div><span>个人庄闲最高占成金额：</span><input type="text" /></div>
+						<div><span><i hid>站位了</i>个人三宝占成比：</span><input type="text" /></div>
+						<div><span>个人三宝最高占成金额：</span><input type="text" /></div>
+					</div>
+				</div>
+				<div class="BtnDiv mT20">
+					<span class="tijiao mLR15">保存</span>
+					<span class="tijiao mLR15">关闭</span>
+				</div>
+			</div>
+		</div>
+		<!--新增玩家-->
+		<div class="tip" lay="1" style="display: none;">
+			<div class="tipBox addBox">
+				<p class="pTit tcenter f18 color33 mT10">新增玩家</p>
+				<div class="tipCon">
+					<p><span><i hid>位</i>玩家昵称：</span><input type="text" /></p>
+					<p><span><i hid>位</i>代理别名：</span><input type="text" /></p>
+				</div>
+				<div class="BtnDiv mT20">
+					<span class="quxiao mLR15">取消</span>
+					<span class="tijiao mLR15">接待</span>
+				</div>
+			</div>
+		</div>
+		<!--修改提醒-->
+	   <div class="tip" lay="3" style="display:none ;">
+			<div class="tipBox xiuigaiBox xiu_box">
+				<p class="pTit tcenter f18 color33 mT10 mB15">批量修改玩家信息</p>
+				<div class="tipCon ov b_bor">
+					<div class="fl piliang">
+						<div><span>玩家占成：</span><input type="text" class="w_210" /></div>
+						<div><span>代理别名：</span><input type="text"  class="w_210"/></div>
+						<div><span>玩家下分：</span><input type="text" class="w_210" /></div>
+					</div>
+					<div class="fr piliang">
+						<div><span>请输入金额：</span><input type="text" class="w_210" /></div>
+						<div><span><i hid>站</i>玩家上分：</span><input type="text" class="w_210" /></div>
+					</div>
+				</div>
+				<div class="tipCon mT20 ov">
+					<div class="fl piliang">
+						<p class="tcenter f16 color33 mB15">玩家限红</p>
+						<div><span>个人庄闲最小：</span><input type="text" /></div>
+						<div><span>个人庄闲最大：</span><input type="text" /></div>
+						<div><span>个人三宝最小：</span><input type="text" /></div>
+						<div><span>个人三宝最小：</span><input type="text" /></div>
+					</div>
+					<div class="fr piliang">
+						<p class="tcenter f16 color33 mB15">玩家占成</p>
+						<div><span><i hid>站位了</i>个人庄闲占成比：</span><input type="text" /></div>
+						<div><span>个人庄闲最高占成金额：</span><input type="text" /></div>
+						<div><span><i hid>站位了</i>个人三宝占成比：</span><input type="text" /></div>
+						<div><span>个人三宝最高占成金额：</span><input type="text" /></div>
+					</div>
+				</div> 
+				
+				<div class="BtnDiv mT20">
+					<span class="shanchu mLR15">删除玩家</span>
+					<span class="zhiding mLR15">置顶玩家</span>
+					<span class="tijiao mLR15">保存</span>
+				</div>
+			</div>
+		</div>
+		
+	
+	</body>
+	<script src="js/jquery2-1-4.min.js"></script>
+	<script src="js/home.js"></script>
+	<script type="text/javascript">
+		$(".layerTab tbody tr,.pageWrap a").click(function() {
+			$(this).addClass("on").siblings().removeClass("on");
+		})     
+		$("[la]").click(function(){
+			$("[lay]").css("display","none");
+			console.log(12)
+			$("[lay="+$(this).attr("la")+"]").css("display","block");
+		})
+		$(".quxiao").click(function(){
+			$(".tip").css("display","none")
+		})
+	</script>
+
+</html>

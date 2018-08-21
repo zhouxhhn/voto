@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="mappingService" class="bjl.core.mapping.MappingService"/>
+
+    <!--启动netty tcp服务-->
+    <bean id="echoServer" class="bjl.tcp.EchoServer">
+        <constructor-arg type="int" name="port" value="${netty.tcp.port}"/>
+    </bean>
+    <bean id="startTcp" class="bjl.tcp.StartTcp" init-method="start"/>
+
+    <util:properties id="prop" location="classpath:config.properties"/>
+
+    <!--要定时执行的方法-->
+    <!--<bean id="testTaskJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+        <!--&lt;!&ndash;指定要定时执行的方法所在类，将定时任务定义成bean&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="targetObject" ref="userAppService"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;指定定时执行的方法&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="targetMethod" value="updateRanking"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;指定目标封装为有状态的任务，有状态的任务不能并发执行，无状态的任务可并发执行&ndash;&gt;-->
+        <!--<property name="concurrent" value="true"/>-->
+    <!--</bean>-->
+</beans>

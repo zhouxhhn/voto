@@ -1,0 +1,90 @@
+/*重置*/
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 10;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.zhuce {
+    position: fixed;
+    background: url(../img/lzlord_play_bg_1.png) no-repeat center top;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-size: 100% 100%;
+
+}
+
+.zhuce {
+    width: 100%;
+    overflow: hidden;
+
+}
+
+#login {
+    width: 80%;
+    overflow: hidden;
+    border: solid 1px #CCCCCC;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: 100px;
+    background-color: rgba(250, 250, 250, 0.3);
+}
+
+#login_title {
+    width: 100%;
+    line-height: 60px;
+    background-color: #269ABC;
+    text-align: center;
+    font-weight: bold;
+    font-size: 26px;
+    color: white;
+    font-family: "微软雅黑";
+    letter-spacing: 6px;
+
+}
+
+@media only screen and (min-width: 640px) {
+    #login {
+        width: 500px;
+        margin-left: -250px;
+    }
+
+}
+
+.line {
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "微软雅黑";
+
+}
+
+.line input {
+    width: 60%;
+}
+
+.line a {
+    font-size: 14px;
+    color: black;
+}
+
+.line span {
+    color: #F00;
+}
+
+#log_submit {
+    display: block;
+    width: 60%;
+    height: 36px;
+    margin: 20px auto;
+
+}

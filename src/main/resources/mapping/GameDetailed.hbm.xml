@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.gamedetailed.GameDetailed" table="t_game_detailed" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="user" column="user_id" class="bjl.domain.model.user.User"/>
+
+        <property name="boots" column="boots" type="java.lang.Integer"/>
+
+        <property name="games" column="games" type="java.lang.Integer"/>
+
+        <property name="lottery" column="lottery" type="java.io.Serializable"/>
+
+        <property name="banker" column="banker" type="java.math.BigDecimal"/>
+
+        <property name="player" column="player" type="java.math.BigDecimal"/>
+
+        <property name="bankPair" column="bank_pair" type="java.math.BigDecimal"/>
+
+        <property name="playerPair" column="player_pair" type="java.math.BigDecimal"/>
+
+        <property name="draw" column="draw" type="java.math.BigDecimal"/>
+
+        <property name="bankPlayProfit" column="bank_play_profit" type="java.math.BigDecimal"/>
+
+        <property name="triratnaProfit" column="triratna_profit" type="java.math.BigDecimal"/>
+
+        <property name="effective" column="effective" type="java.math.BigDecimal"/>
+
+        <property name="bankPlayLose" column="bank_play_lose" type="java.math.BigDecimal"/>
+
+        <property name="triratnaLose" column="triratna_lose" type="java.math.BigDecimal"/>
+
+        <property name="restScore" column="rest_score" type="java.math.BigDecimal"/>
+
+        <property name="initScore" column="init_score" type="java.math.BigDecimal"/>
+
+        <property name="hallType" column="hall_type" type="java.lang.Integer"/>
+    </class>
+</hibernate-mapping>

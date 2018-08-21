@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>操作日志</title>
+		<link rel="stylesheet" type="text/css" href="/resources/main/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/main/css/iconfont.css" />
+	</head>
+
+	<body>
+		<div class="tableW PhoneBetting divbox pad20 ">
+			<div class="phoneTop">
+
+			</div>
+			<div class="divW w100">
+				<table class="layerTab">
+					<thead>
+						<tr>
+							<th>操作用户</th>
+							<th>时间</th>
+							<th>日志类型</th>
+							<th>日志内容</th>
+							<th>IP</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>aaa</td>
+							<td>2012-12-12</td>
+							<td>oo </td>
+							<td>1232</td>
+							<td>80989s</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--分页-->
+			<div class="pageWrap mT15">
+				<div>
+					<a><i class="iconfont icon-icon1"></i></a>
+					<a class="on">1</a>
+					<a>2</a>
+					<a></a>
+					<a>4</a>
+					<a>10</a>
+					<a><i class="iconfont icon-arrow-sl"></i> </a>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="/resources/main/js/jquery2-1-4.min.js"></script>
+	<script src="/resources/main/js/home.js"></script>
+	<script type="text/javascript">
+		$(".layerTab tbody tr,.pageWrap a").click(function() {
+			$(this).addClass("on").siblings().removeClass("on");
+		})
+	</script>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.financialSummary.FinancialSummary" table="t_final_sum" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <property name="boot" column="boot" type="java.lang.Integer"/>
+
+        <property name="bureau" column="bureau" type="java.lang.Integer"/>
+
+        <property name="hallType" column="hall_type" type="java.lang.Integer"/>
+
+        <property name="playerScore" column="player_score" type="java.math.BigDecimal"/>
+
+        <property name="bankerScore" column="banker_score" type="java.math.BigDecimal"/>
+
+        <property name="bankerMesaScore" column="banker_mesa_score" type="java.math.BigDecimal"/>
+
+        <property name="playerMesaScore" column="player_mesa_score" type="java.math.BigDecimal"/>
+
+        <property name="playerProportion" column="player_proportion" type="java.math.BigDecimal"/>
+
+        <property name="bankerProportion" column="banker_proportion" type="java.math.BigDecimal"/>
+
+        <property name="result" column="result" type="java.lang.String"/>
+
+        <property name="mesaWinLoss" column="mesa_win_loss" type="java.math.BigDecimal"/>
+
+        <property name="mesaWashCode" column="mesa_wash_code" type="java.math.BigDecimal"/>
+
+        <property name="zeroProfit" column="zero_profit" type="java.math.BigDecimal"/>
+
+        <property name="proportionProfit" column="proportion_profit" type="java.math.BigDecimal"/>
+
+        <property name="hedgeProfit" column="hedge_profit" type="java.math.BigDecimal"/>
+
+        <property name="profitSummary" column="profit_summary" type="java.math.BigDecimal"/>
+
+        <property name="gameDetailedId" column="game_detail_id" type="java.lang.String"/>
+
+    </class>
+</hibernate-mapping>

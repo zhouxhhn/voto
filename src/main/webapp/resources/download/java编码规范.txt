@@ -1,0 +1,127 @@
+﻿1 命名
+java类使用CamelCase
+java方法cameCase(驼峰式)
+mapping地址命名camel_case(全部小写，用_分割)
+java接口统一使用I开头 eg: IXxxService 实现类为XxxService
+java package统一使用小写
+常量命名规则：类常量的声明，应该全部大写，单词间用下划线隔开。 例如：static final int MIN_WIDTH = 4; 
+自定义异常的命名必须以Exception为结尾。已明确标示为一个异常 
+2 缩进
+4个空格
+
+3 声明格式
+
+    [public] [abstract] (class|interface|enum) NAME [extend PARENTCLASS]|[implements INTERFACE] {
+
+        static constant
+
+                variable
+
+        constractor
+
+        implement interface method //annotation with @Override
+
+        private method
+    }
+
+    领域对象(domain包下的)的基础类型属性/*必须*/使用对象 方法内部的变量建议使用基础类型
+    private Integer age;
+
+    private void foo(List arr) {
+        int index = arr.size();
+    }
+
+4 控制流程
+所有 {} 可有可无的流程控制语句，均应使用 {}
+
+5 注释
+对于函数方法，尽量保证参数和返回值都有遵循格式的注释；
+对于文件头，保证有对该文件的简要说明，任何对他人代码的改动均应新增 @author 加上自己的id或真名；
+    /**
+     * 所有值对象继承此类获得一个隐藏的委派主键
+     * 添加xxx方法 Author: user1
+     * Author: user
+     * Date: 2015/1/15
+     * Time: 2:51
+     */
+代码中间可以使用  // 进行行注释，长内容可以使用  /* */ 进行块注释
+务必保证 注释符 与 注释内容 之间有空格，//TODO和代码注释例外,如：
+    // Comment
+    /* Comment */
+    //TODO
+//	List<Criterion> restrictionList = new ArrayList();
+
+6 运算符
+一般运算符两端需加空格
+逗号、分号只在后边加
+自增自减 不限制，推荐不加
+所有涉及到运算符优先级的操作，必须使用 () 来明确优先级。
+
+    @Override
+    public Pagination<Contract> listPagination(ListCommand command) {//空格
+        List<Criterion> restrictionList = new ArrayList();
+
+        if (!CoreStringUtils.isEmpty(command.getCorporation())) {
+            restrictionList.add(Restrictions.like("corporation.corporation",//逗号参数分割加空格
+                    command.getCorporation(),
+                    MatchMode.ANYWHERE));
+        }
+
+        ContractStatus status = command.getStatus();//运算符左右加空格
+        if (null != status && !status.isOnlyQuery()) {//运算符左右加空格
+            restrictionList.add(Restrictions.eq("contractLife.status", status));
+        }
+
+        Criterion[] criteriaArr = null;
+        if (!restrictionList.isEmpty()) {
+            criteriaArr = new Criterion[restrictionList.size()];
+            restrictionList.toArray(criteriaArr);
+        }
+
+        return repository.pagination(command.getPage(), command.getPageSize(), criteriaArr, null, null);//逗号参数分割加空格
+    }
+
+7 其他
+禁止一行多语句
+大数据变量，如大数组，大对象，大量数据资源，应在不再使用时，及时销毁
+复杂三目运算符需加 () 并且 中间根据逻辑 断行、缩进
+大量常量定义、赋值语句等，尽可能保证运算符对齐，使得代码美观
+
+8.注释:
+	文件注释  所有的源文件都应该在开头有一个注释，其中列出类名、版本信息、日期和版权声明。 如下：   
+	/*     
+	 * 文件名     
+	 * 包含类名列表    
+	 * 版本信息，版本号    
+	 * 创建日期。
+	 * 版权声明    
+	 */
+
+	类注释  每一个类都要包含如下格式的注释，以说明当前类的功能等。  
+	/**  
+	 * 类名   
+	 * @author 作者 <br/> 
+ 	 * 实现的主要功能。 
+	 * 创建日期 
+	 * 修改者，修改日期，修改内容。
+	 */
+
+
+9.控制语句  
+	判断中如有常量，则应将常量置于判断式的右侧。如： 
+	if ( true == isAdmin())... 
+	尽量不使用三目条件的嵌套所有if 语句必须用{}包括起来,即便是只有一句：
+	if (true){  //do something...... } 
+	if (true)  i = 0; //不要使用这种      
+	对于循环：    
+	//不推荐方式
+	while(index < products.getCount()){  
+	//每此都会执行一次getCount()方法， 
+	 //若此方法耗时则会影响执行效率   
+	//而且可能带来同步问题，若有同步需求，请使用同步块或同步方法 }  
+	//推荐方式
+	//将操作结构保存在临时变量里，减少方法调用次数
+	 final int count = products.getCount(); while(index < count){ } 
+
+10.访问控制
+  	若没有足够理由，不要把实例或类变量声明为公有。通常，实例变量无需显式的设置(set)和获取(gotten)，通常这作为方法调用的边缘效应 (side effect)而产生。    一个具有公有实例变量的恰当例子，是类仅作为数据结构，没有行为。亦即，若你要使用一个结构(struct)而非一个类(如果java 支持结构的话)，那么把类的实例变量声明为公有是合适的。

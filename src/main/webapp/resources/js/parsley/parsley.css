@@ -1,0 +1,40 @@
+/*parsleyjs*/
+.parsley-errors-list {
+    width: 100%;
+    border: 1px solid red;
+    border-radius: 4px;;
+    position: relative;
+    margin-top: 14px;
+    background-color: #FFFFFF;
+    display: none;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.parsley-errors-list em {
+    position: absolute;
+    top: -15px;
+    right: 50%;
+    display: inline-block;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid red;
+    border-left: 15px solid transparent;
+}
+
+.parsley-errors-list span {
+    position: absolute;
+    top: -14px;
+    right: 50%;
+    display: inline-block;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #ffffff;
+    border-left: 15px solid transparent;
+}
+
+.parsley-errors-list li {
+    padding: 5px 20px;
+}
+
+.filled {
+    display: block;
+}

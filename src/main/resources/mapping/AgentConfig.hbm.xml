@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-cascade="all">
+    <class name="bjl.domain.model.agent.AgentConfig" table="t_agent_config">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="-1" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version name="version" type="java.lang.Integer" column="version"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="user" column="user_id" class="bjl.domain.model.user.User"/>
+
+        <property name="valueR" column="value_R" type="java.math.BigDecimal"/>
+
+        <property name="highRatio" column="high_ratio" type="java.math.BigDecimal"/>
+
+        <property name="factRatio" column="fact_ration" type="java.math.BigDecimal"/>
+
+        <property name="subCount" column="sub_count" type="java.lang.Integer"/>
+
+        <property name="level" column="level" type="java.lang.Integer"/>
+
+        <property name="restScore" column="rest_score" type="java.math.BigDecimal"/>
+
+    </class>
+
+</hibernate-mapping>

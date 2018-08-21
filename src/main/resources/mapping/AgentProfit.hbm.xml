@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-cascade="all">
+    <class name="bjl.domain.model.agent.AgentProfit" table="t_agent_profit">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="-1" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version name="version" type="java.lang.Integer" column="version"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="play" column="play" class="bjl.domain.model.account.Account"/>
+
+        <many-to-one name="firstAgent" column="first_agent" class="bjl.domain.model.account.Account"/>
+
+        <many-to-one name="secondAgent" column="second_agent" class="bjl.domain.model.account.Account"/>
+
+        <property name="loseScore" column="lose_score" type="java.math.BigDecimal"/>
+
+        <property name="intervalScore" column="interval_score" type="java.math.BigDecimal"/>
+
+        <property name="supRatio" column="sup_ratio" type="java.math.BigDecimal"/>
+
+        <property name="subRatio" column="sub_ratio" type="java.math.BigDecimal"/>
+
+        <property name="addScore" column="add_score" type="java.math.BigDecimal"/>
+
+        <property name="rechargeScore" column="recharge_score" type="java.math.BigDecimal"/>
+
+        <property name="supPay" column="sup_pay" type="java.math.BigDecimal"/>
+
+        <property name="subPay" column="sub_pay" type="java.math.BigDecimal"/>
+
+        <property name="supIncome" column="sup_income" type="java.math.BigDecimal"/>
+
+        <property name="subIncome" column="sub_income" type="java.math.BigDecimal"/>
+
+        <property name="discount" column="discount" type="java.math.BigDecimal"/>
+
+        <property name="returnScore" column="return_score" type="java.math.BigDecimal"/>
+
+        <property name="subGrain" column="sub_grain" type="java.math.BigDecimal"/>
+
+        <property name="supGrain" column="sup_grain" type="java.math.BigDecimal"/>
+
+        <property name="place" column="place" type="java.lang.Integer"/>
+
+        <property name="firstFee" column="first_fee" type="java.math.BigDecimal"/>
+
+        <property name="secondFee" column="second_fee" type="java.math.BigDecimal"/>
+
+        <property name="comFee" column="com_fee" type="java.math.BigDecimal"/>
+
+        <property name="comRatio" column="com_ratio" type="java.math.BigDecimal"/>
+
+        <property name="comGrain" column="com_grain" type="java.math.BigDecimal"/>
+
+        <property name="comIncome" column="com_income" type="java.math.BigDecimal"/>
+
+        <property name="subBalance" column="sub_balance" type="java.math.BigDecimal"/>
+
+        <property name="supBalance" column="sup_balance" type="java.math.BigDecimal"/>
+
+        <property name="playBalance" column="play_balance" type="java.math.BigDecimal"/>
+
+        <property name="playR" column="play_R" type="java.math.BigDecimal"/>
+
+        <property name="subR" column="sub_R" type="java.math.BigDecimal"/>
+
+        <property name="supR" column="sup_R" type="java.math.BigDecimal"/>
+
+        <property name="subHigh" column="sub_high" type="java.math.BigDecimal"/>
+
+        <property name="supHigh" column="sup_high" type="java.math.BigDecimal"/>
+
+    </class>
+
+</hibernate-mapping>

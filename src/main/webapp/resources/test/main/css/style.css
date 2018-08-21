@@ -1,0 +1,313 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	font-size: 16px;
+	font-family: "微软雅黑";
+}
+a,li{
+	list-style: none;
+	text-decoration: none;
+}
+
+.ov{
+	overflow: hidden;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.talignR{
+	text-align: right;
+}
+.talignl{
+	text-align: left;
+}
+.talignC{
+	text-align: center;
+}
+.mT10{
+	margin-top: 10px;
+}
+.mT15{
+	margin-top: 15px;
+}
+.mT20{
+	margin-top: 20px;
+}
+.leftTab{
+	width:180px;
+	background: #1c1c1c;
+	height:100%;
+}
+.rightWork{
+	/*width: calc( 100% - 180px);
+	width: -moz-calc( 100% - 180px);
+	width: -webkit-calc( 100% - 180px);*/
+	/*height: 800px;*/
+}
+/*左边Tab*/
+.logo{
+	text-align: center;
+	height:136px;
+}
+.logo>img{
+	margin-top: 18px;
+}
+.tabList{
+	width: 100%;
+}
+.tabList>li{
+	box-sizing: border-box;
+	padding-left: 25px;
+	height: 44px;
+	line-height: 44px;
+	color: white;
+}
+.tabList>li>i{
+	font-size: 21px;
+	margin-right: 10px;
+	float: left;
+}
+.tabList>li.on{
+	background: rgba(255,255,255,.2);
+}
+.tabList>li:hover{
+	cursor: pointer;
+	background: rgba(255,255,255,.2);
+}
+/*右边操作部分*/
+.admin{
+	height:56px;
+	line-height: 56px;
+	width: 100%;
+	background: #1c1c1c;
+	color: white;
+	text-align: right;
+	box-sizing: border-box;
+	padding-right: 60px;
+}
+.tableSurround{
+	width: 100%;
+	box-sizing: border-box;
+	background: #eff1f3;
+	height: 100%;
+}
+/*游戏下注*/
+.bettingL{
+	width:calc( 100% - 188px);
+	width:-webkit-calc( 100% - 188px);
+	width:-moz-calc( 100% - 188px);
+}
+.bettingR{
+	width: 188px;
+	background: #1c1c1c;
+	box-sizing: border-box;
+	padding-right:10px ;
+	border-top: 1px solid rgba(255,255,255,.3);
+	padding-bottom: 50px;
+}
+.GameBetting{
+	height: 100%;
+}
+.GameBetting>div{
+	display: inline-block;
+	height: 100%;
+}
+.divW{
+	width: 86%;
+	margin: 37px auto 0px;
+	height: calc( 100% - 133px);
+	height: -webkit-calc( 100% - 133px);
+	height: -moz-calc( 100% - 133px);
+	position: relative;
+}
+.tableDiv{
+	width: 100%;
+	height:727px;
+}
+.layerTab{
+	border: 1px solid #dcdcdc;
+	width:100%;
+	border-collapse: collapse;
+}
+.layerTab th{
+	background:#dcf1e0 ;
+	height: 42px;
+	font-size: 14px;
+}
+.layerTab td{
+	background: white;
+	transition: all .3s;
+	height: 37px;
+	font-size: 12px;
+}
+.layerTab tbody>tr:hover td{
+	background: #dcf1e0;
+}
+.layerTab tbody>tr.on td{
+	background: #dcf1e0;
+}
+.layerTab td,.layerTab th{
+	border: 1px solid #dcdcdc;
+	text-align: center;
+	color: #333333;
+	padding: 0px 5px;
+}
+.layerTab td.xiugai{
+	color:#108af1;
+}
+.layerTab>tbody>tr:last-child td{
+	color: #dc043e;
+}
+/*分页*/
+.pageWrap{
+	text-align: right;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.pageWrap>div{
+	width: 258px;
+	overflow: hidden;
+	float: right;
+	
+}
+.pageWrap>div>a{
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	border: 1px solid #dcdcdc;
+	text-align: center;
+	line-height: 26px;
+	color: #666666;
+	font-size:14px;
+	transition: all .3s;
+	float: left;
+	margin-left: 5px;
+}
+.pageWrap a.on{
+	background: #e69c29;
+	color: white;
+}
+.pageWrap>a:hover{
+	cursor: pointer;
+	background: #e69c29;
+	color: white;
+}
+
+.bettingR>.operatingBtn{
+	background: #e69c29;
+}
+.bettingR>.btnP{
+	width: 152px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	margin:12px auto;
+	border-radius: 5px;
+}
+.bettingR>p:hover{
+	cursor: pointer;
+}
+.paiInfo{
+	width: 100%;
+	background: white;
+	padding: 16px 0px;
+}
+.paiInfo>p{
+	overflow: hidden;
+	line-height: 26px;
+}
+.paiInfo>p>span{
+	display: inline-block;
+	float: left;
+	font-size: 14px;
+	text-shadow: 0px 1px 1px rgba(0,0,0,.4);
+}
+.paiInfo>p>span:first-child{
+	width: 40%;
+	text-align: right;
+}
+.paiInfo>p>span:last-child{
+	width: 50%;
+	
+}
+.fa3033{
+	color: #fa3033 !important;
+}
+.f016dff{
+	color:#016dff !important;
+}
+.f00e288{
+	color: #00e288 !important;
+}
+.TableShotsBtn{
+	background: #5469dc;
+}
+.ModifyBoots{
+	background: #2f98ff;
+}
+.toNextBtn{
+	background: #29c36d;
+}
+.BettingShotsBtn,.xiuBettingShotsBtn{
+	background: #776c61;
+}
+.LotterySettlementBtn{
+	background: #16c8be;
+}
+.ScoreBtn{
+	background: #08acc9;
+}
+.IntoNextBtn{
+	background: #e69c29;
+}
+.changexj>label{
+	color: white;
+	width: 45%;
+	display: inline-block;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+.changexj>label>input{
+	margin-right: 5px;
+	margin-left: 10px;
+}
+.changexj>label>input[type=text]{
+	display: inline-block;   
+    width: 16px;  
+    height: 16px;   
+    -webkit-appearance: none;  
+    border: 1px solid rgba(255,255,255,.6);  
+    outline: 0 !important; 
+    background-color: #4f3810; 
+    color: white; 
+    text-align: center;
+    border-radius: 3px;
+}
+.none{
+	display: none;
+}
+.changeCheck{
+	width: 152px;
+	box-sizing: border-box;
+	padding: 5px;
+	background: #424242;
+	margin: auto;
+	border-radius: 5px;
+}
+.changeCheck>label{
+	display: inline-block;
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+}
+
+/*电话投注*/

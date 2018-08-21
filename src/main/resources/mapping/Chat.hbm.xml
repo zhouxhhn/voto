@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.chat.Chat" table="t_chat">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version name="version" type="java.lang.Integer" column="version"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="user" column="user_id" class="bjl.domain.model.account.Account"/>
+
+        <property name="roomType" column="room_type" type="java.lang.Integer"/>
+
+        <property name="index" column="serial" type="java.lang.Long"/>
+
+        <property name="textType" column="text_type" type="java.lang.Integer"/>
+
+        <property name="text" column="text" type="java.lang.String"/>
+
+        <property name="username" column="user_name" type="java.lang.String"/>
+
+        <property name="name" column="name" type="java.lang.String"/>
+
+        <property name="head" column="head" type="java.lang.String"/>
+
+    </class>
+
+</hibernate-mapping>

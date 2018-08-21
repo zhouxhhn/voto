@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.withdraw.Withdraw" table="t_withdraw" lazy="true">
+        <id name="id" type="java.lang.String" column="id" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+        <many-to-one name="account" column="account_id" class="bjl.domain.model.account.Account"/>
+        <property name="money" column="money" type="java.math.BigDecimal"/>
+        <property name="status" column="status" type="java.lang.Integer"/>
+        <property name="bankName" column="bank_name" type="java.lang.String"/>
+        <property name="acc" column="acc" type="java.lang.String"/>
+        <property name="comment" column="comment" type="java.lang.String"/>
+        <property name="success" column="success" type="java.lang.Integer"/>
+        <property name="charge" column="charge" type="java.math.BigDecimal"/>
+        <property name="actualMoney" column="actual_money" type="java.math.BigDecimal"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.bank.Bank" table="t_bank">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version name="version" type="java.lang.Integer" column="version"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="account" column="account_id" class="bjl.domain.model.account.Account"/>
+        <property name="bankName" column="bank_name" type="java.lang.String"/>
+        <property name="bankAccountNo" column="bankAccount_no" type="java.lang.String"/>
+        <property name="bankAccountName" column="bankAccount_name" type="java.lang.String"/>
+        <property name="bankProvince" column="bank_province" type="java.lang.String"/>
+        <property name="bankCity" column="bank_city" type="java.lang.String"/>
+        <property name="bankDeposit" column="bank_deposit" type="java.lang.String"/>
+        <property name="bankCardType" column="bankCard_type" type="java.lang.String"/>
+        <property name="bankAccountType" column="bankAccount_type" type="java.lang.String"/>
+        <property name="bankNo" column="bank_no" type="java.lang.String"/>
+
+    </class>
+
+</hibernate-mapping>

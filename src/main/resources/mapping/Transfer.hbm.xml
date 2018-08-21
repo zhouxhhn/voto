@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.transfer.Transfer" table="t_transfer" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <property name="score" column="score" type="java.math.BigDecimal"/>
+
+        <many-to-one name="transfer" column="transfer_id" class="bjl.domain.model.account.Account"/>
+
+        <many-to-one name="receive" column="receive_id" class="bjl.domain.model.account.Account"/>
+
+        <property name="transferScore" column="transfer_score" type="java.math.BigDecimal"/>
+
+        <property name="receiveScore" column="receive_score" type="java.math.BigDecimal"/>
+
+        <property name="status" column="status" type="java.lang.Integer"/>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html class="normal ">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="format-detection" content="email=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+<title>游戏规则</title>
+<style>
+*{margin:0 auto;}
+body{background-color: rgb(65, 47, 43);margin: 0 auto;color: #E3E3E3;font-size:18px;font-family:Microsoft Yahei, Arial, sans-serif, Apple SD Gothic Neo;max-width:640px;}
+.clear{float:none;clear:both}
+.header{width:100%}
+.header div{width:33.3%;float:left;position: relative;}
+.header img{width:100%}
+.header a{position: absolute;top:0px;left: 0px;width: 100%;text-align: center;color: #3a0300;    text-decoration: none;}
+</style>
+<script src="./javascript/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="header">
+	<div><img class="aimg" id="a1" src="./images/navc.jpg"/><a class="b1" href="javascript:loadX('./rule.html',1);">游戏规则</a></div>
+	<div><img class="aimg" id="a2" src="./images/nav.jpg"/><a class="b1" href="javascript:loadX('./mipai.html',2);">咪牌演示</a></div>
+	<div><img class="aimg" id="a3" src="./images/nav.jpg"/><a class="b1" href="javascript:loadX('./ludan.html',3);">路单说明</a></div>
+	<div class="clear"></div>
+</div>
+<div class="clear"></div>
+<div class="box" id="box">
+	<p>数据加载中.....</p>
+</div>
+</body>
+<script>
+function x(){
+	var h = $('#a1').height();
+	if (h>0){
+		$('.b1').css({'height':h+'px','line-height':h+'px'});
+	}else{
+		setTimeout("x()",500)
+	}
+}
+function loadX(url,id){
+	$('.aimg').attr('src','./images/nav.jpg');
+	$('#a'+id).attr('src','./images/navc.jpg');
+	$('#box').load(url);
+}
+$(document).ready(function(){
+	x();
+	$('#box').load('./rule.html');
+});
+</script>
+</html> 

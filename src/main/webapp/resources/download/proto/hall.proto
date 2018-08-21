@@ -1,0 +1,173 @@
+syntax = "proto2";
+option java_package = "bjl.mode";
+
+//登录
+message LoginRequest {
+    required string token = 1; //unionid
+    required uint32 sex = 2; //性别
+    optional string headimgurl = 3; //头像地址
+    required string platform = 4; //登录终端 android/ios
+    required string name = 5; //微信昵称
+}
+
+//登录返回
+message LoginResponse {
+    required string userName = 1; //用户名
+    optional string lastLoginIP = 2; //上次登录ip
+    optional string head = 3; //头像
+    optional string parent = 4; //上级
+    optional string name = 5; //姓名
+    required float money = 6; //余额
+    optional string sex = 7; //性别
+    optional string inviteCode = 8; //邀请码
+    required float gold = 9; //金币
+    required uint32 days = 10;
+    required uint32 reward = 11;
+    required uint32 benefit = 12;
+}
+
+//个人信息
+message UserInfoResponse {
+    required string userName = 1; //用户名
+    optional string lastLoginIP = 2; //上次登录ip
+    optional string head = 3; //头像
+    optional string parent = 4; //上级
+    optional string name = 5; //姓名
+    required float money = 6; //余额
+    optional string sex = 7; //性别
+    optional string inviteCode = 8; //邀请码
+    required float gold = 9; //金币
+    required uint32 days = 10;
+    required uint32 reward = 11;
+    required uint32 benefit = 12;
+}
+
+//开房间
+message GetRoomRequest {
+    required uint32 gameType = 1; //游戏类型1.2.3.4.5
+    required uint32 baseScore = 2; //低分 1.2.3
+    required uint32 count = 3; //局数10/20
+    required uint32 payType = 4; //支付方式1/2
+    required uint32 rule = 5; //规则1/2
+    optional uint32 getBankerScore = 6; //上庄分数
+    optional uint32 maxGetBankerScore = 7; //最大抢庄
+    required bool doubleBull = 8; //对子牛
+    required bool spottedBull = 9; //五花牛
+    required bool bombBull = 10; //炸弹牛
+    required bool smallBull = 11; //五小牛
+    optional bool playerPush = 12; //闲家推注
+    required bool startedInto = 13; //游戏开始后加入
+    required bool disableTouchCard = 14; //禁止搓牌
+}
+
+//开房间
+message GetRoomResponse {
+    required uint32 roomNo = 1; //房号
+}
+
+//公告
+message NoticeResponse {
+    optional string title = 1; //公告标题
+    optional string content = 2; //公告内容
+}
+//充值
+message RechargeResponse {
+    repeated Recharge recharges = 1; //充值记录
+}
+
+//公告
+message Recharge {
+    required string rechargeNo = 1; //流水号
+    required float money = 2; //金额
+    required bool success = 3; //是否成功
+    required string dateTime = 4; //时间
+}
+
+//邀请码
+message InviteRequest {
+    required string inviteCode = 1; //邀请码
+}
+
+//公告
+message SystemResponse {
+    required float ratio = 1; //充值比例
+    optional float spreadGive = 2; //推荐赠送
+    optional string extensionDomain = 3; //推广域名
+    optional string payurl = 4; //支付域名
+    optional string agentGroup = 5; //代理QQ群
+    optional string weChatNumber = 6; //微信公众号
+    optional string customerService = 7; //客服QQ
+}
+
+//领取金币返回
+message ReceiveGoldResponse {
+    required float gold = 1; //房间列表
+}
+//领取救济金返回
+message ReceiveBenefitResponse {
+    required float gold = 1; //金币
+}
+
+//房间
+message RoomResponse {
+    repeated Room rooms = 1; //金币
+}
+
+//房间
+message Room {
+    required uint32 roomNo = 1; //房号
+    required uint32 baseScore = 2; //低分
+    required uint32 round = 3; //局数10/20
+    required uint32 count = 4; //人数
+    required uint32 gameType = 5; //游戏类型
+}
+
+//战绩列表
+message GameRecordResponse {
+    repeated GameRecord gameRecord = 1; //战绩
+}
+message GameRecord {
+    required uint32 roomNo = 1; //总结算信息
+    required string roomOwner = 2; //房主
+    required uint32 rule = 3; //规则
+    required string date = 4; //时间
+    required uint32 gameType = 5; //游戏类型
+    required uint32 baseScore = 6; //底分
+    required uint32 totalRound = 7; //总局数
+    repeated UserContent userContents = 8; //总结算信息
+    repeated GameItemContent gameItemContents = 9; //每局结算信息
+}
+message UserContent {
+    required string name = 1;
+    optional string head = 2;
+    required string username = 3;
+    required int32 totalScore = 4;
+}
+message GameItemContent {
+    repeated ItemUser itemUsers = 1;
+}
+message ItemUser {
+    required string username = 1;
+    required int32 win = 2;
+    repeated Card cards = 3;
+    required uint32 value = 4;
+    required uint32 played = 5;
+}
+//牌
+message Card {
+    required CardColor cardColor = 1; //花色
+    required uint32 value = 2; //值
+}
+
+//花色
+enum CardColor {
+    SPADE = 0; //黑桃
+    HEART = 1; //红桃
+    PLUM = 2; //梅花
+    BLOCK = 3; //方块
+}
+
+//错误
+message ErrorResponse {
+    required uint32 errorCode = 1;
+}

@@ -1,0 +1,178 @@
+﻿前端的定义：JavaScript + CSS + HTML
+
+浏览器的兼容目标(对用户的项目)
+  IE6.0+、Firefox（最新稳定版）、Safari（最新稳定版）、Opera（最新稳定版）、Chrome（最新稳定版）
+  兼顾国内主流的IE内核浏览器：360、搜狗、QQ
+
+HTML(xxx-xxx.ftl)
+
+1 文件命名
+  xxx.tpl，如 controller 为 UserController 里方法为updatePasswordByAdmin, 则模板文件名为 /update-password-by-admin.ftl
+  保存在template目录，与control保持一致的目录层次
+  *必须*保存为UTF-8编码
+
+2 字符集编码声明
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  编码声明*必须*在title标签之前
+
+
+3 标签
+  遵循XHMTL规范
+  标签名字和属性必须使用小写字母
+  属性值不能为空，例如：nowrap="nowrap"，readonly="readonly"
+  所有标签必须闭合，注意单标签闭合的格式，例如：
+    <br />
+    <p></p>
+    <p />
+    <div></div>
+    <span></span>
+  *禁止*使用非XHTML规范的的标签，包括但不限于：
+    <font>，<b>，<u>，<i>
+
+4 缩进
+  以 4 个空格为一次缩进，*禁止*使用tab符号
+  在不考虑include内容的情况下，*必须*保持正确的代码缩进
+
+6 特殊字符
+  “<”，“>”作为非标签字符输出时，*必须*使用实体编码：&lt; &gt;
+  “&”作为非超链接内容输出时，*必须*使用实体编码：&amp;
+
+7 注释
+  <!-- 注释 -->
+  对时效性的内容，*必须*加上注释
+
+8 图片和flash
+  使用图片和flash时，要显示声明宽度和高度
+  引入flash时，*必须*保证多浏览器的兼容性
+  文件和目录命名时，*不*使用类似“ad”的命名，避免被浏览器自动过滤
+  具有正式内容的图片，*必须*包含不为空的alt属性
+  布局和样式使用的图片*必须*在css中定义
+
+9 元素id命名
+  同一页面内*必须*保证元素id的唯一性
+  命名时尽量使用本页面的前缀(前端)
+  命名规范：[前缀_]<主命名>[_次级命名][_编号]
+  使用语义化命名
+  前缀不超过四个字符
+  次级命名不超过四个字符
+
+CSS
+
+1 文件命名
+  xxx-xxx.css
+  保存在control响应站点目录下的css目录
+  *必须*保存为UTF-8编码
+  *必须*使用小写字母命名
+
+2 编码声明
+  文件头部*必须*声明编码如下：
+    @charset "utf-8";
+
+3 引入方式
+  使用link方式引用外部css，*禁止*使用import引入。引入的位置必须在head标签之间
+
+4 缩进
+  以 4 个空格为一次缩进，*禁止*使用tab符号
+
+5 class命名
+  遵循元素id一样的命名规范：[前缀_]<主命名>[_次级命名][_编号]
+
+6 选择器
+  *尽量*使用高限定的选择器，例如：
+    #left{font-size:small;}
+    #left ul li{font-size:medium;}
+  不使用+、>等选择符
+
+7 样式
+  *尽量*使用简写，例如：
+    margin:0 2px;
+    padding: 1px 2px 3px 4px;
+    background:#fff url(../img/top_bg.gif) repeat-x 0 65px;
+  简短的样式，建议写在一行，例如：
+    #left .widget {margin:0;padding:0;}
+  如无必要，尽量*少*使用float和position
+
+8 hack，filter以及expression
+  如无必要，*不要*使用css hack
+  *禁止*使用IE的filter和expression
+
+9 CSS Sprites
+  常用图标背景使用CSS Sprits制作样式以减少连接数
+  一个不错的生成工具：http://www.cssforest.org/blog/index.php?id=129
+
+10 常见的IE bugs
+  float时双倍margin的bug，影响：IE6
+    解决办法：对margin的元素增加display:inline
+  li显示高度的bug，影响：IE6、IE7
+    http://blog.sunshow.net/2008/10/ie-display-li-height-bug/
+  使用relative定位时overflow auto的bug，影响：IE6、IE7
+    http://rowanw.com/bugs/overflow_relative.htm
+  显示1px高度的bug，影响：IE6
+    http://blog.sunshow.net/2008/10/ie6-1px-height-display-bug/
+  注释位置影响float的bug，影响：IE6
+    http://blog.sunshow.net/2009/02/ie-6-comment-problem/
+  超链接地址的“javascript:void(0)”可能导致无法触发onclick的bug，影响：IE6
+    http://blog.sunshow.net/2008/05/ie-6-javascript-submit-form/
+  JS操作设置class时处理类似“#id.over”的bug，影响：IE6
+    http://blog.sunshow.net/2008/04/ie6-bug-operate-class-by-javascript/
+  背景图片闪烁的bug，影响：IE6
+    http://blog.sunshow.net/2007/11/ie6-css-background-image-bug/
+  3像素高度差异的bug，影响：IE6
+    http://www.positioniseverything.net/explorer/threepxtest.html
+
+JavaScript
+
+1 文件命名
+  xxx-xxx.js
+  保存在control响应站点目录下的js目录
+  *必须*保存为UTF-8编码
+  *必须*使用小写字母命名
+
+2 引入方式
+  引入的位置必须在body标签结束之前，*尽量*在页面底部
+ *不*建议使用js加载js文件
+  除小模块或仅当前页面*临时*使用的js外，都统一使用外部js
+
+3 缩进
+  以 4 个空格为一次缩进，*禁止*使用tab符号
+
+4 代码风格
+  变量声明必须使用var
+  *禁止*使用for...in遍历数组，例如：
+    var numbers = [1, 2, 3, 4];
+    for (var i = 0, imax = numbers.length; i < imax; i ++) {
+        alert(numbers[i]);
+    };
+  *禁止*污染 Object 原型，即不做 Object.prototype 的扩展
+  不使用eval或尽量少使用
+  *禁止*使用with
+  关键词、条件括弧后面使用*一个*空格
+  运算操作符号两侧使用空格
+  所有语句末尾*必须*用分号结尾
+  函数结束的大括号后*必须*用分号结尾
+  流程控制语句(if, for, while, do, ...)的执行块*必须*使用 {} 包含
+  所有涉及到运算符优先级的操作，*必须*使用 () 来明确优先级
+  左大括号“{”可以居行尾，也可写在下行首（独自一行），右大括号“}”单独占一行居行首，例如：
+
+    function StringBuffer(){
+        this._strings = new Array();
+    };
+  
+    StringBuffer.prototype.append = function(str){
+        this._strings.push(str);
+    };
+
+    StringBuffer.prototype.toString = function(){
+        var str = (arguments.length == 0) ? '' : arguments[0];
+        return this._strings.join(str);
+    };
+
+5 命名规范
+  函数/方法名是个动词，采用小写或者大小写混合的方式，第一个单词的首字母小写，其后单词的首字母大写，例如：
+    delete(), deleteImg(), removeImage()
+  类名是个名词，每个单词的首字母大写，使用完整单词，尽量避免缩写词（除非该缩写词被广泛使用），例如：
+    DataParser
+  全局配置型变量用英文单词大写，单词之间以下划线间隔，例如：
+    ROOT_PATH
+  私有的类成员建议使用下划线开头
+  局部变量建议采用采用驼峰命名法，第一个单词的首字母小写，其后单词的首字母大写

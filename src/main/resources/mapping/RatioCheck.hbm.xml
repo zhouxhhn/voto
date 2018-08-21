@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.ratiocheck.RatioCheck" table="t_ratio_check">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version name="version" type="java.lang.Integer" column="version"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="user" column="user_id" class="bjl.domain.model.account.Account"/>
+        <many-to-one name="parent" column="parent_id" class="bjl.domain.model.account.Account"/>
+        <many-to-one name="play" column="play_id" class="bjl.domain.model.account.Account"/>
+
+        <property name="oldR" column="old_r" type="java.math.BigDecimal"/>
+        <property name="oldHigh" column="old_high" type="java.math.BigDecimal"/>
+        <property name="oldFirstRatio" column="old_first_ratio" type="java.math.BigDecimal"/>
+        <property name="oldSecondRatio" column="old_second_ratio" type="java.math.BigDecimal"/>
+
+        <property name="newR" column="new_r" type="java.math.BigDecimal"/>
+        <property name="newHigh" column="new_high" type="java.math.BigDecimal"/>
+        <property name="newFirstRatio" column="new_first_ratio" type="java.math.BigDecimal"/>
+        <property name="newSecondRatio" column="new_second_ratio" type="java.math.BigDecimal"/>
+
+        <property name="status" column="status" type="java.lang.Integer"/>
+        <property name="type" column="type" type="java.lang.Integer"/>
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.user.User" table="t_user" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <many-to-one name="account" column="account_id" class="bjl.domain.model.account.Account"/>
+
+       <property name="score" column="score" type="java.math.BigDecimal"/>
+
+        <property name="bankScore" column="bank_score" type="java.math.BigDecimal"/>
+
+        <property name="playerAlias" column="player_alias" type="java.lang.String"/>
+
+        <property name="agentAlias" column="agent_alias" type="java.lang.String"/>
+
+        <property name="printScreen" column="print_screen" type="java.lang.Integer"/>
+
+       <property name="primeScore" column="prime_score" type="java.math.BigDecimal"/>
+
+        <property name="dateScore" column="date_score" type="java.math.BigDecimal"/>
+
+        <property name="totalScore" column="total_score" type="java.math.BigDecimal"/>
+
+       <property name="bankerPlayerProportion" column="banker_player_proportion" type="java.math.BigDecimal"/>
+
+        <property name="bankerPlayerCredit" column="banker_player_credit" type="java.math.BigDecimal"/>
+
+        <property name="triratnaProportion" column="triratna_proportion" type="java.math.BigDecimal"/>
+
+       <property name="triratnaCredit" column="triratna_credit" type="java.math.BigDecimal"/>
+
+        <property name="bankerPlayerMix" column="banker_player_mix" type="java.math.BigDecimal"/>
+
+        <property name="bankerPlayerMax" column="banker_player_max" type="java.math.BigDecimal"/>
+
+      <property name="triratnaMix" column="triratna_mix" type="java.math.BigDecimal"/>
+
+        <property name="triratnaMax" column="triratna_max" type="java.math.BigDecimal"/>
+
+        <property name="virtual" column="is_virtual" type="java.lang.Integer"/>
+
+        <property name="setTop" column="set_top" type="java.lang.Integer"/>
+
+        <property name="serial" column="serial" type="java.lang.Integer"/>
+
+
+
+    </class>
+</hibernate-mapping>

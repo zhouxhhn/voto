@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.logger.Logger" table="t_logger" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+        <many-to-one name="operationUser" column="operation_user" class="bjl.domain.model.account.Account"/>
+        <property name="loggerType" column="logger_type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">bjl.core.enums.LoggerType</param>
+                <param name="type">4</param>
+            </type>
+        </property>
+        <property name="loggerContent" column="logger_content" type="java.lang.String"/>
+        <property name="ip" column="ip" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

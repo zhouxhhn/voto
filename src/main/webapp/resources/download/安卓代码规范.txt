@@ -1,0 +1,11 @@
+1.请先参考java代码规范
+2.xml布局文件里面颜色字符等必须再资源文件里面声明(包括java代码里面的资源文件必须声明)
+3.命名:
+ layout 命名
+  规约：layout xml 的命名必须以 全部单词小写，单词间以下划线分割，并且使用名词或名词词组，即使用 模块名_功能名称 来命名。  如：knowledge_gained_main.xml正确 如：list_book.xml错误！  
+
+ id 命名
+  规约：layout 中所使用的id必须以全部单词小写，单词间以下划线分割，并且使用名词或名词词组，并且要求能够通过id直接理解当前组件要实现的功能。  如：某TextView @+id/textbookname 错误 !应为 @+id/book_name_show 如：某EditText @+id/textbookname 错误 !应为 @+id/book_name_edit    
+
+ 资源命名
+  规约：layout中所使用的所有资源（如drawable,style等）命名必须以全部单词小写，单词间以下划线分割，并且尽可能的使用名词或名词组，即使用 模块名_用途 来命名。如果为公共资源，如分割线等，则直接用用途来命名  如：menu_icon_navigate.png  正确  如：某分割线：line.png  或 separator.png 正确

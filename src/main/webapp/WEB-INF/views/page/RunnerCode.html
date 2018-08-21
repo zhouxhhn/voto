@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>选手洗码盈亏</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<!--电话投注-->
+		<div class="tableW PhoneBetting divbox pad20">
+			<div class="phoneTop">
+				<div inDiv>
+					<label>
+						<input type="date" />
+					</label>
+					<label class="mLR5">到</label>
+					<label>
+						<input type="date" />
+					</label>
+				</div>
+				<br /><br /><br />
+				<div class="addPlayer Btn2 yanBai" inDiv>选手昵称</div>
+				<div class="addPlayer Btn2 yanBai" inDiv>按大查单个选手明细</div>
+				<div class="addPlayer Btn2 yanBai" inDiv>按大查单个选手明细</div>
+				<div class="addPlayer Btn2 yanBai" inDiv>牌靴数</div>
+				<div class="addPlayer Btn2 yanBai" inDiv>按靴查单个选手明细</div>
+				<div class="addPlayer Btn2 yanBai" inDiv>按靴查所有选手明细</div>
+			</div>
+			<div class="divW w100">
+				<table class="layerTab">
+					<thead>
+						<tr>
+							<th>玩家昵称</th>
+							<th>庄闲洗码总分</th>
+							<th>三宝洗码总分</th>
+							<th>庄闲盈亏总分</th>
+							<th>三宝盈亏总分</th>
+							<th>有效流水总分</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--分页-->
+			<div class="pageWrap mT15">
+				<div>
+					<a><i class="iconfont icon-icon1"></i></a>
+					<a class="on">1</a>
+					<a>2</a>
+					<a></a>
+					<a>4</a>
+					<a>10</a>
+					<a><i class="iconfont icon-arrow-sl"></i> </a>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="js/jquery2-1-4.min.js"></script>
+	<script src="js/home.js"></script>
+	<script type="text/javascript">
+		$(".layerTab tbody tr,.pageWrap a").click(function() {
+			$(this).addClass("on").siblings().removeClass("on");
+		})
+	</script>
+
+</html>

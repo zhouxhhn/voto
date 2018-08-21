@@ -1,0 +1,171 @@
+syntax = "proto2";
+option java_package = "bjl.mode";
+
+//登录
+message IntoRequest {
+    required string username = 1; //用户名
+    required uint32 roomNo = 2; //房间号
+}
+message IntoResponse {
+    required uint32 roomNo = 1; //桌号
+    required string roomOwner = 2; //房主
+    optional uint32 banker = 3; //庄家
+    repeated Seat seats = 4; //座位
+    required uint32 status = 5; //游戏状态
+
+    required uint32 gameType = 6; //游戏类型
+    required uint32 baseScore = 7; //底分
+    required uint32 totalRound = 8; //总局数
+    required uint32 round = 9; //当前局数
+    required uint32 payType = 10; //支付方式
+    required uint32 rule = 11; //规则
+    optional uint32 getBankerScore = 12; //上庄分数
+    optional uint32 maxGetBankerScore = 13; //最大抢庄
+    required bool doubleBull = 14; //对子牛
+    required bool spottedBull = 15; //五花牛
+    required bool bombBull = 16; //炸弹牛
+    required bool smallBull = 17; //五小牛
+    required bool playerPush = 18; //闲家推注
+    required bool startedInto = 19; //开始后进入
+    required bool disableTouchCard = 20; //禁止搓牌
+}
+
+message GrabRequest {
+    required uint32 grab = 1; //抢庄倍数
+}
+message GrabResponse {
+    required uint32 seatNo = 1; //下注人座位
+    required uint32 grab = 2; //抢庄倍数
+}
+message SetBankerResponse {
+    required uint32 seatNo = 1; //庄家座位号
+    required uint32 grab = 2; //抢庄倍数
+}
+message PlayRequest {
+    required uint32 playScore = 1; //下注分数
+}
+message PlayResponse {
+    required uint32 seatNo = 1; //下注人座位
+    required uint32 playScore = 2; //下注分数
+}
+message ReadyResponse {
+    required uint32 seatNo = 1; //准备的座位
+}
+//发牌
+message DealCardResponse {
+    repeated Card cards = 1; //牌
+}
+//完成
+message CompleteResponse {
+    required uint32 seatNo = 1; //座位号
+}
+//亮牌
+message OpenCardResponse {
+    required uint32 seatNo = 1; //座位号
+    repeated Card cards = 2; //牌
+}
+//退出
+message ExitResponse {
+    optional uint32 seatNo = 1; //座位号
+}
+//申请解散
+message DeleteResponse {
+    required string username = 1; //用户名
+}
+//解散确认
+message DeleteConfirmRequest {
+    required bool agree = 1; //是否同意
+}
+//解散确认
+message DeleteConfirmResponse {
+    required bool agree = 1; //是否同意
+    required uint32 seatNo = 2; //座位号
+}
+//解散
+message DeletedResponse {
+    optional string username = 1; //用户名(解散失败则是不同意解散的用户名.否则为空)
+    required bool deleted = 2; //是否解散成功
+}
+
+//比分结果
+message ResultResponse {
+    repeated ScoreResult result = 1;
+}
+//比分结果
+message ScoreResult {
+    required uint32 seatNo = 1; //座位号
+    required int32 score = 2; //分数
+    repeated Card cards = 3; //牌
+    required uint32 value = 4; //值
+    optional uint32 push = 5; //推注,不为0则可以推注
+}
+message ImgTextRequest {
+    required bool img = 1; //true为图片,false为文字
+    required uint32 content = 2; //内容
+}
+message ImgTextResponse {
+    required uint32 seatNo = 1; //座位号
+    required bool img = 2; //true为图片,false为文字
+    required uint32 content = 3; //内容
+}
+message InteractionRequest {
+    required uint32 otherSeatNo = 1; //座位号
+    required uint32 content = 2; //内容
+}
+message InteractionResponse {
+    required uint32 seatNo = 1; //发起人座位号
+    required uint32 otherSeatNo = 2; //座位号
+    required uint32 content = 3; //内容
+}
+message VoiceRequest {
+    required string content = 1; //内容
+}
+message VoiceResponse {
+    required uint32 seatNo = 1; //发起人座位号
+    required string content = 2; //内容
+}
+
+message Seat {
+    required uint32 seatNo = 1; //座位号
+    required string userName = 2; //用户名
+    optional string name = 3; //网名
+    optional string headPic = 4; //头像
+    required int32 gold = 5; //金币
+    repeated Card cards = 6; //牌
+    required uint32 grab = 7; //抢庄
+    required uint32 multiple = 8; //倍数
+    required bool ready = 9; //是否准备
+    required bool grabed = 10; //是否抢庄
+    required bool opened = 11; //是否亮牌
+    optional uint32 push = 12; //推注,不为0则可以推注
+
+}
+
+message GameOverResponse {
+    repeated UserContent userContents = 1; //总结算信息
+}
+message UserContent {
+    required string name = 1;
+    optional string head = 2;
+    required string username = 3;
+    required int32 totalScore = 4;
+}
+
+//牌
+message Card {
+    required CardColor cardColor = 1; //花色
+    required uint32 value = 2; //值
+}
+
+//花色
+enum CardColor {
+    SPADE = 0; //黑桃
+    HEART = 1; //红桃
+    PLUM = 2; //梅花
+    BLOCK = 3; //方块
+}
+
+//错误
+message ErrorResponse {
+    required uint32 errorCode = 1;
+}

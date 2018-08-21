@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.recharge.Recharge" table="t_recharge" lazy="true">
+        <id name="id" type="java.lang.String" column="id" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <property name="orderNo" column="order_no" type="java.lang.String"/>
+
+        <many-to-one name="account" column="account_id" class="bjl.domain.model.account.Account"/>
+
+        <property name="money" column="money" type="java.math.BigDecimal"/>
+
+        <property name="payType" column="pay_type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">bjl.core.enums.PayType</param>
+                <param name="type">4</param>
+            </type>
+        </property>
+
+        <property name="isSuccess" column="is_success">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">bjl.core.enums.YesOrNoStatus</param>
+                <param name="type">4</param>
+            </type>
+        </property>
+        <property name="payTime" column="pay_time" type="java.util.Date"/>
+        <property name="pass" column="pass" type="java.lang.Integer"/>
+    </class>
+</hibernate-mapping>

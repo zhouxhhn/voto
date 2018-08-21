@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.systemconfig.SystemConfig" table="t_system_config" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+        <property name="playerR" column="player_R" type="java.math.BigDecimal"/>
+        <property name="primeScore" column="prime_score" type="java.math.BigDecimal"/>
+        <property name="bankerPlayerMix" column="banker_player_mix" type="java.math.BigDecimal"/>
+        <property name="bankerPlayerMax" column="banker_player_max" type="java.math.BigDecimal"/>
+        <property name="triratnaMix" column="triratna_mix" type="java.math.BigDecimal"/>
+        <property name="triratnaMax" column="triratna_max" type="java.math.BigDecimal"/>
+        <property name="rechargeRatio" column="recharge_ratio" type="java.math.BigDecimal"/>
+        <property name="rechargeFee" column="recharge_fee" type="java.math.BigDecimal"/>
+        <property name="upScoreFee" column="up_score_fee" type="java.math.BigDecimal"/>
+        <property name="pump_1" column="pump_1" type="java.math.BigDecimal"/>
+        <property name="pump_2" column="pump_2" type="java.math.BigDecimal"/>
+        <property name="pump_3" column="pump_3" type="java.math.BigDecimal"/>
+        <property name="pump_4" column="pump_4" type="java.math.BigDecimal"/>
+        <property name="pump_5" column="pump_5" type="java.math.BigDecimal"/>
+        <property name="openPump" column="open_pump" type="java.lang.Integer"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<!--电话投注-->
+		<div class="tableW PhoneBetting divbox pad20">
+			<div class="phoneTop">
+				<div inDiv><input type="text" value="角色明查" /> </div>
+				<div inDiv>
+					<label>
+						<input type="date" />
+					</label>
+					<label class="mLR5">到</label>
+					<label>
+						<input type="date" />
+					</label>
+				</div>
+				<div inDiv>
+					<select>
+						<option>电话接待中</option>
+					</select>
+				</div>
+				<div class="chaxun mLR5">查询</div>
+				<div inDiv_n>剩余分汇总：<i>99999</i></div>
+				<div inDiv_n>剩余分汇总：<i>99999</i></div>
+				<div class="chaxun mLR5">查询</div>
+			</div>
+			<div class="divW w100">
+				<table class="layerTab">
+					<thead>
+						<tr>
+							<th>玩家昵称</th>
+							<th>玩家电话</th>
+							<th>创建时间</th>
+							<th>开始时间</th>
+							<th>结束时间</th>
+							<th>游戏场地</th>
+							<th>冻结分</th>
+							<th>玩家剩余分</th>
+							<th>洗码注量</th>
+							<th>工号</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td class="xiugai"><span class="kai">开工</span></td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td class="xiugai"><span class="ting">停工</span></td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td>23</td>
+							<td class="xiugai">已完成</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--分页-->
+			<div class="pageWrap mT15">
+				<div>
+					<a><i class="iconfont icon-icon1"></i></a>
+					<a class="on">1</a>
+					<a>2</a>
+					<a></a>
+					<a>4</a>
+					<a>10</a>
+					<a><i class="iconfont icon-arrow-sl"></i> </a>
+				</div>
+			</div>
+		</div>
+		<!--开工提醒-->
+		<div class="tip" kaigong style="display:none ;">
+			<div class="tipBox kaiBox">
+				<p class="pTit tcenter f18 color33 mT10">开工提醒</p>
+				<div class="tipCon">
+					<p><span>玩家昵称：</span><span>aaaaa</span></p>
+					<p><span>冻结分数：</span><span>aaaaa</span></p>
+					<p><span>房间选择：</span><span>aaaaa</span></p>
+					<p><span>电话号码：</span><span>15788888888</span></p>
+					<p><span>输入工号开始接待：</span><input type="text" /></p>
+				</div>
+				<div class="BtnDiv mT20">
+					<span class="quxiao mLR15">取消</span>
+					<span class="tijiao mLR15">接待</span>
+				</div>
+			</div>
+		</div>
+		<!--停工提醒-->
+		<div class="tip" tinggong style="display:none ;">
+			<div class="tipBox tingBox">
+				<p class="pTit tcenter f18 color33 mT10">开工提醒</p>
+				<div class="tipCon">
+					<p><span>玩家昵称：</span><span>aaaaa</span></p>
+					<p><span>冻结分数：</span><span>aaaaa</span></p>
+					<p><span>房间选择：</span><span>aaaaa</span></p>
+					<p><span>电话号码：</span><span>15788888888</span></p>
+					<p><span>接待工号：</span><span>15788888888</span></p>
+					<p class="mB15"><span>晚上剩余分数：</span><input type="text" /></p>
+					<p><span><span hid>站</span>玩家洗码量：</span><input type="text" /></p>
+				</div>
+				<div class="BtnDiv mT20">
+					<span class="quxiao mLR15">取消</span>
+					<span class="tijiao mLR15">接待</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery2-1-4.min.js"></script>
+	<script src="js/home.js"></script>
+	<script type="text/javascript">
+		$(".layerTab tbody tr,.pageWrap a").click(function() {
+			$(this).addClass("on").siblings().removeClass("on");
+		});
+		$(".xiugai>.kai").click(function(){
+			$("div[kaigong]").css("display","block")
+		})
+		$(".xiugai>.ting").click(function(){
+			$("div[tinggong]").css("display","block")
+		})
+		$(".quxiao").click(function(){
+			$(".tip").css("display","none");
+		})
+	</script>
+
+</html>

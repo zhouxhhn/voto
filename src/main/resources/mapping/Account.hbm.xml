@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="bjl.domain.model.account.Account" table="t_account" lazy="true">
+        <id name="id" type="java.lang.String" column="id" unsaved-value="null" length="32">
+            <generator class="uuid"/>
+        </id>
+
+        <version column="version" name="version" type="java.lang.Integer"/>
+
+        <property name="createDate" column="create_date" type="java.util.Date"/>
+
+        <property name="userName" column="user_name" type="java.lang.String" unique="true"/>
+
+        <property name="password" column="password" type="java.lang.String"/>
+
+        <property name="bankPwd" column="bank_pwd" type="java.lang.String"/>
+
+        <property name="salt" column="salt" type="java.lang.String"/>
+
+        <property name="lastLoginIP" column="last_login_ip" type="java.lang.String"/>
+
+        <property name="lastLoginDate" column="last_login_date" type="java.util.Date"/>
+
+        <property name="lastLoginPlatform" column="last_login_platform" type="java.lang.String"/>
+
+        <property name="area" column="area" type="java.lang.String"/>
+
+        <property name="token" column="token" type="java.lang.String" unique="true"/>
+
+        <bag name="roles" lazy="extra" table="t_account_role" cascade="save-update">
+            <key column="account_id"/>
+            <many-to-many class="bjl.domain.model.role.Role" column="role_id"/>
+        </bag>
+
+        <property name="head" column="head" type="java.lang.String"/>
+
+        <property name="status" column="status">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">bjl.core.enums.EnableStatus</param>
+                <param name="type">4</param>
+            </type>
+        </property>
+
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="vip" column="is_vip" type="java.lang.Boolean"/>
+        <property name="sex" column="sex">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">bjl.core.enums.Sex</param>
+                <param name="type">4</param>
+            </type>
+        </property>
+        <property name="phoneNo" column="phone_no" type="java.lang.String"/>
+        <property name="gag" column="gag" type="java.lang.Integer"/>
+        <property name="R" column="R" type="java.math.BigDecimal"/>
+        <property name="ratio" column="ratio" type="java.math.BigDecimal"/>
+        <property name="question" column="question" type="java.lang.Integer"/>
+        <property name="answer" column="answer" type="java.lang.String"/>
+        <many-to-one name="parent" column="parent_id" class="bjl.domain.model.account.Account"/>
+        <many-to-one name="referee" column="referee_id" class="bjl.domain.model.account.Account"/>
+        <property name="playName" column="play_name" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

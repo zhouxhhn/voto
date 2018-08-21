@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 表单后台验证 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <mvc:annotation-driven validator="validator">
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg index="0">
+                    <bean class="java.nio.charset.Charset"
+                          factory-method="forName">
+                        <constructor-arg value="UTF-8"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value><!-- For sb IE download -->
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>WriteDateUseDateFormat</value>
+                        <value>DisableCircularReferenceDetect</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"></bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!-- 组件自动扫描 -->
+    <context:component-scan base-package="bjl.interfaces,bjl.websocket">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="javax.websocket.server.ServerEndpoint"/>
+    </context:component-scan>
+
+    <!--主要作用于@Controller激活该模式下面是一种简写形式
+         它会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter，
+         是spring MVC为@Controllers分发请求所必须的   -->
+    <mvc:annotation-driven/>
+
+    <!-- 对静态资源文件的访问 -->
+    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
+    <mvc:resources mapping="/img/**" location="/img/"/>
+    <mvc:resources mapping="/img_tmp/**" location="/img_tmp/"/>
+    <mvc:resources mapping="/file/**" location="/file/"/>
+    <mvc:resources mapping="/help/**" location="/resources/help/"/>
+    <mvc:resources mapping="/test/**" location="/resources/test/"/>
+    <mvc:resources mapping="/favicon.ico" location="/resources/images/favicon.ico"/>
+</beans>
