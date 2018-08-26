@@ -1,6 +1,7 @@
 package bjl.application.agent;
 
 import bjl.application.agent.command.ListAgentProfitCommand;
+import bjl.constants.VotoContants;
 import bjl.domain.model.agent.AgentProfit;
 import bjl.domain.service.agent.IAgentProfitService;
 import bjl.infrastructure.persistence.hibernate.generic.Pagination;
@@ -25,10 +26,14 @@ public class AgentProfitAppService implements IAgentProfitAppService{
     }
 
     @Override
-    public Pagination<AgentProfit> pagination(ListAgentProfitCommand command) {
+    public Pagination<AgentProfit> pagination(ListAgentProfitCommand command,String flag) {
+
         command.verifyPage();
         command.setPageSize(18);
-
+        if(flag != null && VotoContants.EXPORT_EXCEL.equals(flag)){
+            command.setPage(1);
+            command.setPageSize(1000000);
+        }
         return agentProfitService.pagination(command);
     }
 }

@@ -5,6 +5,7 @@ import bjl.application.gamedetailed.command.CreateGameDetailedCommand;
 import bjl.application.gamedetailed.command.ListGameDetailedCommand;
 import bjl.application.gamedetailed.command.TotalGameDetailedCommand;
 import bjl.application.gamedetailed.representation.GameDetailedRepresentation;
+import bjl.constants.VotoContants;
 import bjl.core.mapping.IMappingService;
 import bjl.domain.model.gamedetailed.GameDetailed;
 import bjl.domain.model.user.User;
@@ -103,10 +104,14 @@ public class GameDetailedAppService implements IGameDetailedAppService{
     }
 
     @Override
-    public Pagination<GameDetailedRepresentation> pagination(ListGameDetailedCommand command) {
+    public Pagination<GameDetailedRepresentation> pagination(ListGameDetailedCommand command,String flag) {
 
         command.verifyPage();
         command.verifyPageSize(18);
+        if(flag != null && VotoContants.EXPORT_EXCEL.equals(flag)){
+            command.setPage(1);
+            command.setPageSize(10000000);
+        }
 
         Pagination<GameDetailed> pagination = gameDetailedService.pagination(command);
         List<GameDetailedRepresentation> data = mappingService.mapAsList(pagination.getData(),GameDetailedRepresentation.class);

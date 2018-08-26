@@ -2,8 +2,11 @@ package bjl.interfaces.triratna;
 
 import bjl.application.triratna.ITriratnaAppService;
 import bjl.application.triratna.command.ListITriratnaCommand;
+import bjl.application.triratna.command.TotalTriratna;
 import bjl.application.triratna.representation.TriratnaRepresentation;
+import bjl.constants.VotoContants;
 import bjl.interfaces.shared.web.BaseController;
+import bjl.utils.CommonUtils;
 import bjl.utils.GenerateExcelUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ public class TriratnaController extends BaseController{
     public ModelAndView pagination(ListITriratnaCommand command){
 
         return new ModelAndView("/triratna/list","pagination",triratnaAppService.pagination(command))
+        return new ModelAndView("/triratna/list","pagination",triratnaAppService.pagination(command,null))
                 .addObject("command",command).addObject("total",triratnaAppService.total(command));
 
     }
@@ -39,13 +43,20 @@ public class TriratnaController extends BaseController{
         String juInput = request.getParameter("juInput");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
+        String userName = request.getParameter("userName");
 
         ListITriratnaCommand command = new ListITriratnaCommand();
         if(xueInput !=null && !"".equals(xueInput)){
-          command.setBoots(Integer.parseInt(xueInput));
+          if(CommonUtils.isInteger(xueInput)){
+              command.setBoots(Integer.parseInt(xueInput));
+          }
+
         }
         if(juInput !=null && !"".equals(juInput)){
-          command.setGames(Integer.parseInt(juInput));
+            if(CommonUtils.isInteger(xueInput)){
+                command.setGames(Integer.parseInt(juInput));
+            }
+
         }
         if(startDate !=null && !"".equals(startDate)){
           command.setStartDate(startDate);
@@ -53,10 +64,15 @@ public class TriratnaController extends BaseController{
         if(xueInput !=null && !"".equals(xueInput)){
           command.setEndDate(endDate);
         }
-        List<TriratnaRepresentation> list = triratnaAppService.pagination(command).getData();
-        String[] header = {"靴局","闲对","庄对","和","三宝总投注","选手总盈亏","公司总利润"};
+        if(userName !=null && !"".equals(userName)){
+           command.setUserName(userName);
+        }
+        List<TriratnaRepresentation> list = triratnaAppService.pagination(command, VotoContants.EXPORT_EXCEL).getData();
+        TotalTriratna totalTriratna = triratnaAppService.total(command);
+
+        String[] header = {"用户昵称","靴局","闲对","庄对","和","三宝总投注","选手总盈亏","公司总利润"};
         String fileName = "三宝盈亏汇总";
-        GenerateExcelUtils.exportTriratna(response,fileName,header,list);
+        GenerateExcelUtils.exportExcel(response, fileName, header, list, totalTriratna,  VotoContants.TRIRATNA_EXCEL);
       }catch (Exception e){
         e.printStackTrace();
       }

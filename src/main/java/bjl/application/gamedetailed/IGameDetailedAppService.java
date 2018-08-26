@@ -27,7 +27,7 @@ public interface IGameDetailedAppService {
 
     Map<String, Object> apiList(String[] strings);
 
-    Pagination<GameDetailedRepresentation> pagination(ListGameDetailedCommand  command);
+    Pagination<GameDetailedRepresentation> pagination(ListGameDetailedCommand  command,String flag);
 
     TotalGameDetailedCommand total(ListGameDetailedCommand command);
 

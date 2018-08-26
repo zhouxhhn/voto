@@ -3,6 +3,8 @@ package bjl.domain.service.triratna;
 import bjl.application.triratna.command.ListITriratnaCommand;
 import bjl.application.triratna.command.TotalTriratna;
 import bjl.application.triratna.representation.TriratnaRepresentation;
+import bjl.constants.VotoContants;
+import bjl.core.common.Constants;
 import bjl.core.util.CoreDateUtils;
 import bjl.core.util.CoreStringUtils;
 import bjl.domain.model.gamedetailed.GameDetailed;
@@ -35,7 +37,7 @@ public class TriratnaService implements ITriratnaService{
     private IGameDetailedRepository<GameDetailed, String> gameDetailedRepository;
 
     @Override
-    public Pagination<TriratnaRepresentation> pagination(ListITriratnaCommand command) {
+    public Pagination<TriratnaRepresentation> pagination(ListITriratnaCommand command,String flag) {
 
         String condition = "";
         String dateStr = "";
@@ -64,6 +66,9 @@ public class TriratnaService implements ITriratnaService{
         if(command.getGames() != null){
             condition += " and t.games = "+command.getGames();
         }
+        if(command.getUserName() != null){
+            condition += " and a.name like '%"+command.getUserName()+"%'";//  '%JC517408%'
+        }
 
         if(!CoreStringUtils.isEmpty(command.getStartDate())){
             dateStr += " and t.create_date>='"+command.getStartDate()+"'" ;
@@ -72,14 +77,22 @@ public class TriratnaService implements ITriratnaService{
             dateStr += " and t.create_date<'"+command.getEndDate()+"'";
         }
 
-        String sql = "SELECT t.boots,t.games,t.lottery,SUM(t.triratna_profit) triratna_profit,SUM(t.bank_pair) bank_pair,SUM(t.player_pair) player_pair,SUM(t.draw) draw "
-                     +" FROM t_game_detailed as t,t_user as u where t.user_id = u.id and u.is_virtual <> 1 " + condition + dateStr
-                     +" GROUP BY t.boots,t.games,TO_DAYS(t.create_date),t.lottery limit "+(command.getPage()-1)*command.getPageSize()+","+command.getPageSize();
+//        String sql = "SELECT t.boots,t.games,t.lottery,SUM(t.triratna_profit) triratna_profit,SUM(t.bank_pair) bank_pair,SUM(t.player_pair) player_pair,SUM(t.draw) draw "
+//                     +" FROM t_game_detailed as t,t_user as u where t.user_id = u.id and u.is_virtual <> 1 " + condition + dateStr
+//                     +" GROUP BY t.boots,t.games,TO_DAYS(t.create_date),t.lottery limit "+(command.getPage()-1)*command.getPageSize()+","+command.getPageSize();
+        String limitPage =" limit "+ (command.getPage()-1)*command.getPageSize()+","+command.getPageSize();
+        if(flag !=null && VotoContants.EXPORT_EXCEL.equals(flag)){
+            limitPage="";
+        }
+        String sql =  "SELECT t.boots,t.games,t.lottery,a.name as userName, SUM(t.triratna_profit) triratna_profit,SUM(t.bank_pair) bank_pair,SUM(t.player_pair) player_pair,SUM(t.draw) draw "
+                +" FROM t_game_detailed as t left join t_user as u on t.user_id = u.id LEFT JOIN t_account a on u.account_id= a.id where u.is_virtual <> 1 " + condition + dateStr
+                +" GROUP BY t.boots,t.games,TO_DAYS(t.create_date),t.lottery,a.name "+limitPage;
 
-        String countSql = "select count(*) count from (select count(*) count_ "
-                +" FROM t_game_detailed as t,t_user as u where t.user_id = u.id and u.is_virtual <> 1 " + condition + dateStr
-                +" GROUP BY t.boots,t.games,TO_DAYS(t.create_date),t.lottery ) as a";
+//        String countSql = "select count(*) count from (select count(*) count_ "
+//                +" FROM t_game_detailed as t,t_user as u where t.user_id = u.id and u.is_virtual <> 1 " + condition + dateStr
+//                +" GROUP BY t.boots,t.games,TO_DAYS(t.create_date),t.lottery ) as a";
 
+        String countSql =  "SELECT count(*) count FROM t_game_detailed as t left join t_user as u on t.user_id = u.id LEFT JOIN t_account a on u.account_id= a.id where u.is_virtual <> 1 " + condition + dateStr;
 
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createSQLQuery(sql).setResultTransformer(Transformers.aliasToBean(TriratnaRepresentation.class));

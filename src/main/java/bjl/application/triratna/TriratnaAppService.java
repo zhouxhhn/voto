@@ -21,11 +21,11 @@ public class TriratnaAppService implements ITriratnaAppService{
     private ITriratnaService triratnaService;
 
     @Override
-    public Pagination<TriratnaRepresentation> pagination(ListITriratnaCommand command) {
+    public Pagination<TriratnaRepresentation> pagination(ListITriratnaCommand command,String flag) {
         command.verifyPage();
         command.setPageSize(18);
 
-        return triratnaService.pagination(command);
+        return triratnaService.pagination(command,flag);
     }
 
     @Override

@@ -11,5 +11,5 @@ public interface IAgentProfitAppService {
 
     void create(AgentProfit agentProfit);
 
-    Pagination<AgentProfit> pagination(ListAgentProfitCommand command);
+    Pagination<AgentProfit> pagination(ListAgentProfitCommand command,String flag);
 }

@@ -16,13 +16,16 @@
 				<div inDiv>
                     <form action="/game_detailed/pagination" id="form">
                         <label class="mR10">
-                            <input type="text" name="boots" value="${command.boots}"/>&nbsp;&nbsp;靴
+                            用户昵称：<input type="text" id="name" name="name" value="${command.name}"/>&nbsp;&nbsp;
+                        </label>
+                        <label class="mR10">
+                            靴：<input type="text"  id="boots" name="boots" value="${command.boots}"/>&nbsp;&nbsp;
                         </label>
                         <label>
-                            <input type="text" name="games" value="${command.games}"/>&nbsp;&nbsp;局&nbsp;&nbsp;
+                            局：<input type="text"  id="games"  name="games" value="${command.games}"/>&nbsp;&nbsp;
                         </label>
                         <label>
-                            <select name="hallType">
+                            <select id="hallType" name="hallType">
                                 <option value="0">全部</option>
                                 <option value="1" [#if command.hallType == 1]selected="selected" [/#if]>菲律宾</option>
                                 <option value="2" [#if command.hallType == 2]selected="selected" [/#if]>越南</option>
@@ -30,7 +33,7 @@
                             </select>&nbsp;&nbsp;厅
                         </label>
                         <label>
-                            <input id="startDate" name="startDate" value="${command.startDate}"/>
+                            时间：<input id="startDate" name="startDate" value="${command.startDate}"/>
                         </label>
                         <label class="mLR5">到</label>
                         <label>
@@ -38,10 +41,8 @@
                         </label>
                     </form>
 				</div>
-
-
-
 				<div class="chaxun mLR5" onclick="$('#form').submit()">查询</div>
+                <div class="chaxun mLR5" onclick="exportExcel()">导出</div>
 			</div>
 			<div class="divW w100">
 				<table class="layerTab">
@@ -113,7 +114,7 @@
 			</div>
 			<!--分页-->
 			[#if pagination??]
-            	[@mc.customPagination '/game_detailed/pagination?boots=${command.boots!}&games=${command.games!}&hallType=${command.hallType}&startDate=${command.getStartDate()}&endDate=${command.getEndDate()}' /]
+            	[@mc.customPagination '/game_detailed/pagination?boots=${command.boots!}&name=${command.name!}&games=${command.games!}&hallType=${command.hallType}&startDate=${command.getStartDate()}&endDate=${command.getEndDate()}' /]
         	[/#if]
 		</div>
 
@@ -125,6 +126,18 @@
 		$(".layerTab tbody tr,.pageWrap a").click(function() {
 			$(this).addClass("on").siblings().removeClass("on");
 		})
+
+        function exportExcel() {
+            var boots = $("#boots").val();
+            var name = $("#name").val();
+            var games = $("#games").val();
+            var hallType = $("#hallType").val();
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            location.href="${pageContext.request.contextPath}/game_detailed/exportExcel.do?boots="+boots+"&hallType="+hallType
+            +"&name="+name+"&games="+games+"&startDate="+startDate+"&endDate="+endDate;
+        }
+
 	</script>
 
 </html>

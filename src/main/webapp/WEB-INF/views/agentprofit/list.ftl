@@ -15,13 +15,13 @@
                 <div inDiv>
                     <form action="/agent_profit/pagination" id="form">
                         <label class="mR10">
-                            玩家名：<input type="text" name="playerName" value="${command.playerName}"/>
+                            玩家名：<input type="text" id="playerName" name="playerName" value="${command.playerName}"/>
                         </label>
                         <label>
-                            一级代理：<input type="text" name="firstName" value="${command.firstName}"/>
+                            一级代理：<input type="text" id="firstName"  name="firstName" value="${command.firstName}"/>
                         </label>
                         <label>
-                            二级代理：<input type="text" name="secondName" value="${command.secondName}"/>
+                            二级代理：<input type="text" id="secondName" name="secondName" value="${command.secondName}"/>
                         </label>
                         <label>
                             时间：<input id="startDate" name="startDate" value="${command.startDate}"/>
@@ -35,6 +35,7 @@
 
 
                 <div class="chaxun mLR5" onclick="$('#form').submit()">查询</div>
+                <div class="chaxun mLR5" onclick="exportExcel()">导出</div>
 
 			</div>
 			<div class="divW w100">
@@ -126,6 +127,17 @@
 		$(".layerTab tbody tr,.pageWrap a").click(function() {
 			$(this).addClass("on").siblings().removeClass("on");
 		})
+
+        function exportExcel() {
+            var playerName = $("#playerName").val();
+            var firstName = $("#firstName").val();
+            var secondName = $("#secondName").val();
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            location.href="${pageContext.request.contextPath}/agent_profit/exportExcel.do?playerName="+playerName
+            +"&firstName="+firstName+"&secondName="+secondName+"&startDate="+startDate+"&endDate="+endDate;
+        }
+
 	</script>
 
 </html>

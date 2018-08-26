@@ -250,6 +250,7 @@ public class GameDetailedService implements IGameDetailedService{
         if(!CoreStringUtils.isEmpty(command.getParentId())){
             alisMap.put("user.account","account");
         }
+        alisMap.put("user.account","account");
         List<Criterion> list = criteria(command);
         list.add(Restrictions.ne("user.virtual",1));
         return gameDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,alisMap,null,null);
@@ -322,6 +323,9 @@ public class GameDetailedService implements IGameDetailedService{
         }
         if(command.getHallType() != null && command.getHallType() != 0){
             criterionList.add(Restrictions.eq("hallType",command.getHallType()));
+        }
+        if(command.getName() != null && !"".equals(command.getName())){
+            criterionList.add(Restrictions.eq("account.name",command.getName()));
         }
 
         if(!CoreStringUtils.isEmpty(command.getParentId())){

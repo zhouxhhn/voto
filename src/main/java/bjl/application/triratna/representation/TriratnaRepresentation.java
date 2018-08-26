@@ -17,6 +17,15 @@ public class TriratnaRepresentation {
     private BigDecimal triratna_profit;//三宝盈利
     private Object[] lottery; //开奖结果
     private Object count;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public Object getCount() {
         return count;

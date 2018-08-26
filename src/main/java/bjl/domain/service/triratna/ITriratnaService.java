@@ -10,7 +10,7 @@ import bjl.infrastructure.persistence.hibernate.generic.Pagination;
  */
 public interface ITriratnaService {
 
-    Pagination<TriratnaRepresentation> pagination(ListITriratnaCommand command);
+    Pagination<TriratnaRepresentation> pagination(ListITriratnaCommand command,String flag);
 
     TotalTriratna total(ListITriratnaCommand command);
 }

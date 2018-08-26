@@ -14,6 +14,17 @@ public class ListGameDetailedCommand extends BasicPaginationCommand {
     private String startDate;  //开始时间
     private String endDate;  //结束时间
     private String parentId; //上级ID
+    private String name; //玩家昵称
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     public String getParentId() {
         return parentId;

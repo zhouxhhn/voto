@@ -11,6 +11,17 @@ public class ListITriratnaCommand extends BasicPaginationCommand {
     private Integer games;
     private String startDate;
     private String endDate;
+    private String userName;
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
 
     public Integer getBoots() {
         return boots;

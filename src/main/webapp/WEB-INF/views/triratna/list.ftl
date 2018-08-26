@@ -16,6 +16,9 @@
                 <div inDiv>
                     <form action="/triratna/pagination" id="form">
                         <label class="mR10">
+                            用户昵称：<input type="text" id="userName" name="userName" value="${command.userName}"/>
+                        </label>
+                        <label class="mR10">
                             靴：<input type="text" id="xueInput" name="boots" value="${command.boots}"/>
                         </label>
                         <label>
@@ -39,6 +42,7 @@
 				<table class="layerTab">
 					<thead>
 						<tr>
+                            <th>用户昵称</th>
 							<th>靴局</th>
 							<th>闲对</th>
 							<th>庄对</th>
@@ -52,6 +56,7 @@
 					[#if pagination??]
 					[#list pagination.data as data]
 						<tr>
+                            <td>${data.userName}</td>
 							<td>${data.boots}靴${data.games}局</td>
 							<td>${data.player_pair}</td>
 							<td>${data.bank_pair}</td>
@@ -63,6 +68,7 @@
 					[/#list]
 					[/#if]
 						<tr>
+							<td></td>
 							<td>总计</td>
 							<td>${total.playerPair}</td>
 							<td>${total.bankPair}</td>
@@ -77,7 +83,7 @@
 			</div>
 			<!--分页-->
 		[#if pagination??]
-			[@mc.customPagination '/triratna/pagination?boots=${command.boots}&games=${command.games}&startDate=${command.startDate}&endDate=${command.endDate}' /]
+			[@mc.customPagination '/triratna/pagination?boots=${command.boots}&games=${command.games}&startDate=${command.startDate}&endDate=${command.endDate}&userName=${command.userName}' /]
 		[/#if]
 		</div>
 
@@ -95,8 +101,9 @@
 		    var juInput = $("#juInput").val();
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
+            var userName = $("#userName").val();
             location.href="${pageContext.request.contextPath}/triratna/exportTriratna.do?xueInput="+xueInput
-						  +"&juInput="+juInput+"&startDate="+startDate+"&endDate="+endDate;
+						  +"&juInput="+juInput+"&startDate="+startDate+"&endDate="+endDate+"&userName="+userName;
         }
 
 	</script>
