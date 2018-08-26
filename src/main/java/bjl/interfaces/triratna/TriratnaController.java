@@ -30,7 +30,6 @@ public class TriratnaController extends BaseController{
     @RequestMapping(value = "/pagination")
     public ModelAndView pagination(ListITriratnaCommand command){
 
-        return new ModelAndView("/triratna/list","pagination",triratnaAppService.pagination(command))
         return new ModelAndView("/triratna/list","pagination",triratnaAppService.pagination(command,null))
                 .addObject("command",command).addObject("total",triratnaAppService.total(command));
 
