@@ -308,7 +308,7 @@ public class CoreImgUtils {
             // 验证码字符个数
             int codeCount = 5;
             // 验证码干扰线数
-            int lineCount = 150;
+            int lineCount = 5; //以前是150，现改成5
             // 验证码
             String code = null;
             // 验证码图片Buffer

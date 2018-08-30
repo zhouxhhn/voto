@@ -15,6 +15,7 @@ public class ListGameDetailedCommand extends BasicPaginationCommand {
     private String endDate;  //结束时间
     private String parentId; //上级ID
     private String name; //玩家昵称
+    private String token; //玩家帐号
 
 
     public String getName() {
@@ -72,5 +73,13 @@ public class ListGameDetailedCommand extends BasicPaginationCommand {
 
     public void setHallType(Integer hallType) {
         this.hallType = hallType;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

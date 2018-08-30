@@ -3,6 +3,7 @@ package bjl.core.message;
 import bjl.application.bank.command.CreateBankCommand;
 import bjl.application.chat.command.CreateChatCommand;
 import bjl.application.chat.command.ListChatCommand;
+import bjl.application.gamedetailed.command.ListGameDetailedCommand;
 import bjl.application.userManager.command.RegisterUserCommand;
 import bjl.core.api.MessageID;
 import bjl.core.chat.ChatProcess;
@@ -341,7 +342,12 @@ public class MessageCoding {
                     jsonObject = ServiceUtil.serviceUtil.getGuideAppService().list(jsonObject);
                     System.out.println(CoreDateUtils.formatDateTime(new Date())+" 返回内容:"+jsonObject);
                     return jsonObject;
-
+                case MessageID._GETDETAILED: //获取个人流水
+                    ListGameDetailedCommand listGameDetailedCommand = JSONObject.parseObject(bytes, ListGameDetailedCommand.class);
+                    System.out.println(CoreDateUtils.formatDateTime(new Date())+" 获取个人流水："+JSONObject.toJSONString(listGameDetailedCommand));
+                    jsonObject = ServiceUtil.serviceUtil.getGameDetailedAppService().list(listGameDetailedCommand);
+                    System.out.println(CoreDateUtils.formatDateTime(new Date())+" 返回内容:"+jsonObject);
+                    return jsonObject;
             }
 
         }catch (Exception e) {

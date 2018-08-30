@@ -56,6 +56,7 @@ public class MessageID {
     public static final short _GETACTIVITY = 8046; //获取活动列表
     public static final short _GETCAROUSEL = 8047; //获取轮播图
     public static final short _GETGUIDE = 8048; //获取新手指南
+    public static final short _GETDETAILED = 8049; //获取个人流水
 
     //返回消息号
 
@@ -107,5 +108,6 @@ public class MessageID {
     public static final short GETACTIVITY_ = 9046; //获取活动列表
     public static final short GETCAROUSEL_ = 9047; //获取轮播图
     public static final short GETGUIDE_ = 9048; //获取新手指南
+    public static final short GETDETAILED_ = 9049; //获取个人明细
 
 }

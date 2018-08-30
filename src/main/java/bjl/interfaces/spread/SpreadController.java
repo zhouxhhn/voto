@@ -67,8 +67,8 @@ public class SpreadController extends BaseController{
             }
             //保存对应关系
             ipAppService.create(id,ip);
-//            String userAgent = request.getHeader("user-agent");
-//            if (userAgent.contains("iPhone") || userAgent.contains("iPad")) {
+//            String userAgent = request.getHeader("user-agent").toLowerCase();
+//            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
 //                // 苹果下载
 //                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.zip");
 //            } else {

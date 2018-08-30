@@ -1,5 +1,7 @@
 package bjl.application.gamedetailed;
 
+import com.alibaba.fastjson.JSONObject;
+
 import bjl.application.agent.command.CountGameDetailedCommand;
 import bjl.application.gamedetailed.command.CreateGameDetailedCommand;
 import bjl.application.gamedetailed.command.ListGameDetailedCommand;
@@ -147,4 +149,8 @@ public class GameDetailedAppService implements IGameDetailedAppService{
         return gameDetailedService.getLast(roomType,boots,games);
     }
 
+    @Override
+    public JSONObject list(ListGameDetailedCommand listGameDetailedCommand) {
+        return gameDetailedService.list(listGameDetailedCommand);
+    }
 }

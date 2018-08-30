@@ -1,5 +1,7 @@
 package bjl.domain.service.gamedetailed;
 
+import com.alibaba.fastjson.JSONObject;
+
 import bjl.application.agent.command.CountGameDetailedCommand;
 import bjl.application.gamedetailed.command.CreateGameDetailedCommand;
 import bjl.application.gamedetailed.command.ListGameDetailedCommand;
@@ -34,4 +36,6 @@ public interface IGameDetailedService {
     List<CountGameDetailedCommand> list(Date date);
 
     List<GameDetailed> getLast(Integer roomType,Integer boots, Integer games);
+
+    JSONObject list(ListGameDetailedCommand listGameDetailedCommand);
 }

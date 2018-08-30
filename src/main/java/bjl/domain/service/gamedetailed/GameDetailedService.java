@@ -1,12 +1,17 @@
 package bjl.domain.service.gamedetailed;
 
+import com.alibaba.fastjson.JSONObject;
+
 import bjl.application.agent.command.CountGameDetailedCommand;
 import bjl.application.financialSummary.IFinancialSummaryAppService;
 import bjl.application.gamedetailed.command.CreateGameDetailedCommand;
 import bjl.application.gamedetailed.command.ListGameDetailedCommand;
 import bjl.application.gamedetailed.command.TotalGameDetailedCommand;
+import bjl.application.gamedetailed.representation.GameDetailedRepresentation;
 import bjl.application.scoredetailed.IScoreDetailedAppService;
 import bjl.application.scoredetailed.command.CreateScoreDetailedCommand;
+import bjl.constants.VotoContants;
+import bjl.core.mapping.IMappingService;
 import bjl.core.util.CoreDateUtils;
 import bjl.core.util.CoreStringUtils;
 import bjl.domain.model.agent.Agent;
@@ -43,6 +48,9 @@ public class GameDetailedService implements IGameDetailedService{
     private IScoreDetailedAppService scoreDetailedAppService;
     @Autowired
     private IScoreDetailedRepository<ScoreDetailed, String> scoreDetailedRepository;
+
+    @Autowired
+    private IMappingService mappingService;
 
     @Override
     public User save(CreateGameDetailedCommand command) {
@@ -311,6 +319,35 @@ public class GameDetailedService implements IGameDetailedService{
 
     }
 
+    /**
+     * 个人流水
+     * @param command
+     * @return
+     */
+    @Override
+    public JSONObject list(ListGameDetailedCommand command) {
+
+        JSONObject jsonObject = new JSONObject();
+
+        command.verifyPage();
+        command.verifyPageSize(18);
+
+        Map<String ,String> alisMap = new HashMap<>();
+        alisMap.put("user","user");
+        alisMap.put("user.account","account");
+        List<Criterion> list = criteria(command);
+        list.add(Restrictions.ne("user.virtual",1));
+
+        Pagination<GameDetailed> pagination =  gameDetailedRepository.pagination(command.getPage(), command.getPageSize(), list, alisMap, null, null);
+        List<GameDetailedRepresentation> data = mappingService.mapAsList(pagination.getData(),GameDetailedRepresentation.class);
+        jsonObject.put("code",0);
+        jsonObject.put("errmsg","获取个人流水成功");
+        jsonObject.put("data",data);
+        jsonObject.put("count",pagination.getCount());
+        jsonObject.put("page",pagination.getPage());
+        jsonObject.put("pageSize",pagination.getPageSize());
+        return jsonObject;
+    }
 
     private List<Criterion> criteria(ListGameDetailedCommand command) {
 
@@ -326,6 +363,9 @@ public class GameDetailedService implements IGameDetailedService{
         }
         if(command.getName() != null && !"".equals(command.getName())){
             criterionList.add(Restrictions.eq("account.name",command.getName()));
+        }
+        if(command.getToken() != null && !"".equals(command.getToken())){
+            criterionList.add(Restrictions.eq("account.token",command.getToken()));
         }
 
         if(!CoreStringUtils.isEmpty(command.getParentId())){
