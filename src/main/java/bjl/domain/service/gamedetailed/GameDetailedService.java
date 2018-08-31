@@ -346,6 +346,9 @@ public class GameDetailedService implements IGameDetailedService{
         jsonObject.put("count",pagination.getCount());
         jsonObject.put("page",pagination.getPage());
         jsonObject.put("pageSize",pagination.getPageSize());
+        if(command.getCbid() != null){
+            jsonObject.put("cbid",command.getCbid());
+        }
         return jsonObject;
     }
 

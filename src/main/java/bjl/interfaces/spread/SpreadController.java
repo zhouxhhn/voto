@@ -67,16 +67,16 @@ public class SpreadController extends BaseController{
             }
             //保存对应关系
             ipAppService.create(id,ip);
-//            String userAgent = request.getHeader("user-agent").toLowerCase();
-//            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
-//                // 苹果下载
-//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.zip");
-//            } else {
-//                // Android下载
-//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.zip");
-//            }
+            String userAgent = request.getHeader("user-agent").toLowerCase();
+            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
+                // 苹果下载
+                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
+            } else {
+                // Android下载
+                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
+            }
             //跳转三方下载链接
-            response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"v1.0_2018-06-29_signed_7zip_aligned.apk");
+            //response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"v1.0_2018-06-29_signed_7zip_aligned.apk");
 
         }catch (Exception e){
             e.printStackTrace();

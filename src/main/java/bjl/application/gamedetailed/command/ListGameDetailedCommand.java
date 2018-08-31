@@ -16,7 +16,15 @@ public class ListGameDetailedCommand extends BasicPaginationCommand {
     private String parentId; //上级ID
     private String name; //玩家昵称
     private String token; //玩家帐号
+    private String cbid;                 //预设字段
 
+    public String getCbid() {
+        return cbid;
+    }
+
+    public void setCbid(String cbid) {
+        this.cbid = cbid;
+    }
 
     public String getName() {
         return name;
