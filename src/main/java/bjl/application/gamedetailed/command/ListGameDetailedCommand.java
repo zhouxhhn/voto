@@ -17,6 +17,16 @@ public class ListGameDetailedCommand extends BasicPaginationCommand {
     private String name; //玩家昵称
     private String token; //玩家帐号
     private String cbid;                 //预设字段
+    private Integer timeTyp;  //时间类型，1表示当天，2表示前3天，3表示本周
+
+
+    public Integer getTimeTyp() {
+        return timeTyp;
+    }
+
+    public void setTimeTyp(Integer timeTyp) {
+        this.timeTyp = timeTyp;
+    }
 
     public String getCbid() {
         return cbid;

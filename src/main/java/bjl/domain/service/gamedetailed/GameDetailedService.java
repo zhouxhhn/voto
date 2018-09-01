@@ -1,5 +1,6 @@
 package bjl.domain.service.gamedetailed;
 
+import bjl.application.gamedetailed.representation.GameDetailedResponse;
 import com.alibaba.fastjson.JSONObject;
 
 import bjl.application.agent.command.CountGameDetailedCommand;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -326,7 +328,7 @@ public class GameDetailedService implements IGameDetailedService{
      */
     @Override
     public JSONObject list(ListGameDetailedCommand command) {
-
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         JSONObject jsonObject = new JSONObject();
 
         command.verifyPage();
@@ -339,10 +341,25 @@ public class GameDetailedService implements IGameDetailedService{
         list.add(Restrictions.ne("user.virtual",1));
 
         Pagination<GameDetailed> pagination =  gameDetailedRepository.pagination(command.getPage(), command.getPageSize(), list, alisMap, null, null);
-        List<GameDetailedRepresentation> data = mappingService.mapAsList(pagination.getData(),GameDetailedRepresentation.class);
+        List<GameDetailedResponse> data = mappingService.mapAsList(pagination.getData(),GameDetailedResponse.class);
+
+        BigDecimal transactionTotal = new BigDecimal(0); //交易总金额
+        BigDecimal balanceTotal = new BigDecimal(0); //总余额
+        if(data != null && data.size() > 0){
+            for (int i = 0; i<data.size();i++){
+                GameDetailedResponse gameDetailedResponse = data.get(i);
+                gameDetailedResponse.setTime(sdf.format(gameDetailedResponse.getCreateDate()));
+                transactionTotal = transactionTotal.add(gameDetailedResponse.getTriratnaProfit());
+                balanceTotal = balanceTotal.add(gameDetailedResponse.getBalance());
+                data.set(i,gameDetailedResponse);
+            }
+        }
+
         jsonObject.put("code",0);
         jsonObject.put("errmsg","获取个人流水成功");
         jsonObject.put("data",data);
+        jsonObject.put("transactionTotal",transactionTotal);
+        jsonObject.put("balanceTotal",balanceTotal);
         jsonObject.put("count",pagination.getCount());
         jsonObject.put("page",pagination.getPage());
         jsonObject.put("pageSize",pagination.getPageSize());
@@ -381,6 +398,45 @@ public class GameDetailedService implements IGameDetailedService{
                 criterionList.add(Restrictions.in("account.id",strings));
             }
 
+        }
+
+        //
+        if(command.getTimeTyp() != null){
+            Date dt = new Date();
+            //最后的aa表示“上午”或“下午”    HH表示24小时制    如果换成hh表示12小时制
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            //表示当天
+            String startDate = sdf.format(dt)+" 00:00:00";
+
+            //表示前三天
+            if(2 == command.getTimeTyp()){
+                Date date=new Date();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
+                date = calendar.getTime();
+                startDate = sdf.format(date)+" 00:00:00";
+            }
+            //表示本周
+            if(3 == command.getTimeTyp()){
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dt);
+                // 获得当前日期是一个星期的第几天
+                int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
+                if (1 == dayWeek) {
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                }
+                // 设置一个星期的第一天，按中国的习惯一个星期的第一天是星期一
+                cal.setFirstDayOfWeek(Calendar.MONDAY);
+                // 获得当前日期是一个星期的第几天
+                int day = cal.get(Calendar.DAY_OF_WEEK);
+                // 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
+                cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
+                dt = cal.getTime();
+                startDate = sdf.format(dt)+" 00:00:00";
+            }
+            criterionList.add(Restrictions.ge("createDate", CoreDateUtils.parseDate(startDate, "yyyy-MM-dd HH:mm:ss")));
         }
 
         if(!CoreStringUtils.isEmpty(command.getStartDate()) || !CoreStringUtils.isEmpty(command.getEndDate())){
