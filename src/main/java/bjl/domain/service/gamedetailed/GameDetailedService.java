@@ -401,7 +401,7 @@ public class GameDetailedService implements IGameDetailedService{
         }
 
         //
-        if(command.getTimeTyp() != null){
+        if(command.getTimeType() != null){
             Date dt = new Date();
             //最后的aa表示“上午”或“下午”    HH表示24小时制    如果换成hh表示12小时制
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -410,7 +410,7 @@ public class GameDetailedService implements IGameDetailedService{
             String startDate = sdf.format(dt)+" 00:00:00";
 
             //表示前三天
-            if(2 == command.getTimeTyp()){
+            if(2 == command.getTimeType()){
                 Date date=new Date();
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
@@ -419,7 +419,7 @@ public class GameDetailedService implements IGameDetailedService{
                 startDate = sdf.format(date)+" 00:00:00";
             }
             //表示本周
-            if(3 == command.getTimeTyp()){
+            if(3 == command.getTimeType()){
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dt);
                 // 获得当前日期是一个星期的第几天

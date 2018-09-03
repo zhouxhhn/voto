@@ -93,24 +93,24 @@ public class ScoreDetailedService implements IScoreDetailedService{
         alisMap.put("user","user");
 
         List<Criterion> list = criteria(command);
-        Pagination<ScoreDetailed> pagination =  scoreDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,null,null,null);
+        Pagination<ScoreDetailed> pagination =  scoreDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,alisMap,null,null);
         return pagination;
     }
 
     private List<Criterion> criteria(ListGameDetailedCommand command) {
         List<Criterion> criterionList = new ArrayList<>();
 
-        if(command.getName() != null && !"".equals(command.getName())){
+        if(command.getToken() != null && !"".equals(command.getToken())){
             criterionList.add(Restrictions.eq("user.id",command.getToken()));
         }
 
         //
-        if(command.getTimeTyp() != null){
+        if(command.getTimeType() != null){
             Date dt = new Date();
 
 
             //表示前三天
-            if(2 == command.getTimeTyp()){
+            if(2 == command.getTimeType()){
                 Date date=new Date();
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
@@ -119,7 +119,7 @@ public class ScoreDetailedService implements IScoreDetailedService{
 
             }
             //表示本周
-            if(3 == command.getTimeTyp()){
+            if(3 == command.getTimeType()){
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dt);
                 // 获得当前日期是一个星期的第几天

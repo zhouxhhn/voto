@@ -59,8 +59,11 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
                 GameDetailedResponse response = new GameDetailedResponse();
                 response.setTriratnaProfit(scoreDetailed.getScore());
                 response.setBalancee(scoreDetailed.getNewScore());
-                response.setCreateDate(scoreDetailed.getCreateDate());
-                response.setTime(sdf.format(scoreDetailed.getCreateDate()));
+                if(scoreDetailed.getCreateDate() != null && !"".equals(scoreDetailed.getCreateDate())){
+                    response.setCreateDate(scoreDetailed.getCreateDate());
+                    response.setTime(sdf.format(scoreDetailed.getCreateDate()));
+                }
+
                 response.setHallType(scoreDetailed.getActionType());
 
                 transactionTotal = transactionTotal.add(scoreDetailed.getScore());
