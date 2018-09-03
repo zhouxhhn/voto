@@ -85,6 +85,12 @@ public class GameDetailedController extends BaseController {
     @RequestMapping(value = "/exportExcel")
     public void exportExcel(HttpServletRequest request, HttpServletResponse response){
         try{
+            ListGameDetailedCommand listGameDetailedCommand = new  ListGameDetailedCommand();
+            listGameDetailedCommand.setToken("789789");
+            listGameDetailedCommand.setTimeType(1);
+            System.out.println(CoreDateUtils.formatDateTime(new Date())+" 获取个人流水："+JSONObject.toJSONString(listGameDetailedCommand));
+            JSONObject jsonObject = ServiceUtil.serviceUtil.getScoreDetailedAppService().list(listGameDetailedCommand);
+
             String boots = request.getParameter("boots");
             String name = request.getParameter("name");
             String games = request.getParameter("games");

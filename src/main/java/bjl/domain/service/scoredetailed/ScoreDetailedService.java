@@ -94,14 +94,13 @@ public class ScoreDetailedService implements IScoreDetailedService{
     @Override
     public Pagination<ScoreDetailed> pagination(ListGameDetailedCommand command) {
         Map<String ,String> alisMap = new HashMap<>();
-        Account account =  accountRepository.searchByToken(command.getToken());
-        User user =  userRepository.searchByAccount(account);
         alisMap.put("user","user");
-        List<Criterion> list = criteria(command);
+        alisMap.put("user.account","account");
 
-        if(command.getToken() != null && !"".equals(command.getToken())){
-            list.add(Restrictions.eq("user.id",user.getId()));
-        }
+        List<Criterion> list = criteria(command);
+        list.add(Restrictions.ne("user.virtual",1));
+
+
 
         Pagination<ScoreDetailed> pagination =  scoreDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,alisMap,null,null);
         return pagination;
@@ -165,7 +164,9 @@ public class ScoreDetailedService implements IScoreDetailedService{
             criterionList.add(Restrictions.lt("createDate",after));
         }
 
-
+        if(command.getToken() != null && !"".equals(command.getToken())){
+            criterionList.add(Restrictions.eq("account.token",command.getToken()));
+        }
 
         return criterionList;
 
