@@ -45,6 +45,15 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
 
         command.verifyPage();
         command.verifyPageSize(18);
+        if(command.getToken() == null || "".equals(command.getToken())){
+            jsonObject.put("code",1);
+            jsonObject.put("errmsg","帐号不能为空");
+
+            if(command.getCbid() != null){
+                jsonObject.put("cbid",command.getCbid());
+            }
+            return jsonObject;
+        }
 
         Pagination<ScoreDetailed> pagination =  scoreDetailedService.pagination(command);
         List<ScoreDetailed> scoreDetailedList = pagination.getData();

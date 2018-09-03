@@ -7,6 +7,8 @@ import bjl.application.scoredetailed.IScoreDetailedAppService;
 import bjl.application.scoredetailed.command.CreateScoreDetailedCommand;
 import bjl.core.util.CoreDateUtils;
 import bjl.core.util.CoreStringUtils;
+import bjl.domain.model.account.Account;
+import bjl.domain.model.account.IAccountRepository;
 import bjl.domain.model.scoredetailed.IScoreDetailedRepository;
 import bjl.domain.model.scoredetailed.ScoreDetailed;
 import bjl.domain.model.user.IUserRepository;
@@ -40,6 +42,8 @@ public class ScoreDetailedService implements IScoreDetailedService{
     private IUserRepository<User,String> userRepository;
     @Autowired
     private IUserManagerService userManagerService;
+    @Autowired
+    private IAccountRepository accountRepository;
 
     /**
      * 用户积分变更
@@ -90,9 +94,15 @@ public class ScoreDetailedService implements IScoreDetailedService{
     @Override
     public Pagination<ScoreDetailed> pagination(ListGameDetailedCommand command) {
         Map<String ,String> alisMap = new HashMap<>();
+        Account account =  accountRepository.searchByToken(command.getToken());
+        User user =  userRepository.searchByAccount(account);
         alisMap.put("user","user");
-
         List<Criterion> list = criteria(command);
+
+        if(command.getToken() != null && !"".equals(command.getToken())){
+            list.add(Restrictions.eq("user.id",user.getId()));
+        }
+
         Pagination<ScoreDetailed> pagination =  scoreDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,alisMap,null,null);
         return pagination;
     }
@@ -100,9 +110,7 @@ public class ScoreDetailedService implements IScoreDetailedService{
     private List<Criterion> criteria(ListGameDetailedCommand command) {
         List<Criterion> criterionList = new ArrayList<>();
 
-        if(command.getToken() != null && !"".equals(command.getToken())){
-            criterionList.add(Restrictions.eq("user.id",command.getToken()));
-        }
+
 
         //
         if(command.getTimeType() != null){
@@ -156,6 +164,8 @@ public class ScoreDetailedService implements IScoreDetailedService{
             criterionList.add(Restrictions.ge("createDate",date));
             criterionList.add(Restrictions.lt("createDate",after));
         }
+
+
 
         return criterionList;
 
