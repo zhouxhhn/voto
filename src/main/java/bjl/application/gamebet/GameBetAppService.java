@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by zhangjin on 2017/12/28.
@@ -106,6 +107,7 @@ public class GameBetAppService implements IGameBetAppService{
         userManagerService.update(user);
         //再添加积分明细
         ScoreDetailed scoreDetailed = new ScoreDetailed();
+        scoreDetailed.setCreateDate(new Date());
         scoreDetailed.setUser(user);
         scoreDetailed.setNewScore(user.getScore());
         scoreDetailed.setScore(totalScore.multiply(BigDecimal.valueOf(-1)));
@@ -239,6 +241,7 @@ public class GameBetAppService implements IGameBetAppService{
         //再添加积分明细
         ScoreDetailed scoreDetailed = new ScoreDetailed();
         scoreDetailed.setUser(user);
+        scoreDetailed.setCreateDate(new Date());
         scoreDetailed.setNewScore(user.getScore());
         scoreDetailed.setScore(changeScore.multiply(BigDecimal.valueOf(-1)));
         scoreDetailed.setActionType(1);
@@ -346,6 +349,7 @@ public class GameBetAppService implements IGameBetAppService{
         //再添加积分明细
         ScoreDetailed scoreDetailed = new ScoreDetailed();
         scoreDetailed.setUser(user);
+        scoreDetailed.setCreateDate(new Date());
         scoreDetailed.setNewScore(user.getScore());
         scoreDetailed.setScore(changeScore.multiply(BigDecimal.valueOf(-1)));
         scoreDetailed.setActionType(1);

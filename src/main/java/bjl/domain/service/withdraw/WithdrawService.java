@@ -73,6 +73,7 @@ public class WithdrawService implements IWithdrawService{
                     userRepository.update(user);
                     //再添加积分明细
                     ScoreDetailed scoreDetailed = new ScoreDetailed();
+                    scoreDetailed.setCreateDate(new Date());
                     scoreDetailed.setUser(user);
                     scoreDetailed.setNewScore(user.getScore());
                     scoreDetailed.setScore(score.multiply(BigDecimal.valueOf(-1)));
@@ -250,6 +251,7 @@ public class WithdrawService implements IWithdrawService{
         ScoreDetailed scoreDetailed = new ScoreDetailed();
         scoreDetailed.setUser(user);
         scoreDetailed.setNewScore(user.getScore());
+        scoreDetailed.setCreateDate(new Date());
         scoreDetailed.setScore(score);
         scoreDetailed.setActionType(6);
         scoreDetailedRepository.save(scoreDetailed);

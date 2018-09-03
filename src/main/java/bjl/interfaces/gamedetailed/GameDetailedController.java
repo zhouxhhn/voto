@@ -1,5 +1,8 @@
 package bjl.interfaces.gamedetailed;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import bjl.application.account.representation.AccountRepresentation;
 import bjl.application.agent.command.ListAgentProfitCommand;
 import bjl.application.gamedetailed.IGameDetailedAppService;
@@ -7,6 +10,9 @@ import bjl.application.gamedetailed.command.ListGameDetailedCommand;
 import bjl.application.gamedetailed.command.TotalGameDetailedCommand;
 import bjl.application.gamedetailed.representation.GameDetailedRepresentation;
 import bjl.constants.VotoContants;
+import bjl.core.chat.ChatProcess;
+import bjl.core.util.CoreDateUtils;
+import bjl.core.util.ServiceUtil;
 import bjl.domain.model.agent.AgentProfit;
 import bjl.infrastructure.persistence.hibernate.generic.Pagination;
 import bjl.interfaces.shared.web.BaseController;
@@ -79,7 +85,6 @@ public class GameDetailedController extends BaseController {
     @RequestMapping(value = "/exportExcel")
     public void exportExcel(HttpServletRequest request, HttpServletResponse response){
         try{
-
             String boots = request.getParameter("boots");
             String name = request.getParameter("name");
             String games = request.getParameter("games");

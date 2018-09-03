@@ -21,6 +21,7 @@ import bjl.application.recharge.IRechargeAppService;
 import bjl.application.recharge.IRechargeCtlAppService;
 import bjl.application.robot.IRobotAppService;
 import bjl.application.safebox.ISafeBoxAppService;
+import bjl.application.scoredetailed.IScoreDetailedAppService;
 import bjl.application.scoretable.IScoreTableAppService;
 import bjl.application.spreadprofit.ISpreadProfitAppService;
 import bjl.application.systemconfig.ISystemConfigAppService;
@@ -31,6 +32,7 @@ import bjl.application.withdraw.IWithdrawAppService;
 import bjl.core.upload.FileUploadConfig;
 import bjl.core.upload.IFileUploadService;
 import bjl.domain.service.bettable.IBetTableService;
+import bjl.domain.service.scoredetailed.IScoreDetailedService;
 import bjl.domain.service.scoretable.IScoreTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -105,6 +107,12 @@ public class ServiceUtil {
     private ICarouselAppService carouselAppService;
     @Autowired
     private IGuideAppService guideAppService;
+    @Autowired
+    private IScoreDetailedAppService scoreDetailedAppService;
+
+    public IScoreDetailedAppService getScoreDetailedAppService(){
+        return scoreDetailedAppService;
+    }
 
     public ICarouselAppService getCarouselAppService() {
         return carouselAppService;

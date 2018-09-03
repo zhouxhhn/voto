@@ -345,7 +345,7 @@ public class MessageCoding {
                 case MessageID._GETDETAILED: //获取个人流水
                     ListGameDetailedCommand listGameDetailedCommand = JSONObject.parseObject(bytes, ListGameDetailedCommand.class);
                     System.out.println(CoreDateUtils.formatDateTime(new Date())+" 获取个人流水："+JSONObject.toJSONString(listGameDetailedCommand));
-                    jsonObject = ServiceUtil.serviceUtil.getGameDetailedAppService().list(listGameDetailedCommand);
+                    jsonObject = ServiceUtil.serviceUtil.getScoreDetailedAppService().list(listGameDetailedCommand);
                     System.out.println(CoreDateUtils.formatDateTime(new Date())+" 返回内容:"+jsonObject);
                     return jsonObject;
             }
