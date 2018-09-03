@@ -1,5 +1,6 @@
 package bjl.application.scoredetailed;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import bjl.application.gamedetailed.command.ListGameDetailedCommand;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,10 +56,9 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
             }
             return jsonObject;
         }
-
         Pagination<ScoreDetailed> pagination =  scoreDetailedService.pagination(command);
         List<ScoreDetailed> scoreDetailedList = pagination.getData();
-
+       List<GameDetailedResponse>  responses=  new ArrayList<>();
 
         BigDecimal transactionTotal = new BigDecimal(0); //交易总金额
         BigDecimal balanceTotal = new BigDecimal(0); //总余额
@@ -78,13 +79,14 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
                 transactionTotal = transactionTotal.add(scoreDetailed.getScore());
 
                 scoreDetailedList.set(i,scoreDetailed);
+                responses.add(response);
             }
             balanceTotal = scoreDetailedList.get(size-1).getNewScore();
         }
 
         jsonObject.put("code",0);
         jsonObject.put("errmsg","获取个人流水成功");
-        jsonObject.put("data",scoreDetailedList);
+        jsonObject.put("data",responses);
         jsonObject.put("transactionTotal",transactionTotal);
         jsonObject.put("balanceTotal",balanceTotal);
         jsonObject.put("count",pagination.getCount());
