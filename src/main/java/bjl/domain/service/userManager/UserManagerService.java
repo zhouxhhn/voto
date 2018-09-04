@@ -251,7 +251,7 @@ public class UserManagerService implements IUserManagerService {
         }
 
         //设置昵称
-        String name  = "JC"+(int)((Math.random()*9+1)*100000);//生成带6位随机数字的昵称
+        String name  = "by"+(int)((Math.random()*9+1)*100000);//生成带6位随机数字的昵称
         //设置用户默认头像
         String head = fileUploadConfig.getDomainName()+fileUploadConfig.getFolder()+(new Random().nextInt(6)+1)+".png";
         //获取系统默认配置
