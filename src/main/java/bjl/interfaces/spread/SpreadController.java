@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,14 +39,14 @@ public class SpreadController extends BaseController{
      * @param response
      */
     @RequestMapping(value = "/{id}")
-    public void spread(@PathVariable String id, HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView spread(@PathVariable String id, HttpServletRequest request, HttpServletResponse response){
 
         try {
             User user = userManagerAppService.getById(id);
             if(user == null){
                 response.setContentType("text/plain; charset=utf-8");
                 response.getWriter().write("不是有效链接，请勿更改链接");
-                return;
+                return null;
             }
 
             //获取IP
@@ -67,14 +68,15 @@ public class SpreadController extends BaseController{
             }
             //保存对应关系
             ipAppService.create(id,ip);
-            String userAgent = request.getHeader("user-agent").toLowerCase();
-            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
-                // 苹果下载
-                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
-            } else {
-                // Android下载
-                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
-            }
+            return new ModelAndView("/spread/download", "spread", null);
+//            String userAgent = request.getHeader("user-agent").toLowerCase();
+//            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
+//                // 苹果下载
+//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
+//            } else {
+//                // Android下载
+//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
+//            }
             //跳转三方下载链接
             //response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"v1.0_2018-06-29_signed_7zip_aligned.apk");
 
@@ -87,7 +89,7 @@ public class SpreadController extends BaseController{
                 e1.printStackTrace();
             }
         }
-
+        return null;
     }
 //
 //    @RequestMapping(value = "/pagination")
