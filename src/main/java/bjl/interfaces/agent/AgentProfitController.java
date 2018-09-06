@@ -92,7 +92,7 @@ public class AgentProfitController {
                 command.setSecondName(secondName);
             }
             List<AgentProfit> list = agentProfitAppService.pagination(command, VotoContants.EXPORT_EXCEL).getData();
-            String[] header = {"开工点","玩家名","一级代理人","二级代理人","转码数","上下数","一级最高","一级占比","二级最高","二级占比","公司占比",
+            String[] header = {"开工点","玩家名","一级代理人","二级代理人","转码数","转码额","上下数","一级占比","二级占比","公司占比",
                     "交收方式","三方上分","银行上分","一级手续费","二级手续贯","公司手续费","一级收益","二级收益","公司收益"
                     ,"一级R","二级R","玩家R","一级余额","二级余额","玩家余额"};
             String fileName = "代理收益";

@@ -135,28 +135,29 @@ public class GenerateExcelUtils {
           row.createCell(2).setCellValue(agentProfit.getFirstAgent() == null ? "" : agentProfit.getFirstAgent().getName());
           row.createCell(3).setCellValue(agentProfit.getSecondAgent() == null ? "" : agentProfit.getSecondAgent().getName());
           row.createCell(4).setCellValue(agentProfit.getLoseScore() == null ? "0" : agentProfit.getLoseScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(5).setCellValue(agentProfit.getIntervalScore() == null ? "0" : agentProfit.getIntervalScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(6).setCellValue(agentProfit.getSupHigh() == null ? "0" : agentProfit.getSupHigh().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          BigDecimal loseScoreExt = agentProfit.getLoseScore() == null ? new BigDecimal("0")
+              :agentProfit.getLoseScore().setScale(0, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal(0.012));//转码额
+          row.createCell(5).setCellValue(loseScoreExt.longValue()+ "");
+          row.createCell(6).setCellValue(agentProfit.getIntervalScore() == null ? "0" : agentProfit.getIntervalScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
           row.createCell(7).setCellValue(agentProfit.getSupRatio() == null ? "0" : agentProfit.getSupRatio().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(8).setCellValue(agentProfit.getSubHigh() == null ? "0" : agentProfit.getSubHigh().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(9).setCellValue(agentProfit.getSubRatio() == null ? "0" : agentProfit.getSubRatio().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(10).setCellValue(agentProfit.getComRatio() == null ? "0" : agentProfit.getComRatio().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(11).setCellValue("平台交收");
-          row.createCell(12).setCellValue(agentProfit.getAddScore() == null ? "0" : agentProfit.getAddScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(13).setCellValue(agentProfit.getRechargeScore() == null ? "0" : agentProfit.getRechargeScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(14).setCellValue(agentProfit.getFirstFee() == null ? "0" : agentProfit.getFirstFee().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(15).setCellValue(agentProfit.getSecondFee() == null ? "0" : agentProfit.getSecondFee().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(16).setCellValue(agentProfit.getComFee() == null ? "0" : agentProfit.getComFee().setScale(2, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(17).setCellValue(agentProfit.getSupIncome() == null ? "0" : agentProfit.getSupIncome().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(18).setCellValue(agentProfit.getSubIncome() == null ? "0" : agentProfit.getSubIncome().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(19).setCellValue(agentProfit.getComIncome() == null ? "0" : agentProfit.getComIncome().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(20).setCellValue(agentProfit.getSupR() == null ? "0" : agentProfit.getSupR().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(21).setCellValue(agentProfit.getSubR() == null ? "0" : agentProfit.getSubR().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(22).setCellValue(agentProfit.getPlayR() == null ? "0" : agentProfit.getPlayR().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(23).setCellValue(agentProfit.getSupBalance() == null ? "0" : agentProfit.getSupBalance().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          row.createCell(24).setCellValue(agentProfit.getSubBalance() == null ? "0" : agentProfit.getSubBalance().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
-          ;
-          row.createCell(25).setCellValue(agentProfit.getPlayBalance() == null ? "0" : agentProfit.getPlayBalance().setScale(2, BigDecimal.ROUND_HALF_UP).longValue() + "");
+         // row.createCell(8).setCellValue(agentProfit.getSubHigh() == null ? "0" : agentProfit.getSubHigh().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(8).setCellValue(agentProfit.getSubRatio() == null ? "0" : agentProfit.getSubRatio().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(9).setCellValue(agentProfit.getComRatio() == null ? "0" : agentProfit.getComRatio().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(10).setCellValue("平台交收");
+          row.createCell(11).setCellValue(agentProfit.getAddScore() == null ? "0" : agentProfit.getAddScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(12).setCellValue(agentProfit.getRechargeScore() == null ? "0" : agentProfit.getRechargeScore().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(13).setCellValue(agentProfit.getFirstFee() == null ? "0" : agentProfit.getFirstFee().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(14).setCellValue(agentProfit.getSecondFee() == null ? "0" : agentProfit.getSecondFee().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(15).setCellValue(agentProfit.getComFee() == null ? "0" : agentProfit.getComFee().setScale(2, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(16).setCellValue(agentProfit.getSupIncome() == null ? "0" : agentProfit.getSupIncome().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(17).setCellValue(agentProfit.getSubIncome() == null ? "0" : agentProfit.getSubIncome().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(18).setCellValue(agentProfit.getComIncome() == null ? "0" : agentProfit.getComIncome().setScale(0, BigDecimal.ROUND_HALF_UP).subtract(loseScoreExt).longValue()+"");
+          row.createCell(19).setCellValue(agentProfit.getSupR() == null ? "0" : agentProfit.getSupR().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(20).setCellValue(agentProfit.getSubR() == null ? "0" : agentProfit.getSubR().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(21).setCellValue(agentProfit.getPlayR() == null ? "0" : agentProfit.getPlayR().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(22).setCellValue(agentProfit.getSupBalance() == null ? "0" : agentProfit.getSupBalance().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(23).setCellValue(agentProfit.getSubBalance() == null ? "0" : agentProfit.getSubBalance().setScale(0, BigDecimal.ROUND_HALF_UP).longValue() + "");
+          row.createCell(24).setCellValue(agentProfit.getPlayBalance() == null ? "0" : agentProfit.getPlayBalance().setScale(2, BigDecimal.ROUND_HALF_UP).add(loseScoreExt).longValue() + "");
         }
 
       } else if (VotoContants.GAME_DETAIL_EXCEL.equals(flag)) {
