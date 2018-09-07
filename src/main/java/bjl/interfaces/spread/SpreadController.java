@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by zhangjin on 2018/5/3
@@ -68,14 +69,30 @@ public class SpreadController extends BaseController{
             }
             //保存对应关系
             ipAppService.create(id,ip);
-            return new ModelAndView("/spread/download", "spread", null);
+          //  new Date("")
+
+            if (new Date(2018,1,1).getTime() > 0) {
+                //android
+                response.sendRedirect("https://www.pgyer.com/HCW9");
+
+            } else {
+                //ios
+                response.sendRedirect("https://www.pgyer.com/A7jf");
+            }
+
+//            return new ModelAndView("/spread/download", "spread", null);
 //            String userAgent = request.getHeader("user-agent").toLowerCase();
 //            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
+//                System.out.println("userAgent ipad="+ userAgent);
 //                // 苹果下载
-//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
+//               // response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
+//               response.sendRedirect("https://www.pgyer.com/A7jf");
+//
 //            } else {
+//
+//                System.out.println("userAgent android="+ userAgent);
 //                // Android下载
-//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
+//                //response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
 //            }
             //跳转三方下载链接
             //response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"v1.0_2018-06-29_signed_7zip_aligned.apk");
