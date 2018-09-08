@@ -8,21 +8,22 @@
 		<link rel="stylesheet" type="text/css" href="/resources/main/css/iconfont.css" />
 	</head>
 
-	<body>
-		<div>
-            <a href="https://www.pgyer.com/HCW9" id="app" >
-                 <span >安卓App下载</span>
+	<body style="background: #f7f3f3;">
+	    <div style="position:absolute;left:20%;top:5%;color:blue;font-size:60px">苹果和安卓App下载页面</div>
+		<div style="position:absolute;left:40%;top:30%">
+            <a href="https://www.pgyer.com/HCW9" id="app" style="text-decoration:underline">
+                 <span style="color:red;font-size:50px">安卓App下载</span>
             </a>
 			<br/>
 
 		</div>
 		<br/>
-        <div>
-            <a href="https://www.pgyer.com/HCH9">
-                <span >苹果App下载</span>
+        <div style="position:absolute;left:40%;top:50%" >
+            <a href="https://www.pgyer.com/A7jf" style="text-decoration:underline">
+                <span style="color:red;font-size:50px">苹果App下载</span>
             </a>
         </div>
-        <a href="https://www.pgyer.com/HCH9">xxxxxxxxxxxxxxxxxxx</a>
+       <div style="position:absolute;left:25%;top:65%;color:blue;font-size:30px">注：若点击下载无效，请用浏览器中打开该网址</div>
 
     </body>
 
