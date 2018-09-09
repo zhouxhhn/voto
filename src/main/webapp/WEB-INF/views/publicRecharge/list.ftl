@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>活动管理</title>
+		<title>文章信息管理</title>
 		<link rel="stylesheet" type="text/css" href="/resources/main/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/resources/main/css/iconfont.css" />
 	</head>
@@ -11,7 +11,7 @@
 	<body>
 		<div class="tableW PhoneBetting divbox pad20 ">
 			<div class="phoneTop">
-                <div class="batchEdit Btn1 yanQing" la="1" inDiv>新增活动</div>
+                <div class="batchEdit Btn1 yanQing" la="1" inDiv>新增文章</div>
 			</div>
 
 			<div class="divW w100">
@@ -50,7 +50,7 @@
 			</div>
 			<!--分页-->
 		[#if pagination??]
-			[@mc.customPagination '/acitvity/pagination' /]
+			[@mc.customPagination '/publicRecharge/pagination' /]
 		[/#if]
 
 		</div>
@@ -58,7 +58,7 @@
         <div class="tip" lay="1" style="display: none;">
             <div class="tipBox addBox" style="height: 410px;width: 600px;margin-top: -220px;margin-left: -260px">
                 <p class="pTit tcenter f18 color33 mT10">新增活动</p>
-                <form action="/activity/create" method="post" enctype="multipart/form-data" id="create">
+                <form action="/publicRecharge/create" method="post" enctype="multipart/form-data" id="create">
                     <div class="tipCon">
                         公告标题：<br/>
 						<input style="height: 28px;width: 515px" type="text" name="title" id="title" />
