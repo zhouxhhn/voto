@@ -103,8 +103,11 @@
                 <li class="">
                     <a href="/notice/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>系统公告</a>
                 </li>
+                <li class="">
+                    <a href="/activity/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>活动管理</a>
+                    </li>
                     <li class="">
-                        <a href="/activity/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>活动管理</a>
+                        <a href="/publicRecharge/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>发布充值信息</a>
                     </li>
                     <li class="">
                         <a href="/carousel/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>轮播图管理</a>
