@@ -28,20 +28,20 @@
 					</thead>
 					<tbody>
 					[#if pagination??]
-					[#list pagination.data as activity]
+					[#list pagination.data as publicRecharge]
 						<tr>
-                            <td>${activity_index+1}</td>
-                            <td>${activity.createDate}</td>
-                            <td>${activity.title}</td>
-                            <td>${activity.content}</td>
+                            <td>${publicRecharge_index+1}</td>
+                            <td>${publicRecharge.createDate}</td>
+                            <td>${publicRecharge.title}</td>
+                            <td>${publicRecharge.content}</td>
                             <td>
-								[#if activity.image??]
-                                    <a style="color: #00a2d4" href="${activity.image}" target="view_window">点击查看图片</a>
+								[#if publicRecharge.image??]
+                                    <a style="color: #00a2d4" href="${publicRecharge.image}" target="view_window">点击查看图片</a>
 								[#else ]
 									无图片
 								[/#if]
 							</td>
-							<td class="xiugai" onclick="window.location.href='/activity/delete?id=${activity.id}'">删除</td>
+							<td class="xiugai" onclick="window.location.href='/publicRecharge/delete?id=${publicRecharge.id}'">删除</td>
 						</tr>
 					[/#list]
 					[/#if]
@@ -57,18 +57,18 @@
 
         <div class="tip" lay="1" style="display: none;">
             <div class="tipBox addBox" style="height: 410px;width: 600px;margin-top: -220px;margin-left: -260px">
-                <p class="pTit tcenter f18 color33 mT10">新增活动</p>
+                <p class="pTit tcenter f18 color33 mT10">新增文章</p>
                 <form action="/publicRecharge/create" method="post" enctype="multipart/form-data" id="create">
                     <div class="tipCon">
-                        公告标题：<br/>
+                        文章标题：<br/>
 						<input style="height: 28px;width: 515px" type="text" name="title" id="title" />
                     </div>
                     <div class="tipCon">
-                        公告内容：<br/>
+                        文章内容：<br/>
                         <textarea style="width: 515px;height: 120px" name="content" id="content"></textarea>
                     </div>
                     <div class="tipCon">
-                        公告图片：<input type="file" name="file" id="file" />
+                        文章图片：<input type="file" name="file" id="file" />
                     </div>
                     <div class="BtnDiv mT20">
                         <span class="quxiao mLR15" type="button" onclick="$('[lay]').css('display','none')">取消</span>

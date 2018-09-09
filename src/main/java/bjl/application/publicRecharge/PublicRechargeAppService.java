@@ -32,7 +32,9 @@ public class PublicRechargeAppService implements IPublicRechargeAppService {
     public Pagination<PublicRecharge> pagination(ListNoticeCommand command) {
         command.verifyPage();
         command.setPageSize(18);
-        return publicRechargeService.pagination(command);
+        Pagination<PublicRecharge> pagination = publicRechargeService.pagination(command);
+        return pagination;
+
     }
 
     @Override

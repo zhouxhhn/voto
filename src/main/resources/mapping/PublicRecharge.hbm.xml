@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-access="field" default-cascade="all">
-    <class name="bjl.domain.model.publicRecharge.PublicRecharge" table="t_activity">
+    <class name="bjl.domain.model.publicRecharge.PublicRecharge" table="t_public_recharge">
         <id name="id" type="java.lang.String" column="id" unsaved-value="-1" length="32">
             <generator class="uuid"/>
         </id>
