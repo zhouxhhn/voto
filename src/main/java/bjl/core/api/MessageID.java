@@ -57,6 +57,7 @@ public class MessageID {
     public static final short _GETCAROUSEL = 8047; //获取轮播图
     public static final short _GETGUIDE = 8048; //获取新手指南
     public static final short _GETDETAILED = 8049; //获取个人流水
+    public static final short _GETARTICLE = 8050; //获取文章详情
 
     //返回消息号
 

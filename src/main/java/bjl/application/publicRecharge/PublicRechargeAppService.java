@@ -52,9 +52,22 @@ public class PublicRechargeAppService implements IPublicRechargeAppService {
 
         List<PublicRecharge> list = publicRechargeService.list();
         List<ApiPublicRechargeRepresentation> data = mappingService.mapAsList(list,ApiPublicRechargeRepresentation.class);
+        ApiPublicRechargeRepresentation representation = null;
+        if(data != null && data.size() > 0){
+            representation = data.get(0);
+            String maxtime = representation.getTime();
+            for (int i=1;i<data.size();i++){
+                ApiPublicRechargeRepresentation rechargeRepresentation = data.get(i);
+                if(maxtime.compareTo(rechargeRepresentation.getTime())<0){
+                    representation = rechargeRepresentation;
+                    maxtime = rechargeRepresentation.getTime();
+                }
+            }
+        }
+
         jsonObject.put("code",0);
         jsonObject.put("errmsg","获取充值信息成功");
-        jsonObject.put("data",data);
+        jsonObject.put("data",representation);
 
         return jsonObject;
     }

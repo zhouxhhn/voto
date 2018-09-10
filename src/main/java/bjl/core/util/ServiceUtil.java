@@ -16,6 +16,7 @@ import bjl.application.guide.IGuideAppService;
 import bjl.application.notice.INoticeAppService;
 import bjl.application.phonebet.IPhoneBetAppService;
 import bjl.application.profitrecord.IProfitRecordAppService;
+import bjl.application.publicRecharge.IPublicRechargeAppService;
 import bjl.application.ratio.IRatioAppService;
 import bjl.application.recharge.IRechargeAppService;
 import bjl.application.recharge.IRechargeCtlAppService;
@@ -109,6 +110,12 @@ public class ServiceUtil {
     private IGuideAppService guideAppService;
     @Autowired
     private IScoreDetailedAppService scoreDetailedAppService;
+    @Autowired
+    private IPublicRechargeAppService publicRechargeAppService;
+
+    public IPublicRechargeAppService getPublicRechargeAppService(){
+        return publicRechargeAppService;
+    }
 
     public IScoreDetailedAppService getScoreDetailedAppService(){
         return scoreDetailedAppService;

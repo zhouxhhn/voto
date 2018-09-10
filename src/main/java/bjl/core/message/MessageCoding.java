@@ -349,6 +349,12 @@ public class MessageCoding {
 //                    jsonObject = ServiceUtil.serviceUtil.getGameDetailedAppService().list(listGameDetailedCommand);
                     System.out.println(CoreDateUtils.formatDateTime(new Date())+" 返回内容:"+jsonObject);
                     return jsonObject;
+                case MessageID._GETARTICLE: //获取文章详情
+                    jsonObject = JSONObject.parseObject(bytes,JSONObject.class);
+                    System.out.println(CoreDateUtils.formatDateTime(new Date())+" 获取文章详情："+jsonObject.toJSONString());
+                    jsonObject = ServiceUtil.serviceUtil.getPublicRechargeAppService().list(jsonObject);
+                    System.out.println(CoreDateUtils.formatDateTime(new Date())+" 返回内容:"+jsonObject);
+                    return jsonObject;
             }
 
         }catch (Exception e) {
