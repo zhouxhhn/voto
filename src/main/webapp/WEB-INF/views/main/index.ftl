@@ -107,7 +107,7 @@
                     <a href="/activity/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>活动管理</a>
                     </li>
                     <li class="">
-                        <a href="/publicRecharge/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>文章信息管理</a>
+                        <a href="/publicRecharge/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>前端充值管理</a>
                     </li>
                     <li class="">
                         <a href="/carousel/pagination" target="contentBox"><i class="iconfont icon-tixian"></i>轮播图管理</a>

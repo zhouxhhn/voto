@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>文章信息管理</title>
+		<title>前端充值管理</title>
 		<link rel="stylesheet" type="text/css" href="/resources/main/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/resources/main/css/iconfont.css" />
 	</head>
@@ -11,7 +11,7 @@
 	<body>
 		<div class="tableW PhoneBetting divbox pad20 ">
 			<div class="phoneTop">
-                <div class="batchEdit Btn1 yanQing" la="1" inDiv>新增文章</div>
+                <div class="batchEdit Btn1 yanQing" la="1" inDiv>新增充值详情</div>
 			</div>
 
 			<div class="divW w100">
@@ -57,18 +57,18 @@
 
         <div class="tip" lay="1" style="display: none;">
             <div class="tipBox addBox" style="height: 410px;width: 600px;margin-top: -220px;margin-left: -260px">
-                <p class="pTit tcenter f18 color33 mT10">新增文章</p>
+                <p class="pTit tcenter f18 color33 mT10">新增充值详情</p>
                 <form action="/publicRecharge/create" method="post" enctype="multipart/form-data" id="create">
                     <div class="tipCon">
-                        文章标题：<br/>
+                        充值标题：<br/>
 						<input style="height: 28px;width: 515px" type="text" name="title" id="title" />
                     </div>
                     <div class="tipCon">
-                        文章内容：<br/>
+                        充值内容：<br/>
                         <textarea style="width: 515px;height: 120px" name="content" id="content"></textarea>
                     </div>
                     <div class="tipCon">
-                        文章图片：<input type="file" name="file" id="file" />
+                        充值图片：<input type="file" name="file" id="file" />
                     </div>
                     <div class="BtnDiv mT20">
                         <span class="quxiao mLR15" type="button" onclick="$('[lay]').css('display','none')">取消</span>

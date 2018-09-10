@@ -74,7 +74,7 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
                     response.setTime(sdf.format(scoreDetailed.getCreateDate()));
                 }
 
-                response.setHallType(scoreDetailed.getActionType());
+                response.setHallType(scoreDetailed.getHallType());
 
                 transactionTotal = transactionTotal.add(scoreDetailed.getScore());
 
