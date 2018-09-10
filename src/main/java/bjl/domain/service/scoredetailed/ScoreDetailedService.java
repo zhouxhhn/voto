@@ -17,6 +17,7 @@ import bjl.domain.service.userManager.IUserManagerService;
 import bjl.infrastructure.persistence.hibernate.generic.Pagination;
 
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,9 +101,10 @@ public class ScoreDetailedService implements IScoreDetailedService{
         List<Criterion> list = criteria(command);
         list.add(Restrictions.ne("user.virtual",1));
 
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(Order.desc("createDate"));
 
-
-        Pagination<ScoreDetailed> pagination =  scoreDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,alisMap,null,null);
+        Pagination<ScoreDetailed> pagination =  scoreDetailedRepository.pagination(command.getPage(),command.getPageSize(),list,alisMap,orderList,null);
         return pagination;
     }
 

@@ -77,6 +77,9 @@ public class GameDetailedService implements IGameDetailedService{
                 ScoreDetailed scoreDetailed = new ScoreDetailed();
                 scoreDetailed.setCreateDate(new Date());
                 scoreDetailed.setActionType(2);
+                if(command.getHallType()!=null){
+                    scoreDetailed.setHallType(command.getHallType());
+                }
                 scoreDetailed.setScore(command.getWinTotal());
                 scoreDetailed.setNewScore(newScore);
                 scoreDetailed.setUser(user);
@@ -135,6 +138,10 @@ public class GameDetailedService implements IGameDetailedService{
                 ScoreDetailed scoreDetailed = new ScoreDetailed();
                 scoreDetailed.setCreateDate(new Date());
                 scoreDetailed.setActionType(2);
+                if(gameDetailed.getHallType()!=null){
+                    scoreDetailed.setHallType(gameDetailed.getHallType());
+                }
+
                 scoreDetailed.setScore(changeScore);
                 scoreDetailed.setNewScore(newScore);
                 scoreDetailed.setUser(user);
@@ -198,6 +205,9 @@ public class GameDetailedService implements IGameDetailedService{
             ScoreDetailed scoreDetailed = new ScoreDetailed();
             scoreDetailed.setCreateDate(new Date());
             scoreDetailed.setActionType(2);
+            if(command.getHallType()!=null){
+                scoreDetailed.setHallType(command.getHallType());
+            }
             scoreDetailed.setScore(changeScore);
             scoreDetailed.setNewScore(newScore);
             scoreDetailed.setUser(user);

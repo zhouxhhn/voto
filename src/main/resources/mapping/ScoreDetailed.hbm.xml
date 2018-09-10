@@ -19,5 +19,7 @@
         <property name="newScore" column="new_score" type="java.math.BigDecimal"/>
 
         <property name="actionType" column="action_type" type="java.lang.Integer"/>
+
+        <property name="hallType" column="hall_type" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

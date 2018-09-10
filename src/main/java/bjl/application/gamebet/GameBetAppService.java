@@ -112,6 +112,9 @@ public class GameBetAppService implements IGameBetAppService{
         scoreDetailed.setNewScore(user.getScore());
         scoreDetailed.setScore(totalScore.multiply(BigDecimal.valueOf(-1)));
         scoreDetailed.setActionType(1);
+        if(command.getRoomtype() != null){
+            scoreDetailed.setHallType(command.getRoomtype());
+        }
         scoreDetailedRepository.save(scoreDetailed);
         objects[1] = user;
 
@@ -245,6 +248,10 @@ public class GameBetAppService implements IGameBetAppService{
         scoreDetailed.setNewScore(user.getScore());
         scoreDetailed.setScore(changeScore.multiply(BigDecimal.valueOf(-1)));
         scoreDetailed.setActionType(1);
+        if(command.getRoomtype()!=null){
+            scoreDetailed.setHallType(command.getRoomtype());
+        }
+
         scoreDetailedRepository.save(scoreDetailed);
         objects[1] = user.getScore();
         objects[2] = user.getPrimeScore();
@@ -353,6 +360,15 @@ public class GameBetAppService implements IGameBetAppService{
         scoreDetailed.setNewScore(user.getScore());
         scoreDetailed.setScore(changeScore.multiply(BigDecimal.valueOf(-1)));
         scoreDetailed.setActionType(1);
+        try{
+            if(strings[0] != null && !"".equals(strings[0])){
+                scoreDetailed.setHallType(Integer.parseInt(strings[0]));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         scoreDetailedRepository.save(scoreDetailed);
         objects[1] = user.getScore();
         objects[2] = user.getPrimeScore();
