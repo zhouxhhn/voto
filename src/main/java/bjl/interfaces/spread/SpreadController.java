@@ -69,6 +69,8 @@ public class SpreadController extends BaseController{
             }
             //保存对应关系
             ipAppService.create(id,ip);
+            return new ModelAndView("/spread/download");
+           // response.sendRedirect("https://www.pgyer.com/HCW9");
           //  new Date("")
 //
 //            if (new Date("2018-04-27 11:11").getTime() > 0) {
@@ -80,7 +82,7 @@ public class SpreadController extends BaseController{
 //                response.sendRedirect("https://www.pgyer.com/A7jf");
 //            }
 
-            return new ModelAndView("/spread/download", "spread", null);
+//            return new ModelAndView("/spread/download", "spread", null);
 //            int total = 1;
 //            String count = request.getParameter("count");
 //            if(count != null && !"".equals(count)&& "null".equals(count) ){
@@ -106,19 +108,18 @@ public class SpreadController extends BaseController{
 //            }else{
 //                response.sendRedirect("https://www.pgyer.com/A7jf");
 //            }
-//
+//            System.out.println("userAgent ="+ userAgent);
 //            if (userAgent.contains("iphone") || userAgent.contains("ipad")) {
-//                System.out.println("userAgent ipad="+ userAgent);
 ////                // 苹果下载
 //                System.out.println("1111111=");
-//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
+//                //response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"ios.ipa");
 ////                System.out.println("222222");
-////              // response.sendRedirect("https://www.pgyer.com/A7jf");
+//               response.sendRedirect("https://www.pgyer.com/A7jf");
 //            } else {
-//                System.out.println("userAgent android="+ userAgent);
 ////                // Android下载
 //                System.out.println("333333=");
-//                response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
+//                response.sendRedirect("https://www.pgyer.com/HCW9");
+//              //  response.sendRedirect(fileUploadConfig.getDomainName()+fileUploadConfig.getResourcePackage()+"android.apk");
 ////                System.out.println("44444=");
 //            }
             //跳转三方下载链接
