@@ -81,7 +81,7 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
                 scoreDetailedList.set(i,scoreDetailed);
                 responses.add(response);
             }
-            balanceTotal = scoreDetailedList.get(size-1).getNewScore();
+            balanceTotal = scoreDetailedList.get(0).getNewScore();
         }
 
         jsonObject.put("code",0);
