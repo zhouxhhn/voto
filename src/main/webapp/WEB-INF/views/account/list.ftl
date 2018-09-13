@@ -65,6 +65,17 @@
                                 <a  title="点击给用户授予角色" href="javascript:void(0)" onclick="authorize('${account.id}')">
 									<span class="label label-primary">授权</span>
 								</a>
+                               [#if account.isFrontAdmin == 0]
+                                    <a href="[@spring.url '/account/frontAdmin?id=${account.id!}&version=${account.version!}'/]"
+                                       data-toggle="tooltip" data-placement="top" title="点击给用户授予前台管理员">
+                                        <span class="label label-danger">授权前台管理员</span>
+                                    </a>
+                               [#else]
+                                    <a href="[@spring.url '/account/frontAdmin?id=${account.id!}&version=${account.version!}'/]"
+                                       data-toggle="tooltip" data-placement="top" title="点击给用户取消前台管理员">
+                                        <span class="label label-danger">取消前台管理员</span>
+                                    </a>
+                               [/#if]
 								[#if account.status == "ENABLE"]
                                     <a href="[@spring.url '/account/update_status?id=${account.id!}&version=${account.version!}'/]"
                                        data-toggle="tooltip" data-placement="top" title="点击禁用此数据">

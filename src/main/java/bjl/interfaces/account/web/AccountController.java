@@ -17,6 +17,7 @@ import bjl.core.exception.ConcurrencyException;
 import bjl.core.exception.NoFoundException;
 import bjl.core.util.CoreHttpUtils;
 import bjl.domain.model.account.Account;
+import bjl.domain.service.account.IAccountService;
 import bjl.infrastructure.persistence.hibernate.generic.Pagination;
 import bjl.interfaces.shared.web.AlertMessage;
 import bjl.interfaces.shared.web.BaseController;
@@ -52,6 +53,8 @@ public class AccountController extends BaseController {
     private IUserManagerAppService UserManagerAppService;
     @Autowired
     private IRoleAppService roleAppService;
+    @Autowired
+    private IAccountService accountService;
 
 
     @Autowired
@@ -293,6 +296,32 @@ public class AccountController extends BaseController {
 
         alertMessage = new AlertMessage(this.getMessage("default.edit.success.messages", null, locale));
         redirectAttributes.addFlashAttribute(AlertMessage.MODEL_ATTRIBUTE_KEY, alertMessage);
+        return new ModelAndView("redirect:/account/pagination");
+    }
+
+    /**
+     * 设置前台管理员
+     */
+    @RequestMapping(value = "/frontAdmin", method = RequestMethod.GET)
+    public ModelAndView frontAdmin(SharedCommand command) {
+
+        AccountRepresentation sessionUser = (AccountRepresentation) SecurityUtils.getSubject().getSession().getAttribute("sessionUser");
+        if (sessionUser == null) {
+            return new ModelAndView("redirect:/logged");
+        }
+        Account account;
+        try {
+            account = accountAppService.updateFontAdmin(command);
+        } catch (ConcurrencyException e) {
+            logger.warn(e.getMessage());
+            return new ModelAndView("redirect:/account/pagination");
+        } catch (NoFoundException e) {
+            logger.warn(e.getMessage());
+            return new ModelAndView("redirect:/account/pagination");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelAndView("redirect:/account/pagination");
+        }
         return new ModelAndView("redirect:/account/pagination");
     }
 

@@ -417,7 +417,7 @@ public class UserManagerService implements IUserManagerService {
         jsonObject.put("head",account.getHead());
         jsonObject.put("gold",user.getScore());
         jsonObject.put("name",account.getName());
-
+        jsonObject.put("isFrontAdmin",account.getIsFrontAdmin());
         return jsonObject;
     }
 
@@ -434,6 +434,7 @@ public class UserManagerService implements IUserManagerService {
             jsonObject.put("errmsg","用户不存在");
         }else {
             jsonObject.put("head",user.getAccount().getHead());
+            jsonObject.put("isFrontAdmin",user.getAccount().getIsFrontAdmin());
             jsonObject.put("gold",user.getScore());
             jsonObject.put("name",user.getAccount().getName());
             jsonObject.put("qrcode",fileUploadConfig.getDomainName()+fileUploadConfig.getQRCode()+user.getAccount().getUserName()+".png");

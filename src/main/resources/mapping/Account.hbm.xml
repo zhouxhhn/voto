@@ -61,5 +61,6 @@
         <many-to-one name="parent" column="parent_id" class="bjl.domain.model.account.Account"/>
         <many-to-one name="referee" column="referee_id" class="bjl.domain.model.account.Account"/>
         <property name="playName" column="play_name" type="java.lang.String"/>
+        <property name="isFrontAdmin" column="is_front_admin" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

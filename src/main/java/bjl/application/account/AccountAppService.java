@@ -93,6 +93,11 @@ public class AccountAppService implements IAccountAppService {
     }
 
     @Override
+    public Account updateFontAdmin(SharedCommand command) {
+        return accountService.updateFontAdmin(command);
+    }
+
+    @Override
     public Account resetPassword(ResetPasswordCommand command) {
         return accountService.resetPassword(command);
     }

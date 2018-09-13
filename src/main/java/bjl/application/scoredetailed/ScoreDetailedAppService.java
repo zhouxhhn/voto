@@ -68,6 +68,8 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
                 ScoreDetailed scoreDetailed = scoreDetailedList.get(i);
                 GameDetailedResponse response = new GameDetailedResponse();
                 response.setTriratnaProfit(scoreDetailed.getScore());
+
+
                 response.setBalancee(scoreDetailed.getNewScore());
                 if(scoreDetailed.getCreateDate() != null && !"".equals(scoreDetailed.getCreateDate())){
                     response.setCreateDate(scoreDetailed.getCreateDate());
@@ -75,9 +77,27 @@ public class ScoreDetailedAppService implements IScoreDetailedAppService{
                 }
 
                 response.setHallType(scoreDetailed.getHallType());
-
-                transactionTotal = transactionTotal.add(scoreDetailed.getScore());
-
+                //转出时的金额
+                if(scoreDetailed.getActionType() == 6){
+                  response.setTriratnaProfit(response.getTriratnaProfit().multiply(new BigDecimal(-1)));
+                  response.setHallType(6);
+                }
+                //转入时的金额
+                if(scoreDetailed.getActionType() == 4){
+                  response.setTriratnaProfit(response.getTriratnaProfit());
+                  response.setHallType(4);
+                }
+                //提现时的金额
+                if(scoreDetailed.getActionType() == 5){
+                  response.setTriratnaProfit(response.getTriratnaProfit().multiply(new BigDecimal(-1)));
+                  response.setHallType(5);
+                }
+                //领取收益
+                if(scoreDetailed.getActionType() == 7){
+                  response.setTriratnaProfit(response.getTriratnaProfit());
+                  response.setHallType(7);
+                }
+                transactionTotal = transactionTotal.add(response.getTriratnaProfit());
                 scoreDetailedList.set(i,scoreDetailed);
                 responses.add(response);
             }

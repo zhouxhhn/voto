@@ -59,4 +59,6 @@ public interface IAccountService {
 
     List<Account> list();
 
+    Account updateFontAdmin(SharedCommand command);
+
 }

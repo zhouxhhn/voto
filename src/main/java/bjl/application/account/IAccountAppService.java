@@ -27,6 +27,8 @@ public interface IAccountAppService {
 
     Account updateStatus(SharedCommand command);
 
+    Account updateFontAdmin(SharedCommand command);
+
     Account resetPassword(ResetPasswordCommand command);
 
     Account authorized(String id,String role);

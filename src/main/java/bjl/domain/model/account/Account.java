@@ -40,6 +40,15 @@ public class Account extends ConcurrencySafeEntity {
     private Account referee; //推荐人
     private String playName;        //注册的体育游戏名称，如果存在，则已注册
     private String mail;//邮箱
+    private Integer isFrontAdmin = 0; //是否是前台管理员
+
+    public Integer getIsFrontAdmin() {
+        return isFrontAdmin;
+    }
+
+    public void setIsFrontAdmin(Integer isFrontAdmin) {
+        this.isFrontAdmin = isFrontAdmin;
+    }
 
     public Account getReferee() {
         return referee;

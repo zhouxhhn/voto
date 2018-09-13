@@ -14,6 +14,7 @@ import bjl.application.shared.command.SharedCommand;
 import bjl.core.common.PasswordHelper;
 import bjl.core.enums.EnableStatus;
 import bjl.core.enums.LoggerType;
+import bjl.core.enums.Sex;
 import bjl.core.exception.NoFoundException;
 import bjl.core.mapping.IMappingService;
 import bjl.core.util.CoreHttpUtils;
@@ -547,4 +548,16 @@ public class AccountService implements IAccountService {
         return accountRepository.findAll();
     }
 
+    @Override
+    public Account updateFontAdmin(SharedCommand command) {
+        Account account = this.searchByID(command.getId());
+        account.fainWhenConcurrencyViolation(command.getVersion());
+        if (account.getIsFrontAdmin() == 0) {
+            account.setIsFrontAdmin(1);
+        } else {
+            account.setIsFrontAdmin(0);
+        }
+        accountRepository.update(account);
+        return account;
+    }
 }
