@@ -419,7 +419,6 @@ public class UserManagerService implements IUserManagerService {
         jsonObject.put("gold",user.getScore());
         jsonObject.put("name",account.getName());
         jsonObject.put("isFrontAdmin",account.getIsFrontAdmin());
-        jsonObject.put("roles",account.getRoles());
         return jsonObject;
     }
 
