@@ -411,6 +411,7 @@ public class UserManagerService implements IUserManagerService {
         //日志记录
         loggerAppService.create(account,LoggerType.APP_LOGGER,"用户登录成功");
 
+        System.out.println("isFrontAdmin="+account.getIsFrontAdmin());
         jsonObject.put("code",0);
         jsonObject.put("errmsg","登录成功");
         jsonObject.put("userid",account.getUserName());
@@ -418,6 +419,7 @@ public class UserManagerService implements IUserManagerService {
         jsonObject.put("gold",user.getScore());
         jsonObject.put("name",account.getName());
         jsonObject.put("isFrontAdmin",account.getIsFrontAdmin());
+        jsonObject.put("roles",account.getRoles());
         return jsonObject;
     }
 
