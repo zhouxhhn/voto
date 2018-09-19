@@ -69,7 +69,7 @@ public class AgentProfitExportController {
     @RequestMapping(value = "/exportExcel")
     public void exportExcel(HttpServletRequest request, HttpServletResponse response){
         try{
-            String agent = "";
+            String agent = "无";
             String playerName = request.getParameter("playerName");
             String firstName = request.getParameter("firstName");
 
@@ -93,6 +93,9 @@ public class AgentProfitExportController {
             }
             if(secondName !=null && !"".equals(secondName)){
                 command.setSecondName(secondName);
+                if("无".equals(agent)){
+                    agent = secondName;
+                }
             }
             List<AgentProfit> list = agentProfitAppService.exportList(command, VotoContants.EXPORT_EXCEL).getData();
             String[] header = {"开工点","玩家名","一级代理人","二级代理人","转码数","上下数","一级最高","一级占比","二级最高","二级占比","公司占比",

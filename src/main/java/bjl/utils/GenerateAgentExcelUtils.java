@@ -8,6 +8,8 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -45,8 +47,34 @@ public class GenerateAgentExcelUtils {
       HSSFCellStyle style = wb.createCellStyle();
       // 居中格式
       style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
       // 3.在sheet中添加表头第0行，老版本poi对excel行数列数有限制short
 
+      BigDecimal exchangeCode = new BigDecimal(0); //总转码
+      BigDecimal fee = new BigDecimal(0);//手续费
+      BigDecimal totalPay = new BigDecimal(0);//总支付
+      if(list != null && !list.isEmpty()){
+        List<AgentProfit> agentProfits = list;
+        for (AgentProfit agentProfit: agentProfits){
+          BigDecimal loseScore = agentProfit.getLoseScore() == null ? new BigDecimal(0) : agentProfit.getFirstFee().setScale(0, BigDecimal.ROUND_HALF_UP);
+          BigDecimal firstFee = agentProfit.getFirstFee() == null ? new BigDecimal(0) : agentProfit.getFirstFee().setScale(0, BigDecimal.ROUND_HALF_UP);
+          BigDecimal secondFee = agentProfit.getSecondFee() == null ? new BigDecimal(0) : agentProfit.getSecondFee().setScale(0, BigDecimal.ROUND_HALF_UP);
+          exchangeCode = exchangeCode.add(loseScore);
+          if(command.getFirstName() != null && !"".equals(command.getFirstName())){
+            fee = fee.add(firstFee);
+          }else{
+            fee = fee.add(secondFee);
+          }
+
+          BigDecimal supIncome = agentProfit.getSupIncome() == null ? new BigDecimal(0) : agentProfit.getSupIncome().setScale(0, BigDecimal.ROUND_HALF_UP);
+          BigDecimal subIncome = agentProfit.getSubIncome() == null ? new BigDecimal(0) : agentProfit.getSubIncome().setScale(0, BigDecimal.ROUND_HALF_UP);
+          if(command.getFirstName() != null && !"".equals(command.getFirstName())){
+            totalPay = totalPay.add(supIncome);
+          }else{
+            totalPay = totalPay.add(subIncome);
+          }
+        }
+      }
       HSSFRow row0 = sheet.createRow(0);
       HSSFCell cell = row0.createCell(0);
       cell.setCellValue("代理");
@@ -61,7 +89,7 @@ public class GenerateAgentExcelUtils {
       cell.setCellValue("手续费");
       cell.setCellStyle(style);
       cell = row0.createCell(4);
-      cell.setCellValue("");
+      cell.setCellValue(fee+"");
       cell.setCellStyle(style);
 
 
@@ -81,10 +109,10 @@ public class GenerateAgentExcelUtils {
         //2018-03-15 11:32:49
         String endDate = command.getStartDate();
         String end = endDate.substring(0,10);
-        date +="--"+end;
+        date +="到"+end;
       }else{
         String end = simpleDateFormat.format(new Date());
-        date +="--"+end;
+        date +="到"+end;
       }
       cell.setCellValue(date);
       cell.setCellStyle(style);
@@ -92,7 +120,7 @@ public class GenerateAgentExcelUtils {
       cell.setCellValue("总转码");
       cell.setCellStyle(style);
       cell = row1.createCell(3);
-      cell.setCellValue("");
+      cell.setCellValue(exchangeCode+"");
       cell.setCellStyle(style);
 
       HSSFRow row2 = sheet.createRow(2);
@@ -100,20 +128,25 @@ public class GenerateAgentExcelUtils {
       cell.setCellValue("总支付");
       cell.setCellStyle(style);
       cell = row2.createCell(1);
-      cell.setCellValue("");
+      cell.setCellValue(totalPay+"");
       cell.setCellStyle(style);
 
       HSSFRow row = sheet.createRow(3);
 
 
       // 设置表头
+      CellStyle cellStyle = wb.createCellStyle();
+      cellStyle.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+      cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
       if(header != null && header.length > 0){
         for(int j = 0,length = header.length; j<length; j++){
           cell = row.createCell(j);
           cell.setCellValue(header[j]);
-          cell.setCellStyle(style);
+          cell.setCellStyle(cellStyle);
         }
       }
+
       createCell(sheet,row,list,object,flag); //创建内容
       ByteArrayOutputStream os = new ByteArrayOutputStream();
       wb.write(os);
