@@ -76,6 +76,7 @@
                             <a href="/agent_profit/pagination" target="contentBox"><i class="iconfont icon-zhanghaoguanli"></i>代理收益</a>
                             <a  href="/agent_config/pagination" target="contentBox"><i class="iconfont icon-3"></i>代理信息</a>
                             <a  href="/ratio_check/pagination" target="contentBox"><i class="iconfont icon-3"></i>占比审核</a>
+                            <a  href="/agent_export/pagination" target="contentBox"><i class="iconfont icon-3"></i>代理导出</a>
                         </div>
 
                     </li>

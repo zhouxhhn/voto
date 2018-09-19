@@ -61,7 +61,6 @@ public class AgentProfitService implements IAgentProfitService{
         return agentProfitRepository.pagination(command.getPage(),command.getPageSize(),criteria(command),aliasMap,null,null);
     }
 
-
     private List<Criterion> criteria(ListAgentProfitCommand command) {
 
         List<Criterion> criterionList = new ArrayList<>();
@@ -107,5 +106,25 @@ public class AgentProfitService implements IAgentProfitService{
             criterionList.add(Restrictions.lt("createDate",after));
         }
         return criterionList;
+    }
+
+    @Override
+    public Pagination<AgentProfit> exportList(ListAgentProfitCommand command) {
+
+        Map<String, String> aliasMap = new HashMap<>();
+        if(!CoreStringUtils.isEmpty(command.getPlayerName())){
+            aliasMap.put("play","play");
+        }
+        if(!CoreStringUtils.isEmpty(command.getFirstId()) || !CoreStringUtils.isEmpty(command.getFirstName())){
+            aliasMap.put("firstAgent","firstAgent");
+        }
+        if(!CoreStringUtils.isEmpty(command.getSecondId()) || !CoreStringUtils.isEmpty(command.getSecondName())){
+            aliasMap.put("secondAgent","secondAgent");
+        }
+
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(Order.desc("createDate"));
+
+        return agentProfitRepository.pagination(command.getPage(),command.getPageSize(),criteria(command),aliasMap,orderList,null);
     }
 }
