@@ -134,8 +134,24 @@
             var secondName = $("#secondName").val();
             var startDate = $("#startDate").val();
             var endDate = $("#endDate").val();
+
+            if(isNull(firstName) && isNull(secondName)){
+                alert("代理不能为空");
+                return ;
+            }
+
             location.href="${pageContext.request.contextPath}/agent_export/exportExcel.do?playerName="+playerName
             +"&firstName="+firstName+"&secondName="+secondName+"&startDate="+startDate+"&endDate="+endDate;
+        }
+
+        function isNull(str){
+            if ( typeof str == "undefined" || str == null || str == ""){
+                return true;
+            }
+
+            var regu = "^[ ]+$";
+            var re = new RegExp(regu);
+            return re.test(str);
         }
 
 	</script>

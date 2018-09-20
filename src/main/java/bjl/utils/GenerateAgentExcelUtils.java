@@ -53,26 +53,30 @@ public class GenerateAgentExcelUtils {
       BigDecimal exchangeCode = new BigDecimal(0); //总转码
       BigDecimal fee = new BigDecimal(0);//手续费
       BigDecimal totalPay = new BigDecimal(0);//总支付
+
       if(list != null && !list.isEmpty()){
         List<AgentProfit> agentProfits = list;
-        for (AgentProfit agentProfit: agentProfits){
-          BigDecimal loseScore = agentProfit.getLoseScore() == null ? new BigDecimal(0) : agentProfit.getFirstFee().setScale(0, BigDecimal.ROUND_HALF_UP);
-          BigDecimal firstFee = agentProfit.getFirstFee() == null ? new BigDecimal(0) : agentProfit.getFirstFee().setScale(0, BigDecimal.ROUND_HALF_UP);
-          BigDecimal secondFee = agentProfit.getSecondFee() == null ? new BigDecimal(0) : agentProfit.getSecondFee().setScale(0, BigDecimal.ROUND_HALF_UP);
-          exchangeCode = exchangeCode.add(loseScore);
-          if(command.getFirstName() != null && !"".equals(command.getFirstName())){
-            fee = fee.add(firstFee);
-          }else{
-            fee = fee.add(secondFee);
+        AgentProfit agentProfit = agentProfits.get(0);
+
+        //一级代理
+        if(command.getFirstName()!=null && !command.getFirstName().isEmpty()){
+          if(agentProfit.getIntervalScore() != null && agentProfit.getSubRatio() != null){
+            fee = agentProfit.getIntervalScore().multiply(agentProfit.getSubRatio());
+          }
+          if(agentProfit.getLoseScore() != null && agentProfit.getSupR() != null && agentProfit.getSubRatio() != null){
+            exchangeCode = agentProfit.getLoseScore().multiply(agentProfit.getSupR()).multiply(agentProfit.getSubRatio());
           }
 
-          BigDecimal supIncome = agentProfit.getSupIncome() == null ? new BigDecimal(0) : agentProfit.getSupIncome().setScale(0, BigDecimal.ROUND_HALF_UP);
-          BigDecimal subIncome = agentProfit.getSubIncome() == null ? new BigDecimal(0) : agentProfit.getSubIncome().setScale(0, BigDecimal.ROUND_HALF_UP);
-          if(command.getFirstName() != null && !"".equals(command.getFirstName())){
-            totalPay = totalPay.add(supIncome);
-          }else{
-            totalPay = totalPay.add(subIncome);
+
+        }else if(command.getSecondName()!=null && !command.getSecondName().isEmpty()){
+          //二级代理
+          if(agentProfit.getLoseScore() != null && agentProfit.getSubR() != null && agentProfit.getSubRatio() != null){
+            exchangeCode = agentProfit.getLoseScore().multiply(agentProfit.getSubR()).multiply(agentProfit.getSubRatio());
           }
+        }
+        totalPay = exchangeCode.add(fee);
+        if(agentProfit.getIntervalScore() != null){
+          totalPay = totalPay.add(agentProfit.getIntervalScore());
         }
       }
       HSSFRow row0 = sheet.createRow(0);
@@ -186,7 +190,7 @@ public class GenerateAgentExcelUtils {
     if(list != null && list.size() > 0) {
       if (VotoContants.AGENT_PROFIT_EXCEL.equals(flag)) {
         //代理收益
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 1; i < list.size(); i++) {
           row = sheet.createRow(i + 4);
           AgentProfit agentProfit = (AgentProfit) list.get(i);
           if (agentProfit.getPlace() == 1) {

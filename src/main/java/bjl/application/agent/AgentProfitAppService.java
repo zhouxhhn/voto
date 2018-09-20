@@ -5,6 +5,8 @@ import bjl.constants.VotoContants;
 import bjl.domain.model.agent.AgentProfit;
 import bjl.domain.service.agent.IAgentProfitService;
 import bjl.infrastructure.persistence.hibernate.generic.Pagination;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -51,13 +53,31 @@ public class AgentProfitAppService implements IAgentProfitAppService{
         }
 
         command.setPage(1);
+        command.setPageSize(Integer.MAX_VALUE);
+        List<AgentProfit> agentProfits = new ArrayList<>();
         if(flag != null && VotoContants.EXPORT_EXCEL.equals(flag)) {
             command.setPage(1);
+            //查找玩家
+            ListAgentProfitCommand agentProfitCommand = new ListAgentProfitCommand();
+            BeanUtils.copyProperties(command,agentProfitCommand);
+            agentProfitCommand.setFirstName(null);
+            agentProfitCommand.setSecondName(null);
+            if(command.getFirstName() != null){
+                agentProfitCommand.setPlayerName(command.getFirstName());
+            }else if(command.getSecondName() != null){
+                agentProfitCommand.setPlayerName(command.getSecondName());
+            }
+            Pagination<AgentProfit> agentProfitPagination = agentProfitService.exportList(agentProfitCommand);
+
+            if(agentProfitPagination != null && agentProfitPagination.getData() != null && !agentProfitPagination.getData().isEmpty()){
+                AgentProfit agentProfit = agentProfitPagination.getData().get(0);
+                agentProfits.add(agentProfit);
+            }
         }
-        command.setPageSize(Integer.MAX_VALUE);
+
         Pagination<AgentProfit> profitPagination = agentProfitService.exportList(command);
         Map<String,Integer> map = new HashMap<>();
-        List<AgentProfit> agentProfits = new ArrayList<>();
+
         if(profitPagination != null && profitPagination.getData() != null && !profitPagination.getData().isEmpty()){
             List<AgentProfit> list = profitPagination.getData();
             for (int i = 0,size = list.size();i<size;i++){
@@ -81,6 +101,8 @@ public class AgentProfitAppService implements IAgentProfitAppService{
                 profitPagination.setData(agentProfits);
                 profitPagination.setPageSize(18);
                 profitPagination.setPage(page);
+            }else{
+                profitPagination.setData(agentProfits);
             }
         }
 
