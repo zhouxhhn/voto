@@ -439,7 +439,7 @@ public class UserManagerService implements IUserManagerService {
             jsonObject.put("gold",user.getScore());
             jsonObject.put("name",user.getAccount().getName());
             jsonObject.put("qrcode",fileUploadConfig.getDomainName()+fileUploadConfig.getQRCode()+user.getAccount().getUserName()+".png");
-            jsonObject.put("spread",fileUploadConfig.getDomainName()+"spread/"+user.getId());
+            jsonObject.put("spread","http://www.ying906.com/spread/"+user.getId());
             jsonObject.put("code",0);
         }
         return jsonObject;

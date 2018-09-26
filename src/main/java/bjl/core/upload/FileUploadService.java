@@ -475,8 +475,8 @@ public class FileUploadService implements IFileUploadService {
 
                 //存储验证码
                 GlobalVariable.getCodeMap().put(uuid,objects);
-
-                String imgUrl = fileUploadConfig.getDomainName() + fileUploadConfig.getValidateCode() + uuid+".png";
+                String imgUrl = "http://www.ying906.com/" + fileUploadConfig.getValidateCode() + uuid+".png";
+               // String imgUrl = fileUploadConfig.getDomainName() + fileUploadConfig.getValidateCode() + uuid+".png";
                 jsonObject.put("code", 0);
                 jsonObject.put("errmsg", "获取验证码图片成功");
                 jsonObject.put("flag", uuid);
