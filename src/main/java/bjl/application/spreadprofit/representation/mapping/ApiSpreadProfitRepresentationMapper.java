@@ -28,7 +28,7 @@ public class ApiSpreadProfitRepresentationMapper extends CustomMapper<SpreadProf
         //统计总推广人数
         representation.setTotal(spreadProfitService.total(spreadProfit.getAccount().getId()));
         //
-        String fileUrl = fileUploadConfig.getDomainName() + fileUploadConfig.getQRCode()+spreadProfit.getAccount().getUserName()+".png";
+        String fileUrl = "http://www.ying906.com/" + fileUploadConfig.getQRCode()+spreadProfit.getAccount().getUserName()+".png";
         representation.setQRCode(fileUrl);
     }
 

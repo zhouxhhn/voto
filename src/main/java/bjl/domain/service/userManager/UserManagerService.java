@@ -112,7 +112,7 @@ public class UserManagerService implements IUserManagerService {
             }
         }
         //设置用户默认头像
-        String head = fileUploadConfig.getDomainName()+fileUploadConfig.getFolder()+(new Random().nextInt(6)+1)+".png";
+        String head = "http://www.ying906.com/"+fileUploadConfig.getFolder()+(new Random().nextInt(6)+1)+".png";
         //获取系统默认配置
         SystemConfig systemConfig = systemConfigAppService.get();
 
@@ -253,7 +253,7 @@ public class UserManagerService implements IUserManagerService {
         //设置昵称
         String name  = "BY"+(int)((Math.random()*9+1)*100000);//生成带6位随机数字的昵称
         //设置用户默认头像
-        String head = fileUploadConfig.getDomainName()+fileUploadConfig.getFolder()+(new Random().nextInt(6)+1)+".png";
+        String head = "http://www.ying906.com/"+fileUploadConfig.getFolder()+(new Random().nextInt(6)+1)+".png";
         //获取系统默认配置
         SystemConfig systemConfig = systemConfigAppService.get();
         Account account = new Account(command.getAcc(),head,userName,password,bankPwd,salt,null,null,null,roleList,EnableStatus.ENABLE, Sex.MAN, name);
@@ -405,7 +405,7 @@ public class UserManagerService implements IUserManagerService {
         if("filipino".equals(account.getRoles().get(0).getName()) ||
                 "vietnam".equals(account.getRoles().get(0).getName()) ||
                 "macao".equals(account.getRoles().get(0).getName())){
-            account.changeHead(fileUploadConfig.getDomainName()+fileUploadConfig.getFolder()+"1.png");
+            account.changeHead("http://www.ying906.com/"+fileUploadConfig.getFolder()+"1.png");
         }
         accountRepository.update(account);
         //日志记录
@@ -438,7 +438,7 @@ public class UserManagerService implements IUserManagerService {
             jsonObject.put("isFrontAdmin",user.getAccount().getIsFrontAdmin());
             jsonObject.put("gold",user.getScore());
             jsonObject.put("name",user.getAccount().getName());
-            jsonObject.put("qrcode",fileUploadConfig.getDomainName()+fileUploadConfig.getQRCode()+user.getAccount().getUserName()+".png");
+            jsonObject.put("qrcode","http://www.ying906.com/"+fileUploadConfig.getQRCode()+user.getAccount().getUserName()+".png");
             jsonObject.put("spread","http://www.ying906.com/spread/"+user.getId());
             jsonObject.put("code",0);
         }

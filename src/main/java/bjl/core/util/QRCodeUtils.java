@@ -43,7 +43,7 @@ public class QRCodeUtils {
             folder.mkdirs();
             //创建工作目录
                 String fileName = folder+"/"+text+".png";
-                String fileUrl = fileUploadConfig.getDomainName() + fileUploadConfig.getQRCode()+text+"."+FORMAT;
+                String fileUrl = "http://www.ying906.com/" + fileUploadConfig.getQRCode()+text+"."+FORMAT;
                 String content = new String(text.getBytes("utf-8"), "iso-8859-1"); //微信,UC可识别的编码格式
                 BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
                 Path file = new File(fileName).toPath();

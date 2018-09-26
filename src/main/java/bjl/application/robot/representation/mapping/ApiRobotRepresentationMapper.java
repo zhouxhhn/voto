@@ -19,7 +19,7 @@ public class ApiRobotRepresentationMapper extends CustomMapper<Robot,ApiRobotRep
 
     public void mapAtoB(Robot robot, ApiRobotRepresentation representation, MappingContext context) {
 
-        String head = fileUploadConfig.getDomainName()+fileUploadConfig.getFolder()+robot.getHead()+".png";
+        String head = "http://www.ying906.com/"+fileUploadConfig.getFolder()+robot.getHead()+".png";
         representation.setUserid(robot.getId());
         representation.setHead(head);
     }

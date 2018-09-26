@@ -64,7 +64,7 @@ public class FileUploadController {
     @RequestMapping(value = "/my/code")
     @ResponseBody
     public String myCode(String userid) {
-        return fileUploadConfig.getDomainName() + fileUploadConfig.getQRCode() + userid + ".png";
+        return "http://www.ying906.com/" + fileUploadConfig.getQRCode() + userid + ".png";
     }
 
     @RequestMapping(value = "/code")
@@ -75,7 +75,7 @@ public class FileUploadController {
                 response.sendRedirect("redirect:/login_hf_889");
                 return;
             }
-            String url = fileUploadConfig.getDomainName() + fileUploadConfig.getQRCode() + sessionUser.getUserName() + ".png";
+            String url = "http://www.ying906.com/" + fileUploadConfig.getQRCode() + sessionUser.getUserName() + ".png";
 
             response.sendRedirect(url);
         } catch (IOException e) {

@@ -55,7 +55,7 @@ public class FileUploadService implements IFileUploadService {
         File folder = new File(fileUploadConfig.getPath(), fileUploadConfig.getFolder());//创建工作目录
         folder.mkdirs();
 
-        String url = fileUploadConfig.getDomainName() + fileUploadConfig.getFolder();
+        String url = "http://www.ying906.com/" + fileUploadConfig.getFolder();
         for (MultipartFile file : files) {
             String message = null;
             if (file.isEmpty()) {
@@ -183,12 +183,12 @@ public class FileUploadService implements IFileUploadService {
             out.flush();
             out.close();
             //更新用户头像
-            boolean flag = accountAppService.updateHead(fileUploadConfig.getDomainName() + fileUploadConfig.getFolder() + newFileName, username);
+            boolean flag = accountAppService.updateHead("http://www.ying906.com/" + fileUploadConfig.getFolder() + newFileName, username);
             if(flag){
                 //更新用户头像成功
                 logger.info(username + "修改头像[{}]成功", newFileName);
                 jsonObject.put("status", "succ");
-                jsonObject.put("url", fileUploadConfig.getDomainName() + fileUploadConfig.getFolder() + newFileName);
+                jsonObject.put("url", "http://www.ying906.com/" + fileUploadConfig.getFolder() + newFileName);
                 jsonObject.put("errmsg", "修改头像成功");
             }else {
                 jsonObject.put("status", "fail");
@@ -264,7 +264,7 @@ public class FileUploadService implements IFileUploadService {
             out.flush();
             out.close();
             //上传聊天图片成功
-            result = fileUploadConfig.getDomainName() + fileUploadConfig.getChatImg() + newFileName;
+            result = "http://www.ying906.com/" + fileUploadConfig.getChatImg() + newFileName;
             logger.info(username + "上传聊天图片[{}]成功", result);
             jsonObject.put("status", "succ");
             jsonObject.put("url", result);
@@ -295,7 +295,7 @@ public class FileUploadService implements IFileUploadService {
             JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(bos);
             encoder.encode(image);
             bos.close();
-            return fileUploadConfig.getDomainName() + fileUploadConfig.getBetImg() + fileName;
+            return"http://www.ying906.com/" + fileUploadConfig.getBetImg() + fileName;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -340,7 +340,7 @@ public class FileUploadService implements IFileUploadService {
             out1.flush();
             out1.close();
             //广播截图信息
-            String url1 = fileUploadConfig.getDomainName() + fileUploadConfig.getLottery() + newName1;
+            String url1 = "http://www.ying906.com/" + fileUploadConfig.getLottery() + newName1;
 
             CreateChatCommand chatCommand = new CreateChatCommand(Integer.valueOf(strings[0]),"admin",3,url1);
             ServiceUtil.serviceUtil.getChatAppService().create(chatCommand);
@@ -368,7 +368,7 @@ public class FileUploadService implements IFileUploadService {
                 out2.flush();
                 out2.close();
                 //广播截图信息
-                String url2 = fileUploadConfig.getDomainName() + fileUploadConfig.getLottery() + newName2;
+                String url2 = "http://www.ying906.com/" + fileUploadConfig.getLottery() + newName2;
                 chatCommand = new CreateChatCommand(Integer.valueOf(strings[0]),"admin",3,url2);
                 ServiceUtil.serviceUtil.getChatAppService().create(chatCommand);
 
@@ -396,7 +396,7 @@ public class FileUploadService implements IFileUploadService {
                 out3.write(sceneImg.getBytes());
                 out3.flush();
                 out3.close();
-                String url3 = fileUploadConfig.getDomainName() + fileUploadConfig.getLottery() + newName3;
+                String url3 = "http://www.ying906.com/" + fileUploadConfig.getLottery() + newName3;
                 chatCommand = new CreateChatCommand(Integer.valueOf(strings[0]),"admin",3,url3);
                 ServiceUtil.serviceUtil.getChatAppService().create(chatCommand);
             }
@@ -438,7 +438,7 @@ public class FileUploadService implements IFileUploadService {
             out.flush();
             out.close();
             //上传聊天图片成功
-            result = fileUploadConfig.getDomainName() + fileUploadConfig.getFolder() + newFileName;
+            result = "http://www.ying906.com/" + fileUploadConfig.getFolder() + newFileName;
             logger.info("上传公告图片[{}]成功", result);
             jsonObject.put("status", 0);
             jsonObject.put("url", result);

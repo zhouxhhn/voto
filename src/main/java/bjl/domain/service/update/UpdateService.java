@@ -60,7 +60,7 @@ public class UpdateService implements IUpdateService{
                 out.close();
 
                 //资源包链接
-                url = fileUploadConfig.getDomainName() + fileUploadConfig.getResourcePackage()+fileName;
+                url ="http://www.ying906.com/" + fileUploadConfig.getResourcePackage()+fileName;
             }
 
             //更新资源包信息
