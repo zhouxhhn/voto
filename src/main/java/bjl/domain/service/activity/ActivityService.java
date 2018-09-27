@@ -31,12 +31,13 @@ public class ActivityService implements IActivityService{
     }
 
     @Override
-    public void create(String title, String content, String image) {
+    public void create(String title, String content, String image,String compressImage) {
 
         Activity activity = new Activity();
         activity.setTitle(title);
         activity.setContent(content);
         activity.setImage(image);
+        activity.setCompress(compressImage);
         activity.setCreateDate(new Date());
         activityRepository.save(activity);
     }

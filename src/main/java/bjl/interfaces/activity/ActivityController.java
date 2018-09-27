@@ -40,7 +40,7 @@ public class ActivityController extends BaseController {
     }
 
     @RequestMapping(value ="create",method = RequestMethod.POST)
-    public ModelAndView create(MultipartFile file, String title, String content, HttpServletRequest request){
+    public ModelAndView create(MultipartFile file,MultipartFile compress, String title, String content, HttpServletRequest request){
 
         AccountRepresentation sessionUser = (AccountRepresentation) SecurityUtils.getSubject().getSession().getAttribute("sessionUser");
         if(sessionUser == null){
@@ -50,7 +50,12 @@ public class ActivityController extends BaseController {
         if(file.getSize() > 0 ){
             imageUrl = fileUploadService.uploadNotice(file).getString("url");
         }
-        activityAppService.create(title,content,imageUrl);
+        //缩略图
+        String compressImage = null;
+        if(compress.getSize() > 0 ){
+            compressImage = fileUploadService.uploadNotice(compress).getString("url");
+        }
+        activityAppService.create(title,content,imageUrl,compressImage);
 
         CreateLoggerCommand loggerCommand = new CreateLoggerCommand(sessionUser.getId(), LoggerType.OPERATION,
                 "创建活动成功", CoreHttpUtils.getClientIP(request));

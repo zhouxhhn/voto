@@ -23,6 +23,7 @@
 							<th>标题</th>
 							<th>内容</th>
 							<th>图片</th>
+                            <th>缩略图</th>
                             <th>操作</th>
 						</tr>
 					</thead>
@@ -41,6 +42,13 @@
 									无图片
 								[/#if]
 							</td>
+                            <td>
+								[#if activity.image??]
+                                    <a style="color: #00a2d4" href="${activity.compress}" target="view_window">点击查看缩略图</a>
+								[#else ]
+									无缩略图
+								[/#if]
+                            </td>
 							<td class="xiugai" onclick="window.location.href='/activity/delete?id=${activity.id}'">删除</td>
 						</tr>
 					[/#list]
@@ -69,6 +77,9 @@
                     </div>
                     <div class="tipCon">
                         公告图片：<input type="file" name="file" id="file" />
+                    </div>
+                    <div class="tipCon">
+                        公告缩略图：<input type="file" name="compress" id="compress" />
                     </div>
                     <div class="BtnDiv mT20">
                         <span class="quxiao mLR15" type="button" onclick="$('[lay]').css('display','none')">取消</span>

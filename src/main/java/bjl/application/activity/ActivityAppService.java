@@ -36,9 +36,9 @@ public class ActivityAppService implements IActivityAppService{
     }
 
     @Override
-    public void create(String title, String content, String image) {
+    public void create(String title, String content, String image,String compressImage) {
 
-        activityService.create(title,content,image);
+        activityService.create(title,content,image,compressImage);
     }
 
     @Override

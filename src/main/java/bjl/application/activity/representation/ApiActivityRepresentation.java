@@ -9,6 +9,7 @@ public class ApiActivityRepresentation {
     private String content; //内容
     private String image;//图片
     private String time;
+    private String compress; //缩略图
 
     public String getTime() {
         return time;
@@ -40,5 +41,13 @@ public class ApiActivityRepresentation {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCompress() {
+        return compress;
+    }
+
+    public void setCompress(String compress) {
+        this.compress = compress;
     }
 }

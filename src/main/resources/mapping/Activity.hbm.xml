@@ -18,6 +18,8 @@
 
         <property name="image" column="image" type="java.lang.String"/>
 
+        <property name="compress" column="compress" type="java.lang.String"/>
+
     </class>
 
 </hibernate-mapping>

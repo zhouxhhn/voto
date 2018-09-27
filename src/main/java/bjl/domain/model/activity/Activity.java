@@ -10,6 +10,7 @@ public class Activity extends ConcurrencySafeEntity {
     private String title; //标题
     private String content; //内容
     private String image;//图片
+    private String compress; //缩略图
 
     public String getTitle() {
         return title;
@@ -33,5 +34,13 @@ public class Activity extends ConcurrencySafeEntity {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCompress() {
+        return compress;
+    }
+
+    public void setCompress(String compress) {
+        this.compress = compress;
     }
 }

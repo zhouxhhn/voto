@@ -13,7 +13,7 @@ public interface IActivityService {
 
     Pagination<Activity> pagination(ListNoticeCommand command);
 
-    void create(String title,String content,String image);
+    void create(String title,String content,String image,String compressImage);
 
     void delete(String id);
 
