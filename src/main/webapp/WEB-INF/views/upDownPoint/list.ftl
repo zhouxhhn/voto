@@ -16,10 +16,11 @@
             <div inDiv>
                 <form action="/upDownPoint/list" id="form">
                     <label class="mR10">
-                        <input type="text" name="userName" value="${command.userName}" placeholder="玩家ID"/>
+                        <input type="text" name="firstAgent" id="firstAgent" value="${command.firstAgent}" placeholder="一级代理"/>
+                        <input type="text" name="userName" id="userName" value="${command.userName}" placeholder="玩家ID"/>
                     </label>
                     <label>
-                        <select name="upDownPointType">
+                        <select name="upDownPointType" id="upDownPointType">
                             <option value="0" >全部</option>
                             <option value="1" [#if command.upDownPointType == 1]selected="selected" [/#if]>上分</option>
                             <option value="2" [#if command.upDownPointType == 2]selected="selected" [/#if]>下分</option>
@@ -35,12 +36,16 @@
                 </form>
             </div>
             <div class="chaxun mLR5" onclick="$('#form').submit()">查询</div>
+            <div class="chaxun mLR5" onclick="exportExcel()">导出</div>
 		</div>
 
 			<div class="divW w100">
 				<table class="layerTab">
 					<thead>
 						<tr>
+                            <th>公司</th>
+                            <th>一级代理</th>
+                            <th>推荐人</th>
                             <th>玩家ID</th>
 							<th>玩家昵称</th>
 							<th>操作时间</th>
@@ -54,6 +59,9 @@
 				[#if pagination.data ??]
 					[#list pagination.data as player ]
     					<tr>
+                            <td>${player.company}</td>
+                            <td>${player.firtAngent}</td>
+                            <td>${player.refree}</td>
                             <td>${player.userName}</td>
 							<td>${player.name}</td>
 							<td>${player.createDate}</td>
@@ -71,7 +79,7 @@
 			</div>
 			<!--分页-->
 		[#if pagination!]
-			[@mc.customPagination '/upDownPoint/list?userName=${command.userName}&upDownPointType=${command.upDownPointType}&startDate=${command.startDate}&endDate=${command.endDate}' /]
+			[@mc.customPagination '/upDownPoint/list?userName=${command.userName}&firstAgent=${command.firstAgent}&upDownPointType=${command.upDownPointType}&startDate=${command.startDate}&endDate=${command.endDate}' /]
 		[/#if]
 		</div>
 
@@ -83,6 +91,16 @@
 		$(".layerTab tbody tr,.pageWrap a").click(function() {
 			$(this).addClass("on").siblings().removeClass("on");
 		})
+
+        function exportExcel() {
+            var firstAgent = $("#firstAgent").val();
+            var userName = $("#userName").val();
+            var upDownPointType = $("#upDownPointType").val();
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            location.href="${pageContext.request.contextPath}/upDownPoint/export.do?firstAgent="+firstAgent+"&userName="+userName
+                          +"&upDownPointType="+upDownPointType+"&startDate="+startDate+"&endDate="+endDate;
+        }
 	</script>
 
 </html>

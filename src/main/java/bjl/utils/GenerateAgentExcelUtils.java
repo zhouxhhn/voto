@@ -64,7 +64,8 @@ public class GenerateAgentExcelUtils {
             fee = agentProfit.getIntervalScore().multiply(agentProfit.getSubRatio());
           }
           if(agentProfit.getLoseScore() != null && agentProfit.getSupR() != null && agentProfit.getSubRatio() != null){
-            exchangeCode = agentProfit.getLoseScore().multiply(agentProfit.getSupR()).multiply(agentProfit.getSubRatio());
+            //exchangeCode = agentProfit.getLoseScore().multiply(agentProfit.getSupR()).multiply(agentProfit.getSubRatio());
+            exchangeCode = agentProfit.getLoseScore().multiply(new BigDecimal(0.015)).multiply(agentProfit.getSubRatio());
           }
 
 

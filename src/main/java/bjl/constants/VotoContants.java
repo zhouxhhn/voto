@@ -17,4 +17,7 @@ public class VotoContants {
     //输赢明细
     public static String GAME_DETAIL_EXCEL="game_detailed";
 
+    //上下分明细
+    public static String UP_DOWN_EXCEL="up_down";
+
 }

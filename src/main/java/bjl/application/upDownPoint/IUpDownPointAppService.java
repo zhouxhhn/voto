@@ -4,6 +4,7 @@ package bjl.application.upDownPoint;
 import bjl.application.upDownPoint.command.UpDownPointCommand;
 import bjl.application.userManager.command.ModifyUserCommand;
 import bjl.domain.model.upDownPoint.UpDownPoint;
+import bjl.domain.model.upDownPoint.UpDownPointAgent;
 import bjl.infrastructure.persistence.hibernate.generic.Pagination;
 
 import java.math.BigDecimal;
@@ -17,7 +18,9 @@ public interface IUpDownPointAppService {
 
     void create(ModifyUserCommand command);
 
-   Pagination<UpDownPoint> pagination(UpDownPointCommand command);
+   Pagination<UpDownPointAgent> pagination(UpDownPointCommand command);
+
+   Pagination<UpDownPointAgent> export(UpDownPointCommand command);
 
     Map<String, BigDecimal> sum(Date date);
 

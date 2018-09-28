@@ -104,7 +104,7 @@
 			</div>
 			<!--分页-->
 			[#if pagination??]
-            	[@mc.customPagination '/game_detailed/pagination?boots=${command.boots!}&games=${command.games!}&hallType=${command.hallType}&startDate=${command.getStartDate()}&endDate=${command.getEndDate()}' /]
+            	[@mc.customPagination '/game_detailed/paginationAgent?boots=${command.boots!}&games=${command.games!}&hallType=${command.hallType}&startDate=${command.getStartDate()}&endDate=${command.getEndDate()}' /]
         	[/#if]
 		</div>
 

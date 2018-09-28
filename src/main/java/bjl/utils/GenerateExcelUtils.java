@@ -23,6 +23,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import bjl.application.triratna.representation.TriratnaRepresentation;
+import bjl.domain.model.upDownPoint.UpDownPointAgent;
 
 public class GenerateExcelUtils {
 
@@ -200,6 +201,25 @@ public class GenerateExcelUtils {
           row.createCell(10).setCellValue(totalGameDetailedCommand.getEffective()==null ? 0:totalGameDetailedCommand.getEffective().setScale(0, BigDecimal.ROUND_HALF_UP).longValue());
           row.createCell(11).setCellValue(totalGameDetailedCommand.getBankPlayLose()==null ? 0:totalGameDetailedCommand.getBankPlayLose().setScale(0, BigDecimal.ROUND_HALF_UP).longValue());
           row.createCell(12).setCellValue(totalGameDetailedCommand.getTriratnaLose()==null ? 0:totalGameDetailedCommand.getTriratnaLose().setScale(0, BigDecimal.ROUND_HALF_UP).longValue());
+        }
+      }else if (VotoContants.UP_DOWN_EXCEL.equals(flag)) {
+        //上下分明细
+        for (int i = 0; i < list.size(); i++) {
+          row = sheet.createRow(i + 1);
+          UpDownPointAgent upDownPointAgent = (UpDownPointAgent) list.get(i);
+          row.createCell(0).setCellValue(upDownPointAgent.getCompany());
+          row.createCell(1).setCellValue(upDownPointAgent.getFirtAngent());
+          row.createCell(2).setCellValue(upDownPointAgent.getRefree());
+          row.createCell(3).setCellValue(upDownPointAgent.getId());
+          row.createCell(4).setCellValue(upDownPointAgent.getUserName());
+          row.createCell(5).setCellValue(upDownPointAgent.getCreateDate());
+          if (upDownPointAgent.getUpDownPointType()== 1) {
+            row.createCell(6).setCellValue("上分");
+          }else{
+            row.createCell(6).setCellValue("下分");
+          }
+          row.createCell(7).setCellValue(upDownPointAgent.getUpDownPoint()+"");
+          row.createCell(8).setCellValue(upDownPointAgent.getOperationUser());
         }
       }
     }

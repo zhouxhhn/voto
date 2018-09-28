@@ -40,8 +40,9 @@ public class GameDetailedRepository extends AbstractHibernateGenericRepository<G
         criteriaCount.createAlias("user","user");
         if(!CoreStringUtils.isEmpty(parentId)){
             criteriaCount.createAlias("user.account","account");
+        }else{
+            criteriaCount.createAlias("user.account","account");
         }
-        criteriaCount.createAlias("user.account","account");
         ProjectionList projectionList = Projections.projectionList();
         projectionList.add(Projections.sum("player"));
         projectionList.add(Projections.sum("banker"));
