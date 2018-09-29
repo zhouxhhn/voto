@@ -30,12 +30,13 @@ public class GuideService implements IGuideService{
     }
 
     @Override
-    public void create(String title, String content) {
+    public void create(String title, String content,String imageUrl) {
 
         Guide guide = new Guide();
         guide.setContent(content);
         guide.setTitle(title);
         guide.setCreateDate(new Date());
+        guide.setImageUrl(imageUrl);
         guideRepository.save(guide);
     }
 

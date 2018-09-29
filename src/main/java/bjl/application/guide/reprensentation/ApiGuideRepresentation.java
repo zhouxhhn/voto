@@ -7,6 +7,15 @@ public class ApiGuideRepresentation {
 
     private String title;
     private String content;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getTitle() {
         return title;

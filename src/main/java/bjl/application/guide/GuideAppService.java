@@ -34,8 +34,8 @@ public class GuideAppService implements IGuideAppService{
     }
 
     @Override
-    public void create(String title, String content) {
-        guideService.create(title,content);
+    public void create(String title, String content,String imageUrl) {
+        guideService.create(title,content,imageUrl);
     }
 
     @Override

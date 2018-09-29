@@ -16,6 +16,8 @@
 
         <property name="content" column="content" type="java.lang.String"/>
 
+        <property name="imageUrl" column="imageUrl" type="java.lang.String"/>
+
     </class>
 
 </hibernate-mapping>

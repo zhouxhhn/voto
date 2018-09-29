@@ -6,6 +6,7 @@ import bjl.application.logger.ILoggerAppService;
 import bjl.application.logger.command.CreateLoggerCommand;
 import bjl.application.notice.command.ListNoticeCommand;
 import bjl.core.enums.LoggerType;
+import bjl.core.upload.IFileUploadService;
 import bjl.core.util.CoreHttpUtils;
 import bjl.interfaces.shared.web.BaseController;
 import org.apache.shiro.SecurityUtils;
@@ -26,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 public class GuideController extends BaseController {
 
     @Autowired
+    private IFileUploadService fileUploadService;
+
+    @Autowired
     private IGuideAppService guideAppService;
     @Autowired
     private ILoggerAppService loggerAppService;
@@ -37,13 +41,17 @@ public class GuideController extends BaseController {
     }
 
     @RequestMapping(value ="create",method = RequestMethod.POST)
-    public ModelAndView create(String title, String content, HttpServletRequest request){
+    public ModelAndView create(MultipartFile file,String title, String content, HttpServletRequest request){
 
         AccountRepresentation sessionUser = (AccountRepresentation) SecurityUtils.getSubject().getSession().getAttribute("sessionUser");
         if(sessionUser == null){
             return new ModelAndView("redirect:/logged");
         }
-        guideAppService.create(title,content);
+        String imageUrl = null;
+        if(file.getSize() > 0 ){
+            imageUrl = fileUploadService.uploadNotice(file).getString("url");
+        }
+        guideAppService.create(title,content,imageUrl);
 
         CreateLoggerCommand loggerCommand = new CreateLoggerCommand(sessionUser.getId(), LoggerType.OPERATION,
                 "创建新手指南成功", CoreHttpUtils.getClientIP(request));

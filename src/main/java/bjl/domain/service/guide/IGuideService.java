@@ -13,7 +13,7 @@ public interface IGuideService {
 
     Pagination<Guide> pagination(ListNoticeCommand command);
 
-    void create(String title,String content);
+    void create(String title,String content,String imageUrl);
 
     void delete(String id);
 

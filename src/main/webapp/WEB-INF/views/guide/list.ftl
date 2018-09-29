@@ -22,6 +22,7 @@
                             <th>创建时间</th>
 							<th>标题</th>
 							<th>内容</th>
+                            <th>图片</th>
                             <th>操作</th>
 						</tr>
 					</thead>
@@ -33,6 +34,13 @@
                             <td>${guide.createDate}</td>
                             <td>${guide.title}</td>
                             <td>${guide.content}</td>
+                            <td>
+								[#if guide.image??]
+                                    <a style="color: #00a2d4" href="${guide.image}" target="view_window">点击查看图片</a>
+								[#else ]
+									无图片
+								[/#if]
+                            </td>
 							<td class="xiugai" onclick="window.location.href='/guide/delete?id=${guide.id}'">删除</td>
 						</tr>
 					[/#list]
@@ -58,6 +66,9 @@
                     <div class="tipCon">
                         内容：<br/>
                         <textarea style="width: 515px;height: 120px" name="content" id="content"></textarea>
+                    </div>
+                    <div class="tipCon">
+                        图片：<input type="file" name="file" id="file" />
                     </div>
                     <div class="BtnDiv mT20">
                         <span class="quxiao mLR15" type="button" onclick="$('[lay]').css('display','none')">取消</span>
